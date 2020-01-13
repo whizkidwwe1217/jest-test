@@ -1,23 +1,12 @@
-import { TestBed, async, inject, getTestBed } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ClarityModule } from "@clr/angular";
-import { environment } from "src/environments/environment";
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from "@angular/common/http/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { APP_BASE_HREF } from "@angular/common";
 
 beforeEach(() => {
   TestBed.configureTestingModule({
-    imports: [
-      HttpClientTestingModule,
-      FormsModule,
-      ReactiveFormsModule,
-      ClarityModule
-    ],
+    imports: [HttpClientTestingModule, ClarityModule],
     declarations: [AppComponent],
     providers: [
       {
