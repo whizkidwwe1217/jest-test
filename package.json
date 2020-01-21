@@ -45,8 +45,9 @@
     "jest-junit": "^6.4.0",
     "jest-junit-reporter": "^1.1.0",
     "jest-preset-angular": "^8.0.0",
+    "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
-    "ts-node": "~7.0.0",
+    "ts-node": "^8.6.2",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   }
