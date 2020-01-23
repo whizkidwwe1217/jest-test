@@ -1,0 +1,200 @@
+$clr-global-app-background: $white;
+$clr-global-selection-color: $blue-1;
+$clr-global-hover-bg-color: $light-blue-3;
+
+$clr-close-color--normal: #c3ced4;
+$clr-close-color--normal-opacity: 1;
+$clr-close-color--hover: #fff;
+$clr-close-color--hover-opacity: 1;
+/**********
+   * Datagrid
+   * Datagrids are for organizing large volumes of data that users can scan, compare, and perform actions on.
+   *
+   * Usage: ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-datagrid-row-hover: $light-blue-3;
+$clr-datagrid-row-selected: $blue-1;
+// $clr-datagrid-popover-bg-color: $light-blue-1;
+// $clr-datagrid-action-toggle: $font-1;
+// $clr-datagrid-pagination-btn-color: #e9ecef;
+// $clr-datagrid-pagination-btn-disabled-color: #e9ecef;
+// $clr-datagrid-pagination-btn-disabled-opacity: 0.46;
+// $clr-datagrid-pagination-input-border-color: $light-blue-2
+// $clr-datagrid-pagination-input-border-focus-color: #49afd9;
+// $clr-datagrid-popover-border-color: $light-blue-2
+$clr-datagrid-action-popover-hover-color: $clr-datagrid-row-hover;
+// $clr-datagrid-loading-background: rgba(255, 255, 255, 0.5);
+// END: Datagrid
+
+/**********
+   * Header
+   * Headers provide branding, navigation, search, and access to global application actions such as settings and
+   * notifications. There are five header colors in the dark theme.
+   *
+   * Usage: ../layout/nav/_header.clarity.scss
+   * -
+   */
+$clr-header-bgColor: $bg-1;
+$clr-header-default-bg-color: $clr-header-bgColor;
+$clr-header-1-bg-color: $clr-header-bgColor;
+$clr-header-2-bg-color: $clr-header-bgColor;
+$clr-header-3-bg-color: $clr-header-bgColor;
+$clr-header-4-bg-color: $clr-header-bgColor;
+$clr-header-5-bg-color: $clr-header-bgColor;
+$clr-header-6-bg-color: $clr-header-bgColor;
+// END Header overrides
+
+/**********
+   * Table
+   * Use the table styles wherever you need to present static data in a tabular format.
+   *
+   * Usage:
+   * - ../data/_tables.clarity.scss
+   * - ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-thead-bgcolor: $white;
+$clr-table-bgcolor: $white;
+$clr-table-font-color: $font-2;
+$clr-datagrid-default-border-color: $border-3;
+$clr-table-header-border-bottom-color: $clr-datagrid-default-border-color;
+$clr-table-footer-border-top-color: $clr-datagrid-default-border-color;
+$clr-tablerow-bordercolor: $clr-datagrid-default-border-color;
+$clr-table-border-color: $clr-datagrid-default-border-color;
+$clr-table-bordercolor: $clr-datagrid-default-border-color;
+$clr-table-borderstyle: 1px solid $clr-datagrid-default-border-color;
+// END: Table
+
+/**********
+   * Typography
+   * Clarity uses the geometric sans-serif font, Metropolis.
+   *
+   * Usage:
+   * - ../typography/_typography.clarity.scss
+   * - ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-global-font-color: $font-2;
+$clr-global-font-color-secondary: $font-1;
+
+$clr-h1-color: $clr-global-font-color;
+$clr-h2-color: $clr-global-font-color;
+$clr-h3-color: $clr-global-font-color;
+$clr-h4-color: $clr-global-font-color;
+$clr-h5-color: $clr-global-font-color;
+$clr-h6-color: $clr-global-font-color-secondary;
+
+$clr-p1-color: $clr-global-font-color-secondary;
+$clr-p2-color: $clr-global-font-color-secondary;
+$clr-p3-color: $clr-global-font-color-secondary;
+$clr-p4-color: $clr-global-font-color;
+$clr-p5-color: $clr-global-font-color;
+$clr-p6-color: $clr-global-font-color;
+$clr-p7-color: $clr-global-font-color;
+$clr-p8-color: $clr-global-font-color;
+
+/**********
+    * Vertical Nav
+    * This is a vertically-aligned navigational component.
+    *
+    * Usage: ../layout/vertical-nav/_vertical-nav.clarity.scss
+    */
+// $clr-vertical-nav-item-height: 1.5rem;
+$clr-vertical-nav-item-color: $white;
+$clr-vertical-nav-item-active-color: $semi-white;
+$clr-vertical-nav-bg-color: $bg-1;
+$clr-vertical-nav-active-bg-color: $bg-2;
+$clr-vertical-nav-hover-bg-color: $bg-3;
+$clr-vertical-nav-icon-active-color: $semi-white;
+$clr-vertical-nav-toggle-icon-color: $white;
+// END Vertical Nav
+// Default button
+$clr-btn-default-color: $blue-1; // border-color, color, checked-background-color
+$clr-btn-default-bg-color: $light-blue-3; // background-color, disabled-background-color
+$clr-btn-default-hover-bg-color: hsla(
+	0,
+	0%,
+	100%,
+	0.1
+); // hover-background-color
+$clr-btn-default-hover-color: $blue-2; // hover-color
+$clr-btn-default-box-shadow-color: $bg-2; // active-box-shadow-color
+$clr-btn-default-checked-color: $semi-white; // checked-color
+$clr-btn-default-checked-bg-color: $blue-1;
+
+// Default button
+$clr-btn-default-outline-color: $blue-1; // border-color, color, checked-background-color
+$clr-btn-default-outline-bg-color: transparent; // background-color, disabled-background-color
+$clr-btn-default-outline-hover-bg-color: hsla(0, 0%, 100%, 0.1);
+// Primary button
+$clr-btn-primary-color: $white; // color, checked-background-color
+$clr-btn-primary-bg-color: $blue-1; // background-color, disabled-background-color
+$clr-btn-primary-border-color: transparent; // border-color
+$clr-btn-primary-hover-bg-color: $blue-2; // hover-background-color
+$clr-btn-primary-hover-color: $semi-white; // hover-color
+$clr-btn-primary-box-shadow-color: $bg-3; // active-box-shadow-color
+$clr-btn-primary-checked-color: $semi-white; // checked-color
+
+/**********
+    * Alerts
+    * Alerts are banners that communicate a message with a severity attached to it. They grab the user’s attention to
+    * provide critical information needed in context. These variables control the background-color and font color for each
+    * of the alert types.
+    *
+    * There are seven types of alert and we set the background-color and font color for each here.
+    */
+
+// Info type
+$clr-alert-info-bg-color: $light-blue-3;
+$clr-alert-info-font-color: $dark-blue-3;
+$clr-alert-info-border-color: transparent;
+$clr-alert-info-icon-color: $dark-blue-3;
+
+// Success type
+$clr-alert-success-bg-color: $light-green-3;
+$clr-alert-success-font-color: $dark-green-3;
+$clr-alert-success-border-color: transparent;
+$clr-alert-success-icon-color: $dark-green-3;
+
+// Danger type
+$clr-alert-danger-bg-color: $light-red-3;
+$clr-alert-danger-font-color: $dark-red-3;
+$clr-alert-danger-border-color: transparent;
+$clr-alert-danger-icon-color: $dark-red-3;
+
+// Warning type
+$clr-alert-warning-bg-color: $light-yellow-3;
+$clr-alert-warning-font-color: $dark-yellow-3;
+$clr-alert-warning-border-color: transparent;
+$clr-alert-warning-icon-color: $dark-yellow-3;
+
+// App Info type
+$clr-app-alert-info-bg-color: $dark-blue-3;
+$clr-app-alert-info-font-color: $white;
+$clr-app-alert-info-border-color: transparent;
+$clr-app-alert-info-icon-color: $white;
+
+// App warning type
+$clr-app-alert-warning-bg-color: $dark-yellow-3;
+$clr-app-alert-warning-icon-color: $white;
+$clr-app-alert-warning-font-color: $white;
+$clr-app-alert-warning-border-color: transparent;
+
+// App danger type
+$clr-app-alert-danger-bg-color: $dark-red-3;
+$clr-app-alert-danger-icon-color: $white;
+$clr-app-alert-danger-font-color: $white;
+$clr-app-alert-danger-border-color: transparent;
+
+$clr-alert-action-color: #fff; // Used for dropdowns on the right side of an alert
+$clr-alert-action-active-color: #fff; // Alert dropdowns when they are clicked on
+$clr-app-alert-close-icon-color: $clr-close-color--normal; // Colors for the 'X' close btn in global alerts
+
+$clr-alert-close-icon-opacity: 1;
+$clr-alert-close-icon-hover-opacity: 1;
+
+// Close icon colors for APP-LEVEL ALERTS
+$clr-app-level-alert-color: #000;
+$clr-app-alert-close-icon-color: #000;
+
+/**********
+        * END: Alerts
+        */

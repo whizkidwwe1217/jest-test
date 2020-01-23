@@ -1,0 +1,160 @@
+<div
+  class="hf-search-wrapper"
+  [class.flex]="flexTags"
+  [ngbPopover]="popContent"
+  [placement]="pickerPlacement"
+  [popoverClass]="'hf-search-select-body'"
+  [container]="container"
+  [showArrowTip]="showArrowTip"
+  [popoverTitle]="popoverTitle"
+  [useGpu]="false"
+  [triggers]="'manual'"
+  (click)="togglePopup($event, 'body')"
+  autoClose="outside"
+  #popover="ngbPopover"
+>
+  <ng-container *ngIf="multiselect">
+    <div class="multi-select-tag-container">
+      <span
+        tabindex="1"
+        class="label hf-search-tag"
+        [title]="getTagTitle(item)"
+        [class.flex]="flexTags"
+        *ngFor="let item of selectedItems; let index = index"
+        >{{ getText(item) }}
+        <a
+          tabindex="2"
+          title="Remove from selection"
+          class="hf-search-tag-close-icon"
+          href="javascript:void(0)"
+          (click)="deleteTag($event, item, index)"
+          (mouseover)="onMouseOverBtnClose($event, item, index)"
+          (mouseout)="onMouseOutBtnClose($event, item, index)"
+        >
+          <clr-icon shape="times-circle" [class.is-solid]="index === hoveredTag"></clr-icon>
+        </a>
+      </span>
+    </div>
+  </ng-container>
+
+  <div class="hf-search-input-text-container">
+    <div
+      class="hf-search-search-icon"
+      [class.flex]="flexTags"
+      (click)="togglePopup($event, 'icon')"
+    >
+      <clr-icon
+        #searchIcon
+        [class.disabled]="disabled"
+        [class.flex]="flexTags"
+        [attr.shape]="'search'"
+      ></clr-icon>
+    </div>
+
+    <input
+      tabindex="0"
+      #inputBox
+      class="hf-search-select-input clr-input"
+      type="search"
+      (blur)="onBlur($event)"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [(ngModel)]="filterValue"
+      [value]="getSelectedItemText()"
+    />
+    <div class="hf-search-clear-icon" [class.flex]="flexTags" (click)="onClearSelection($event)">
+      <span *ngIf="loading" class="spinner spinner-inline">
+        Loading...
+      </span>
+      <clr-icon
+        *ngIf="!loading && hasSelection() && enableClearButton"
+        #clearIcon
+        [class.flex]="flexTags"
+        [attr.shape]="'times'"
+      ></clr-icon>
+    </div>
+  </div>
+</div>
+
+<ng-template #popContent>
+  <!-- <span *ngIf="loading">Loading...</span> -->
+  <hf-command-bar
+    *ngIf="enableToolbar"
+    [items]="commands"
+    [showSearchBar]="false"
+    [iconOnly]="true"
+  ></hf-command-bar>
+  <ul #listBox class="hf-search-list" role="list">
+    <ng-container *ngIf="!hasNoVisibleItems() && enableGrouping">
+      <ng-container *ngFor="let counter of [visibleItems | hfSearchCounterPipe]">
+        {{ counter.reset() }}
+        <ng-container *ngFor="let data of visibleItems; let groupIndex = index">
+          <li role="group" class="hf-search-list-group" *ngIf="data?.items?.length > 0">
+            {{ data?.group }} ({{ data?.items?.length }})
+          </li>
+          <ng-container
+            *ngTemplateOutlet="listItemTemplate; context: {
+              dataItems: data?.items,
+              dataGroup: data?.group,
+              dataGroupIndex: groupIndex,
+              counter: counter
+            }"
+          ></ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!enableGrouping">
+      <ng-container
+        *ngTemplateOutlet="listItemTemplate;context: { dataItems: visibleItems }"
+      ></ng-container>
+    </ng-container>
+    <li
+      *ngIf="showCreatableItem()"
+      class="hf-search-list-item"
+      [class.item-hover]="showCreatableItem()"
+      [class.focused]="isCreatableItemFocused()"
+      (click)="createNewItem($event)"
+      [class.hf-search-no-padding]="removeItemPadding"
+    >
+      <div class="hf-search-list-item-content-wrapper">
+        <span class="hf-search-list-item-content"> {{getCreatableItemText()}}</span>
+      </div>
+    </li>
+  </ul>
+  <ng-template
+    #listItemTemplate
+    let-dataItems="dataItems"
+    let-dataGroup="dataGroup"
+    let-dataGroupIndex="dataGroupIndex"
+    let-counter="counter"
+  >
+    <li
+      role="listitem"
+      class="hf-search-list-item"
+      [class.hf-search-no-padding]="removeItemPadding"
+      [class.focused]="isFocused(enableGrouping ? counter.getValue() : i, item, dataGroup)"
+      (click)="selectItem(item, enableGrouping ? counter.getValue() : i, dataGroup, true, true)"
+      *ngFor="let item of dataItems; let i = index; trackBy: trackBy"
+    >
+      {{ counter?.increment() }}
+      <div class="hf-search-list-item-content-wrapper">
+        <span *ngIf="!template" class="hf-search-list-item-content"> {{ getText(item) }}</span>
+        <ng-container *ngTemplateOutlet="template;context: { data: item, index: i }"></ng-container>
+        <clr-icon
+          class="hf-search-selected-item-icon"
+          shape="check"
+          *ngIf="isSelected(item, i) && multiselect"
+        >
+        </clr-icon>
+      </div>
+    </li>
+  </ng-template>
+
+  <ng-container *ngIf="hasNoVisibleItems() && !showCreatableItem()">
+    <div class="hf-search-empty-list">
+      <p role="text" style="padding: 0.5rem; margin: 0">
+        There no items to display.
+      </p>
+    </div>
+  </ng-container>
+</ng-template>

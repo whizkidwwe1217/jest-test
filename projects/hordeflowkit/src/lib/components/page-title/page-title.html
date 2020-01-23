@@ -1,0 +1,52 @@
+<div class="hf-page-title">
+    <ng-template #defaultTitleTemplate> {{ title }} </ng-template>
+    <h2 *ngIf="!isSubHeading" class="hf-page-title-heading">
+        <a
+            [routerLink]="url"
+            style="cursor: pointer"
+            *ngIf="showBackNavigation"
+        >
+            <clr-icon
+                shape="arrow"
+                (click)="onBackClick($event)"
+                dir="left"
+                [attr.size]="iconSize"
+            ></clr-icon>
+        </a>
+        <clr-icon
+            *ngIf="!hasNoIcon"
+            [attr.shape]="!icon ? 'application' : icon"
+            [attr.size]="iconSize"
+        >
+        </clr-icon>
+        <ng-container *ngTemplateOutlet="getTitleTemplate()"> </ng-container>
+    </h2>
+    <h3 *ngIf="isSubHeading" class="hf-page-title-heading">
+        <a
+            [routerLink]="url"
+            style="cursor: pointer"
+            *ngIf="showBackNavigation"
+        >
+            <clr-icon
+                shape="arrow"
+                (click)="onBackClick($event)"
+                dir="left"
+                [attr.size]="iconSize"
+            >
+            </clr-icon>
+        </a>
+        <clr-icon
+            *ngIf="!hasNoIcon"
+            [attr.shape]="!icon ? 'application' : icon"
+            [attr.size]="subHeadingIconSize"
+        >
+        </clr-icon>
+        <ng-container *ngTemplateOutlet="getTitleTemplate()"> </ng-container>
+    </h3>
+
+    <ng-container *ngTemplateOutlet="getSubtitleTemplate()"> </ng-container>
+
+    <ng-template #defaultSubtitleTemplate>
+        <p class="hf-subtitle">{{ subtitle }}</p>
+    </ng-template>
+</div>

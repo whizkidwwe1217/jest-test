@@ -1,0 +1,4 @@
+@mixin hf-info-card {
+    box-shadow: 1px 3px 10px $hf-info-card-shadow-color;
+    border: 1px solid $hf-info-card-border-color;
+}

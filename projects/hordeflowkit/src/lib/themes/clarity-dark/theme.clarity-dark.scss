@@ -1,0 +1,11 @@
+.hf-sequence-preview {
+    background-color: $hf-sequence-bg-color-light;
+}
+
+.hf-background {
+    background-color: $hf-bg-color;
+}
+
+.hf-info-card {
+    @include hf-info-card();
+}

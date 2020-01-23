@@ -17,6 +17,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { UikitModule } from "uikit";
 import { AppRoutingModule } from "./app.routing";
+import { HordeflowkitModule } from "hordeflowkit";
 
 let fixture: ComponentFixture<AppComponent> = null;
 let app: AppComponent = null;
@@ -36,6 +37,7 @@ beforeEach(() => {
 			NgProgressHttpModule,
 			UikitModule,
 			HordeflowCommonModule,
+			HordeflowkitModule,
 			AppRoutingModule,
 			StoreModule.forRoot(
 				{

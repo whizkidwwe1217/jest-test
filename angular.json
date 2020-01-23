@@ -163,6 +163,39 @@
 					}
 				}
 			}
+		},
+		"hordeflowkit": {
+			"projectType": "library",
+			"root": "projects/hordeflowkit",
+			"sourceRoot": "projects/hordeflowkit/src",
+			"prefix": "hf",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/hordeflowkit/tsconfig.lib.json",
+						"project": "projects/hordeflowkit/ng-package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/hordeflowkit/src/test.ts",
+						"tsConfig": "projects/hordeflowkit/tsconfig.spec.json",
+						"karmaConfig": "projects/hordeflowkit/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/hordeflowkit/tsconfig.lib.json",
+							"projects/hordeflowkit/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
 		}
 	},
 	"defaultProject": "jest-test"

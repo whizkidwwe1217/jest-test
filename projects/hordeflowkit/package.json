@@ -1,0 +1,37 @@
+{
+	"name": "hordeflowkit",
+	"version": "1.0.0",
+	"description": "A collection of UI components mainly used for HordeFlow products.",
+	"author": "Wendell Wayne Estrada",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/whizkidwwe1217/HordeFlow.git"
+	},
+	"bugs": {
+		"url": "https://github.com/whizkidwwe1217/HordeFlow/issues",
+		"email": "developers@hordeflow.com"
+	},
+	"homepage": "https://www.hordeflow.com",
+	"keywords": [
+		"angular",
+		"typescript",
+		"hordeflow",
+		"hris",
+		"payroll",
+		"timekeeping",
+		"ui",
+		"ui components",
+		"erp",
+		"hr",
+		"human resource",
+		"multi-tenancy",
+		"dotnet",
+		"asp.net core",
+		"asp.net"
+	],
+	"license": "MIT",
+	"peerDependencies": {
+		"@angular/common": "^8.0.0",
+		"@angular/core": "^8.0.0"
+	}
+}

@@ -1,0 +1,38 @@
+<hf-command-bar *ngIf="!loading" [showSearchBar]="false" [items]="commands"></hf-command-bar>
+<table class="table" *ngIf="loading">
+  <th class="skeleton" *ngFor="let field of getGridFields()"></th>
+  <tr>
+    <td *ngFor="let field of getGridFields()"></td>
+  </tr>
+  <tr>
+    <td *ngFor="let field of getGridFields(); let index = index" class="skeleton"></td>
+  </tr>
+  <tr>
+    <td *ngFor="let field of getGridFields()"></td>
+  </tr>
+  <tr>
+    <td *ngFor="let field of getGridFields()" class="skeleton"></td>
+  </tr>
+</table>
+
+<table class="table" *ngIf="!loading">
+  <th *ngFor="let field of getGridFields()">{{ field.text }}</th>
+  <th></th>
+  <tr *ngFor="let record of records; let index = index; trackBy: trackBy">
+    <td *ngFor="let field of getGridFields()">{{ record[field.name] }}</td>
+    <td>
+      <a style="padding: 0 0.25rem" href="javascript:void(0)"
+        ><clr-icon shape="pencil"></clr-icon
+      ></a>
+      <a style="padding: 0 0.25rem" href="javascript:void(0)"
+        ><clr-icon shape="trash"></clr-icon
+      ></a>
+    </td>
+  </tr>
+</table>
+
+<hf-side-panel [title]="'Add New Emergency Contact'" [(open)]="isEditorOpen">
+  <ng-template>
+    <ng-container [ngTemplateOutlet]="template"></ng-container>
+  </ng-template>
+</hf-side-panel>

@@ -1,0 +1,186 @@
+
+// Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+// Global
+$clr-global-selection-color: $gold-light;
+
+// Default button colors
+$clr-btn-default-color: $gold-accent; // border-color, color, checked-background-color
+$clr-btn-default-hover-bg-color: $turquoise-light; // hover-background-color
+$clr-btn-default-hover-color: $gold-dark; // hover-color
+$clr-btn-default-box-shadow-color: $gold-dark;
+
+// Default outline button
+$clr-btn-default-outline-color: $gold-accent; // border-color, color, checked-background-color
+$clr-btn-default-outline-hover-bg-color: $gold-light; // hover-background-color
+$clr-btn-default-outline-hover-color: $gold-dark; // hover-color
+$clr-btn-default-outline-box-shadow-color: $gold-dark;
+
+// Primary button
+$clr-btn-primary-bg-color: $gold-accent; // background-color, disabled-background-color
+$clr-btn-primary-border-color: $gold-accent; // border-color
+$clr-btn-primary-hover-bg-color: $gold-dark; // hover-background-color
+$clr-btn-primary-box-shadow-color: $gold-accent;
+
+// Success button
+$clr-btn-success-bg-color: $green;
+$clr-btn-success-hover-bg-color: $green-dark;
+$clr-btn-success-box-shadow-color: $green;
+$clr-btn-success-checked-bg-color: $clr-btn-success-hover-bg-color;
+
+// Success button outline
+$clr-btn-success-outline-color: $green;
+$clr-btn-success-outline-hover-bg-color: $green-lighter;
+$clr-btn-success-outline-border-color: $green;
+$clr-btn-success-outline-hover-color: $green-dark;
+$clr-btn-success-outline-box-shadow-color: $green-dark;
+
+// Danger button
+$clr-btn-danger-hover-bg-color: $red-dark;
+
+// Danger button outline
+$clr-btn-danger-outline-hover-bg-color: $red-lighter;
+
+// Link button colors
+$clr-btn-link-color: $gold-accent; // color
+$clr-btn-link-hover-color: $gold-dark; // hover-color
+
+// Alert
+$clr-alert-success-bg-color: $green-light;
+$clr-alert-success-border-color: $green-light-mid;
+$clr-alert-success-icon-color: $green-turquiose;
+
+$clr-alert-info-bg-color: $blue-light;
+$clr-alert-info-border-color: $blue-mid;
+$clr-alert-info-icon-color: $gold-accent;
+
+$clr-alert-warning-border-color: $gold-light;
+
+$clr-alert-danger-bg-color: $red-light;
+$clr-alert-danger-icon-color: $red-darker;
+
+$clr-app-alert-info-bg-color: $blue-dark;
+$clr-app-alert-warning-bg-color: $orange-dark;
+$clr-app-alert-danger-bg-color: $red-darker;
+
+// Badge
+$clr-badge-info-bg-color: $gold-accent;
+$clr-badge-success-bg-color: $green;
+$clr-badge-warning-bg-color: $gold-light;
+$clr-badge-danger-bg-color: $red-darker;
+$clr-badge-orange-bg-color: $orange-dark;
+$clr-badge-light-blue-bg-color: $blue-mid;
+
+// Card
+$clr-card-active-border-color: $gold-accent;
+
+// Checkbox
+$clr-forms-checkbox-background-color: $gold-accent; // checked-background-color
+$clr-forms-checkbox-checked-shadow: inset 0 0 0 0.25rem $clr-forms-checkbox-background-color;
+$clr-indeterminate-checkbox-border-color: $gold-accent;
+
+// Datagrid
+$clr-datagrid-row-hover: $clr-global-selection-color;
+$clr-datagrid-action-popover-hover-color: $clr-global-selection-color;
+
+// Datepicker
+$clr-datepicker-trigger-color: $gold-accent;
+$clr-datepicker-trigger-hover-color: $gold-dark;
+$clr-calendar-btn-color: $gold-accent;
+$clr-calendar-active-cell-background-color: $clr-global-selection-color;
+$clr-calendar-btn-hover-focus-color: $clr-global-selection-color;
+$clr-calendar-active-focus-cell-background-color: $clr-global-selection-color;
+
+// Dropdown
+$clr-dropdown-bg-hover-color: $clr-global-selection-color;
+$clr-dropdown-bg-active-color: $clr-global-selection-color;
+$clr-dropdown-selection-color: $clr-global-selection-color;
+
+// Forms
+$clr-forms-input-invalid-color: $red-darker;
+
+// Input
+$clr-input-border-color: $gold-accent;
+
+// Header
+$clr-header-textColor: $clr-black;
+$clr-header-bgColor: $clr-white;
+$clr-header-2-bg-color: $clr-white;
+$clr-header-3-bg-color: $clr-white;
+$clr-header-4-bg-color: $clr-white;
+$clr-header-5-bg-color: $clr-white;
+$clr-header-6-bg-color: $clr-white;
+$clr-header-7-bg-color: $clr-white;
+
+// Icons
+$clr-icon-color-success: $green;
+$clr-icon-color-danger: $red-darker;
+$clr-icon-color-warning: $gold-light;
+$clr-icon-color-error: $red-darker;
+$clr-icon-color-info: $gold-accent;
+$clr-icon-color-highlight: $gold-accent;
+
+// Label
+$clr-label-success-bg-color: $green-light;
+$clr-label-success-font-color: $green-darkest;
+$clr-label-success-border-color: $green-light-mid;
+
+$clr-label-warning-border-color: $gold-light;
+
+$clr-label-danger-bg-color: $red-light;
+
+$clr-label-orange-bg-color: $orange-dark;
+$clr-label-light-blue-bg-color: $blue-mid;
+
+// Links
+$clr-link-active-color: $gold-accent;
+$clr-link-color: $gold-accent;
+$clr-link-hover-color: $gold-accent;
+$clr-link-visited-color: $gold-dark;
+
+// Notification
+$clr-notification-progress-info-bar-color: $blue-darker;
+
+// Progress bar
+$clr-progress-defaultBarColor: $gold-accent;
+$clr-progress-success-color: $green-mid;
+$clr-progress-danger-color: $red-darkest;
+$clr-progress-warning-color: $orange-darker;
+
+// Radiobutton
+$clr-forms-radio-selected-shadow: $clr-forms-checkbox-checked-shadow; // selected-background-color
+
+// Sidenav
+$clr-sidenav-link-hover-color: $clr-global-selection-color;
+
+// Signposts
+$clr-signpost-action-hover-color: $gold-accent;
+
+// Spinner
+$clr-spinner-color: $gold-accent;
+
+// Stack View
+$clr-stack-view-stack-block-expanded-bg-color: $turquoise-light;
+$clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
+
+// Subnav
+$clr-nav-active-box-shadow-color: $gold-accent;
+
+// Text
+$clr-text-color-primary: $gold-accent;
+$clr-text-color-success: $green;
+$clr-text-color-info: $gold-accent;
+$clr-text-color-warning: $gold-light;
+$clr-text-color-danger: $red-darker;
+
+// Toggle
+$clr-toggle-bg-color-on: $gold-accent;
+
+// Tree View
+$clr-tree-link-hover-color: $clr-global-selection-color;
+$clr-tree-link-selection-color: $clr-global-selection-color;
+
+// Wizard
+$clr-wizard-stepnav-active-bgcolor: $clr-global-selection-color;

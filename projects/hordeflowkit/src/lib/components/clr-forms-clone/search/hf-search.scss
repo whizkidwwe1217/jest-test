@@ -1,0 +1,250 @@
+@include exports("hf-search-.hordeflowkit") {
+  .hf-search-wrapper {
+    // white-space: nowrap;
+    // max-height: $clr-forms-baseline * 4;
+  }
+
+  .hf-search-container {
+    &:disabled {
+      @include disabled-form-fields();
+    }
+  }
+
+  .item-hover {
+    color: #4483f7;
+    cursor: pointer;
+  }
+
+  .hf-search {
+    margin: 0;
+    padding: 0;
+    border-width: 0 !important;
+    display: inline;
+    color: inherit;
+
+    @include custom-inputs-reset($clr-forms-baseline * 4);
+    @include form-fields-appearance();
+    padding: 0 $clr-forms-baseline;
+    max-height: $clr-forms-baseline * 4;
+    font-size: $clr-forms-field-font-size;
+
+    &:hover,
+    &:active {
+      $hoverSassVar: $clr-forms-select-hover-background;
+      $hoverCssVar: clr-forms-select-hover-background;
+      @include css-var(border-color, $hoverCssVar, $hoverSassVar, $clr-use-custom-properties);
+      @include css-var(background, $hoverCssVar, $hoverSassVar, $clr-use-custom-properties);
+    }
+
+    &[readonly] {
+      border: none;
+    }
+
+    &:not([readonly]) {
+      @include input-border-bottom-animation();
+    }
+
+    &:disabled {
+      @include disabled-form-fields();
+    }
+  }
+
+  .clr-error .hf-search:not([readonly]) {
+    @include css-var(
+      border-bottom-color,
+      clr-forms-invalid-color,
+      $clr-forms-invalid-color,
+      $clr-use-custom-properties
+    );
+    @include input-border-bottom-animation(
+      $clr-forms-invalid-color,
+      clr-forms-invalid-color,
+      $clr-use-custom-properties
+    );
+  }
+
+  .clr-form-control.row .hf-search-wrapper {
+    max-width: calc(100% - #{$clr-forms-icon-size});
+  }
+
+  .clr-form-compact .hf-search {
+    @include form-flatten-compact-adjustments();
+  }
+
+  .clr-form-control-readonly .hf-search {
+    border: none;
+  }
+
+  .clr-form-control-multi .hf-search {
+    max-width: calc(100% + #{$clr-forms-icon-size});
+  }
+}
+
+$hover-bg: $clr-global-hover-bg-color !default;
+$focused-bg: $clr-global-selection-color !default;
+$icon-hover-color: rgb(19, 101, 255);
+$tag-color: hsl(198, 0%, 91%);
+
+.hf-search-wrapper {
+  // border-bottom: 1px solid gray;
+  display: inline;
+  position: relative;
+}
+
+// input.hf-search-select-input {
+// 	border: none;
+// 	width: 100%;
+// 	outline: none;
+// }
+
+.hf-search-wrapper.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hf-search-tag.flex {
+  flex-grow: 1;
+}
+
+.hf-search-tag-close-icon {
+  margin-left: 0.25rem;
+}
+
+.hf-search-select-body {
+  margin-top: 0.25rem;
+  .hf-search-popover-body {
+    padding: 0;
+    display: flex;
+  }
+}
+
+.hf-search-list {
+  min-width: 10rem;
+  max-height: 12rem;
+  list-style: none;
+  overflow: auto;
+}
+
+.hf-search-list-item.hf-search-no-padding {
+  padding: 0;
+}
+
+.hf-search-list-item {
+  padding: 0.25rem 0.5rem;
+  transition: 50ms ease-in-out background;
+}
+
+.hf-search-list-item.focused {
+  background: $focused-bg;
+  cursor: pointer;
+}
+
+.hf-search-list-item:hover {
+  background: $hover-bg;
+  cursor: pointer;
+}
+
+.hf-search-list-group {
+  font-size: smaller;
+  padding: 0.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.multi-select-tag-container {
+  display: inline-block;
+}
+
+.hf-search-tag {
+  font-size: 8pt;
+  padding: 4px 6px;
+  border: none;
+  margin: 2px;
+  border-radius: 4px;
+  background: $tag-color;
+}
+
+.hf-search-list-item-content-wrapper {
+  display: flex;
+  align-items: center;
+
+  & > .hf-search-list-item-content {
+    flex-grow: 1;
+  }
+
+  & clr-icon.hf-search-selected-item-icon {
+    margin-left: 0.25rem;
+  }
+}
+
+// ::ng-deep .hf-search-popover {
+//   z-index: 99;
+// }
+
+.hf-search-empty-list {
+  text-align: center;
+}
+
+.hf-search-img-empty-icon {
+  width: 80%;
+  height: 80%;
+}
+
+/* INPUT and ICONS */
+input.hf-search-select-input {
+  padding-right: 1rem;
+  padding-left: 1.25rem;
+
+  &.flex {
+    flex-grow: 1;
+  }
+}
+
+.hf-search-input-text-container {
+  display: inline-block;
+}
+
+.hf-search-search-icon {
+  cursor: pointer;
+  display: inline-block;
+  bottom: 0;
+  position: absolute;
+  margin: 0 0.25rem 0 0.25rem;
+
+  &.flex {
+    position: relative;
+  }
+
+  & > clr-icon:not(.flex) {
+    margin-top: 4px;
+  }
+
+  &:hover > clr-icon {
+    color: $icon-hover-color;
+  }
+
+  & > clr-icon.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.hf-search-clear-icon {
+  cursor: pointer;
+  margin-left: -20px;
+  display: inline-block;
+  bottom: 0;
+  position: absolute;
+
+  &.flex {
+    position: relative;
+  }
+
+  & > clr-icon:not(.flex) {
+    margin-top: 4px;
+  }
+
+  &:hover > clr-icon {
+    color: $icon-hover-color;
+  }
+}

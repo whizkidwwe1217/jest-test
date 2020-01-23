@@ -1,0 +1,36 @@
+@include exports("pager.hordeflowkit") {
+    .hf-pager {
+        a {
+            padding: 0 0.15rem 0 0.15rem;
+            margin: 0 0.12rem 0 0.12rem;
+            font-size: 12px;
+            text-decoration: none;
+            border: solid 1px $clr-table-border-color;
+            background: $clr-dropdown-bg-color;
+            border-radius: 2px;
+            color: $clr-dropdown-text-color;
+            cursor: pointer;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome and Opera */
+            &:hover {
+                color: $clr-link-hover-color;
+                background: $clr-global-selection-color;
+            }
+        }
+
+        .pagination-next,
+        .pagination-previous {
+            padding: 0;
+        }
+
+        .active {
+            background: $clr-global-selection-color;
+            color: $clr-link-hover-color;
+        }
+    }
+}

@@ -1,40 +1,29 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "uikit": [
-        "dist/uikit"
-      ],
-      "uikit/*": [
-        "dist/uikit/*"
-      ],
-      "hordeflow-common": [
-        "dist/hordeflow-common"
-      ],
-      "hordeflow-common/*": [
-        "dist/hordeflow-common/*"
-      ]
-    }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "es2015",
+		"typeRoots": ["node_modules/@types"],
+		"lib": ["es2018", "dom"],
+		"paths": {
+			"uikit": ["dist/uikit"],
+			"uikit/*": ["dist/uikit/*"],
+			"hordeflow-common": ["dist/hordeflow-common"],
+			"hordeflow-common/*": ["dist/hordeflow-common/*"],
+			"hordeflowkit": ["dist/hordeflowkit"],
+			"hordeflowkit/*": ["dist/hordeflowkit/*"]
+		}
+	},
+	"angularCompilerOptions": {
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true
+	}
 }

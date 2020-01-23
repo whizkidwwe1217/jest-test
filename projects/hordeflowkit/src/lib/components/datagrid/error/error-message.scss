@@ -1,0 +1,43 @@
+@include exports("error-message.hordeflowkit") {
+  .error-title {
+    font-weight: 600;
+  }
+
+  .error-code {
+    display: block;
+    margin: 0.25rem 0 0.5rem 0;
+  }
+
+  .error-message {
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  a {
+    & > clr-icon {
+      margin-right: 0.25rem;
+    }
+  }
+
+  .error-details {
+    margin: 0.25rem 0;
+
+    & + div {
+      margin: 0 0 0 0.85rem;
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+
+  clr-icon[shape="copy"] {
+    margin: 0.25rem;
+    color: #969696;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(48, 48, 48);
+    }
+  }
+}

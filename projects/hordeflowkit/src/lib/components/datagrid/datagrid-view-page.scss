@@ -1,0 +1,51 @@
+.grid-view-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Maybe remove this on mobile
+  min-height: 0;
+}
+
+hf-command-bar {
+  width: 100% !important;
+}
+
+.toolbar-divider {
+  height: inherit;
+  background: #eee;
+  width: 1px;
+  padding: 4px 0;
+  margin: 0 0.25rem;
+}
+.toolbar-divider:first-child,
+.toolbar-divider:last-child {
+  display: none;
+}
+.toolbar-divider + .toolbar-divider {
+  display: none;
+}
+hf-search-input {
+  align-self: center;
+  margin: 0 0.5rem;
+}
+
+// #search > ::ng-deep .hf-input-container > input {
+// 	border: solid 1px #dddddd;
+// }
+
+.filters {
+  margin-top: 0.15rem;
+}
+
+.filters-label {
+  font-size: small;
+  color: gray;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.filter {
+  font-size: smaller;
+  margin: 0 0.15rem;
+}

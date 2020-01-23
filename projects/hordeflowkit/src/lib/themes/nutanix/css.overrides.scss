@@ -1,0 +1,35 @@
+@font-face {
+	font-family: "NutanixSoft";
+	src: url("fonts/NutanixSoft-Regular.otf"), url("fonts/NutanixSoft-Bold.otf"),
+		url("fonts/NutanixSoft-Medium.otf"), url("fonts/NutanixSoft-Semibold.otf"),
+		url("fonts/NutanixSoft-Thin.otf");
+}
+
+*,
+body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "NutanixSoft";
+}
+
+.datagrid-row {
+	&.datagrid-selected {
+		background-color: $bg-4;
+	}
+}
+
+.clr-accordion-panel-open {
+	.clr-accordion-header {
+		background-color: $bg-4;
+	}
+}
+
+//TODO: Remove this workaround when Clarity releases a new version that includes the fix for data grid spinner background color
+.datagrid-spinner {
+	background-color: $clr-datagrid-loading-background;
+}

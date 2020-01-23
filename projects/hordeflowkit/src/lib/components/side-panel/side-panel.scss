@@ -1,0 +1,134 @@
+@include exports("side-panel.hordeflowkit") {
+  $panel-width: 600px;
+
+  .hf-side-panel-wrapper {
+    display: none;
+    overflow: hidden;
+    z-index: 999;
+    background: $hf-side-panel-backdrop-color;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    transition: 200ms 80ms ease-in-out opacity;
+  }
+
+  .hf-side-panel-container {
+    width: $panel-width;
+    background: $clr-global-app-background;
+    border: none;
+    z-index: 1000;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    box-shadow: $hf-side-panel-shadow;
+    -ms-box-shadow: $hf-side-panel-shadow;
+    display: flex;
+    flex-direction: column;
+    transition: 200ms 80ms ease-in-out width;
+    overflow: hidden;
+  }
+
+  .hf-side-panel-shadowToRight {
+    box-shadow: $hf-side-panel-shadow-right;
+    -ms-box-shadow: $hf-side-panel-shadow-right;
+  }
+
+  .hf-side-panel-left {
+    left: -($panel-width + 1);
+  }
+
+  .hf-side-panel-right {
+    left: 100%;
+    right: 0;
+  }
+
+  .hf-side-panel-full {
+    width: 100%;
+    &:not(.hf-side-panel-right) {
+      left: -($panel-width + 1);
+    }
+  }
+
+  .hf-side-panel-open {
+    display: block;
+  }
+
+  .hf-side-panel-expand-icon {
+    transition: 600ms ease-in-out transform;
+  }
+
+  .hf-side-panel-expanded-icon {
+    transform: rotate(180deg);
+  }
+
+  .hf-side-panel-header {
+    // display: grid;
+    // grid-template-columns: auto 2rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    padding: 0.5rem;
+
+    hf-page-title {
+      flex-grow: 1;
+    }
+
+    .hf-side-panel-title {
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .hf-side-panel-expand-icon,
+    .hf-side-panel-close-icon {
+      align-self: center;
+      margin: 0 !important;
+    }
+  }
+
+  .hf-side-panel-content {
+    flex-grow: 1;
+    padding: 0.75rem;
+    overflow: auto;
+    display: flex;
+    position: relative;
+  }
+
+  .hf-side-panel-spinner {
+    background: $clr-datagrid-loading-background;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    position: absolute;
+  }
+
+  .hf-side-panel-footer {
+    bottom: 0;
+    border-top: 1px solid $hf-side-panel-footer-border-color;
+    flex-grow: 0;
+    padding: 0.5rem;
+    vertical-align: baseline;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .hf-side-panel-left,
+    .hf-side-panel-right {
+      width: 100%;
+      &:not(.hf-side-panel-right) {
+        left: -($panel-width + 1);
+      }
+    }
+
+    .hf-side-panel-expand-icon {
+      display: none;
+    }
+  }
+}

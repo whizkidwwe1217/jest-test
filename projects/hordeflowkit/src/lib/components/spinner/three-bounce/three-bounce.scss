@@ -1,0 +1,48 @@
+.hf-three-bounce {
+    top: 50%;
+    position: relative;
+    margin: auto;
+    width: 80px;
+    text-align: center;
+}
+
+.hf-three-bounce .hf-child {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: hf-three-bounce 1.4s ease-in-out 0s infinite both;
+    animation: hf-three-bounce 1.4s ease-in-out 0s infinite both;
+}
+
+.hf-three-bounce .hf-bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.hf-three-bounce .hf-bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes hf-three-bounce {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes hf-three-bounce {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}

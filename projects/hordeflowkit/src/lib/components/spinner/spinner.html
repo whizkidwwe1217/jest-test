@@ -1,0 +1,64 @@
+<div id="spinner" *ngIf="isSpinnerVisible">
+
+    <ng-container *ngComponentOutlet="entryComponent"></ng-container>
+
+    <hf-cube-grid
+        *ngIf="spinner === hfSpinnerTypes.HfCubeGrid" 
+        [backgroundColor]="backgroundColor">
+    </hf-cube-grid>
+
+    <hf-chasing-dots
+        *ngIf="spinner === hfSpinnerTypes.HfChasingDots" 
+        [backgroundColor]="backgroundColor">
+    </hf-chasing-dots>
+
+    <hf-rotating-plane 
+        *ngIf="spinner === hfSpinnerTypes.HfRotatingPlane" 
+        [backgroundColor]="backgroundColor">
+    </hf-rotating-plane>
+
+    <hf-wandering-cubes 
+        *ngIf="spinner === hfSpinnerTypes.HfWanderingCubes" 
+        [backgroundColor]="backgroundColor">
+    </hf-wandering-cubes>
+
+    <hf-double-bounce 
+        *ngIf="spinner === hfSpinnerTypes.HfDoubleBounce" 
+        [backgroundColor]="backgroundColor">
+    </hf-double-bounce>
+
+    <hf-three-bounce 
+        *ngIf="spinner === hfSpinnerTypes.HfThreeBounce" 
+        [backgroundColor]="backgroundColor">
+    </hf-three-bounce>
+
+    <hf-spinner-pulse 
+        *ngIf="spinner === hfSpinnerTypes.HfSpinnerPulse" 
+        [backgroundColor]="backgroundColor">
+    </hf-spinner-pulse>
+
+    <hf-wave
+        *ngIf="spinner === hfSpinnerTypes.HfWave"
+        [backgroundColor]="backgroundColor">
+    </hf-wave>
+
+    <hf-ripple
+        *ngIf="spinner === hfSpinnerTypes.HfRipple"
+        [backgroundColor]="backgroundColor">
+    </hf-ripple>
+
+    <hf-roller
+        *ngIf="spinner === hfSpinnerTypes.HfRoller"
+        [backgroundColor]="backgroundColor">
+    </hf-roller>
+
+    <hf-circle
+        *ngIf="spinner === hfSpinnerTypes.HfCircle"
+        [backgroundColor]="backgroundColor">
+    </hf-circle>
+
+    <hf-spin-box
+        *ngIf="spinner === hfSpinnerTypes.HfSpinBox"
+        [backgroundColor]="backgroundColor">
+    </hf-spin-box>
+</div>

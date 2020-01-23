@@ -1,0 +1,100 @@
+<div #commandBar class="command-bar" (resized)="onResized($event)">
+	<hf-search-input
+		*ngIf="showSearchBar"
+		#searchBar
+		[hfFocusInput]="focusOnSearchBox"
+		[debounceTime]="300"
+		(changed)="onSearchKeyChanged($event)"
+		style="width: 200px; padding-top: 0.50rem"
+	></hf-search-input>
+	<command-bar-item
+		*ngFor="let item of primaryItems"
+		[name]="item.name"
+		[text]="item.text"
+		[disabled]="item.disabled"
+		[icon]="item.icon"
+		(action)="item.click ? item.click($event) : undefined"
+		[iconOnly]="iconOnly"
+		[overflow]="item.overflow"
+		[items]="item.items"
+	></command-bar-item>
+
+	<clr-dropdown
+		*ngIf="needsRecompute"
+		class="command-bar-dropdown command-bar-item"
+	>
+		<button
+			#btnFilter
+			type="button"
+			class="btn btn-link dropdown-toggle command-bar-item"
+			clrDropdownTrigger
+			title="Show more items"
+		>
+			<clr-icon shape="ellipsis-horizontal"></clr-icon>
+			<!-- More
+			<clr-icon shape="caret down"></clr-icon> -->
+		</button>
+		<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+			<ng-container *ngFor="let item of overflowItems">
+				<button
+					type="button"
+					clrDropdownItem
+					*ngIf="!item.overflow"
+					[disabled]="item.disabled"
+					(click)="item.click ? item.click($event) : undefined"
+				>
+					<clr-icon
+						*ngIf="item.icon"
+						[attr.shape]="item.icon"
+						[class.icon-only]="item.iconOnly"
+						class="command-bar-menu-item-icon"
+					></clr-icon>
+					<span>{{ item.text }}</span>
+				</button>
+
+				<clr-dropdown *ngIf="item.overflow">
+					<button type="button" clrDropdownTrigger>
+						<clr-icon
+							*ngIf="item.icon"
+							[class.icon-only]="item.iconOnly"
+							class="command-bar-menu-item-icon"
+							[attr.shape]="item.icon"
+						></clr-icon>
+						<span>{{ item.text }}</span>
+					</button>
+					<clr-dropdown-menu clrPosition="bottom-right">
+						<button
+							type="button"
+							clrDropdownItem
+							*ngFor="let subItem of item.items"
+							[disabled]="subItem.disabled"
+							(click)="
+								subItem.click
+									? subItem.click($event)
+									: undefined
+							"
+						>
+							<clr-icon
+								*ngIf="subItem.icon"
+								[class.icon-only]="subItem.iconOnly"
+								class="command-bar-menu-item-icon"
+								[attr.shape]="subItem.icon"
+							></clr-icon>
+							<span>{{ subItem.text }}</span>
+						</button>
+						<!-- <clr-dropdown>
+							<button type="button" clrDropdownTrigger>
+								Bar
+							</button>
+							<clr-dropdown-menu clrPosition="left-top">
+								<button type="button" clrDropdownItem>
+									Baz
+								</button>
+							</clr-dropdown-menu>
+						</clr-dropdown> -->
+					</clr-dropdown-menu>
+				</clr-dropdown>
+			</ng-container>
+		</clr-dropdown-menu>
+	</clr-dropdown>
+</div>

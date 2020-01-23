@@ -1,0 +1,50 @@
+<button
+	*ngIf="!overflow"
+	class="btn btn-link command-bar-item command-bar-btn"
+	[disabled]="disabled"
+	[attr.title]="iconOnly ? text : ''"
+	(click)="onAction($event)"
+>
+	<clr-icon
+		*ngIf="icon"
+		class="command-bar-menu-item-icon"
+		[class.icon-only]="iconOnly"
+		[attr.shape]="icon"
+	></clr-icon
+	><span *ngIf="!iconOnly">{{ text }}</span>
+</button>
+
+<clr-dropdown *ngIf="overflow" class="command-bar-dropdown command-bar-item">
+	<button
+		#btnFilter
+		type="button"
+		class="btn btn-link dropdown-toggle command-bar-item"
+		clrDropdownTrigger
+		[attr.title]="iconOnly ? text : ''"
+	>
+		<clr-icon
+			*ngIf="icon"
+			[attr.shape]="icon"
+			class="command-bar-menu-item-icon"
+		></clr-icon>
+		<span *ngIf="!iconOnly">{{ text }}</span>
+		<clr-icon shape="caret down"></clr-icon>
+	</button>
+	<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+		<button
+			type="button"
+			clrDropdownItem
+			*ngFor="let item of items"
+			(click)="item.click ? item.click($event) : undefined"
+			[disabled]="item.disabled"
+		>
+			<clr-icon
+				*ngIf="item.icon"
+				[attr.shape]="item.icon"
+				[class.icon-only]="iconOnly"
+				class="command-bar-menu-item-icon"
+			></clr-icon>
+			<span>{{ item.text }}</span>
+		</button>
+	</clr-dropdown-menu>
+</clr-dropdown>

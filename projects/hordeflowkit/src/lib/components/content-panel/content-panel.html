@@ -1,0 +1,31 @@
+<div class="hf-content-panel">
+    <div *ngIf="!noHeader" class="hf-sticky-header">
+        <hf-page-title
+            [subtitleTemplate]="subtitleTemplate"
+            [isSubHeading]="isSubHeading"
+            [hasNoIcon]="hasNoIcon"
+            [url]="url"
+            [showBackNavigation]="showBackNavigation"
+            (navigateBack)="onBackClick($event)"
+            [icon]="icon"
+            [title]="title"
+            [iconSize]="iconSize"
+            [subtitle]="subtitle"
+        ></hf-page-title>
+        <hf-breadcrumb *ngIf="showBreadcrumb"></hf-breadcrumb>
+        <div class="hf-header-content">
+            <ng-content
+                select="[header]"
+                class="hf-header-content"
+            ></ng-content>
+        </div>
+    </div>
+    <div class="hf-content-panel">
+        <div #scrollable class="hf-overflow-content-panel">
+            <ng-content></ng-content>
+        </div>
+    </div>
+    <div class="hf-sticky-footer">
+        <ng-content select="[footer]"></ng-content>
+    </div>
+</div>

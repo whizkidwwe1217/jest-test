@@ -1,0 +1,141 @@
+@include exports("dynamic-list.hordeflowkit") {
+	.hf-dynamic-list {
+		margin-top: 1rem;
+
+		ul {
+			list-style: none;
+		}
+
+		li:not(.group) {
+			display: flex;
+			flex-direction: row;
+			padding: 0.125rem 0.25rem;
+			align-items: center;
+			align-content: center;
+			transition: 200ms ease-in-out background;
+		}
+
+		span {
+			flex-grow: 1;
+			pointer-events: none;
+		}
+
+		li:hover:not(.group) {
+			background: $clr-global-selection-color;
+		}
+
+		ul * clr-icon:hover {
+			color: #0079b8;
+		}
+
+		ul * clr-icon:not(:first-child) {
+			margin: 0 0.125rem;
+			cursor: pointer;
+		}
+
+		ul * clr-icon:first-child {
+			margin: 0 0.5rem 0 0;
+			cursor: pointer;
+			color: #0079b8;
+		}
+
+		.group > span {
+			font-weight: bold;
+			padding-top: 0.25rem;
+			display: inline;
+		}
+
+		.group .btn {
+			padding: 0;
+			margin: 0.125rem;
+			float: right;
+			visibility: visible;
+			opacity: 0;
+			transition: 100ms ease-in-out all;
+		}
+
+		li.group:hover .btn {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		li ~ p {
+			margin: 0;
+			font-size: smaller;
+			margin-right: 0.25rem;
+			line-height: 1.5;
+			margin-bottom: 0.25rem;
+		}
+
+		li:not(.group) .float {
+			margin: 0 0.25rem;
+		}
+
+		li:hover .float {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.float {
+			visibility: hidden;
+			opacity: 0;
+			transition: 100ms ease-in-out all;
+		}
+
+		.input-box {
+			width: 100%;
+			position: relative;
+			display: inline-block;
+			padding: 0;
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+
+		.top-editor {
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+		}
+
+		.clear {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.clear-icon {
+			display: flex;
+			align-items: center;
+		}
+
+		.input-container {
+			display: flex;
+			input {
+				margin-left: 0.5rem;
+			}
+		}
+
+		input:not(:valid) ~ .clear {
+			display: none;
+		}
+
+		input {
+			width: 100%;
+			padding-right: 2.5rem;
+			border: none;
+			border-bottom: 1px solid $clr-forms-border-color;
+			&:focus {
+				outline: none;
+			}
+			@include form-fields-appearance($clr-forms-border-color);
+			@include input-border-bottom-animation($clr-forms-focused-color);
+		}
+
+		input::-ms-clear {
+			display: none;
+		}
+	}
+}

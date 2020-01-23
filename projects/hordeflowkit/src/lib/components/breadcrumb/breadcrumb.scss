@@ -1,0 +1,26 @@
+@include exports("breadcrumb.hordeflowkit") {
+	.hf-breadcrumb {
+		.breadcrumb {
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+			font-size: 0.541667rem;
+		}
+
+		.breadcrumb-item {
+			+ .breadcrumb-item {
+				padding-left: 0.5rem;
+
+				&::before {
+					content: "/";
+					display: inline-block;
+					padding-right: 0.5rem;
+				}
+			}
+
+			&.active {
+				font-weight: bold;
+			}
+		}
+	}
+}

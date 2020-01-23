@@ -1,0 +1,66 @@
+// Components
+@import "./components/spinner/spinner";
+@import "./components/avatar/avatar";
+@import "./components/breadcrumb/breadcrumb";
+@import "./components/search-input/search-input";
+@import "./components/page-title/page-title";
+@import "./components/pager/pager";
+@import "./components/popover/popover";
+@import "./components/content-panel/content-panel";
+@import "./components/side-panel/side-panel";
+@import "./components/dynamic-list/dynamic-list";
+@import "./components/empty-page/empty-page";
+@import "./components/accordion/accordion";
+@import "./components/command-bar/command-bar";
+@import "./components/notification/notification";
+@import "./components/datagrid/error/error-message";
+@import "./components/clr-forms-clone/search/hf-search";
+@import "./components/skeleton/skeleton";
+
+.form-flex {
+	width: 100%;
+
+	.clr-control-container {
+		display: block;
+		width: 100%;
+
+		// Override to make select full width
+		.clr-select-wrapper,
+		.clr-select {
+			width: 100%;
+		}
+
+		// Override to make textarea full width
+		.clr-textarea-wrapper,
+		.clr-textarea {
+			width: 100%;
+		}
+
+		// Override to make search full width
+		.hf-search-wrapper > .hf-search,
+		.hf-search-select-input,
+		.hf-search-input-text-container {
+			width: 100%;
+		}
+
+		// Override to make input full width
+		.clr-input-wrapper > .clr-input {
+			width: 100%;
+		}
+
+		// Override to make password full width
+		.clr-input-wrapper {
+			width: 100%;
+
+			& > .clr-input-group {
+				max-width: 100%;
+				width: 100%;
+				padding-right: 0.4rem;
+
+				& > input {
+					width: calc(100% - 1rem);
+				}
+			}
+		}
+	}
+}

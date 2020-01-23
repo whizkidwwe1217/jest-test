@@ -1,0 +1,242 @@
+<hf-content-panel
+  [noHeader]="noHeader"
+  [title]="title"
+  [subtitle]="subtitle"
+  [icon]="icon"
+  [showBreadcrumb]="enableBreadcrumb"
+>
+  <div [class.grid-view-container]="stretched">
+    <div class="custom-toolbars">
+      <ng-content select="hf-command-bar"></ng-content>
+    </div>
+
+    <hf-command-bar
+      #commandbar
+      [items]="commandItems"
+      [showSearchBar]="enableSearch"
+      (searchkeywordchanged)="onSearchKeyChanged($event)"
+      [focusOnSearchBox]="focusOnSearchBox"
+      [iconOnly]="false"
+      (sizechanged)="onSizeChanged($event)"
+    >
+    </hf-command-bar>
+    <hf-datagrid
+      #grid
+      id="grid"
+      hfGridStretched
+      *ngIf="selectionMode === 'none'"
+      [fields]="fields"
+      [enableRowDetails]="enableRowDetails"
+      [enablePagination]="enablePagination"
+      [enableAutoLoad]="enableAutoLoad"
+      [enableRowSelection]="enableRowSelection"
+      [enableRowActions]="enableRowActions && rowActions.length > 0"
+      [enableServerDriven]="enableServerDriven"
+      [dataSource]="getDataSource()"
+      [enableAutoColumns]="enableAutoColumns"
+      [enableForceAutoColumns]="enableAutoColumns"
+      [rowActions]="rowActions"
+      [rowDetailTemplate]="rowDetailTemplate"
+      [compact]="compact"
+    >
+      <ng-template let-selected="selected">
+        <ng-container *ngIf="editorMode === 'custom'"
+          ><ng-container
+            *ngTemplateOutlet="
+							editorTemplate;
+							context: {
+								selected: selected
+							}
+						"
+          ></ng-container
+        ></ng-container>
+        <ng-container *ngIf="editorMode === 'sidepanel'">
+          <hf-side-panel
+            #sidePanel
+            [title]="title | inflector: 'singularize'"
+            [direction]="sidePanelDirection"
+            [(open)]="toggleEditor"
+            (openChange)="onOpenChange($event)"
+            [accept]="accept()"
+            [dismissOnAccepted]="false"
+            (accepted)="accepted($event)"
+            (onException)="onException($event)"
+          >
+            <ng-template>
+              <div style="display: block; width: 100%">
+                <hf-error-msg *ngIf="error" [error]="error" [closable]="false">
+                  {{ error.details[0] | json }}
+                </hf-error-msg>
+                <clr-alert
+                  *ngIf="!error && successMessage && !dismissEditorOnAccepted"
+                  [clrAlertType]="'success'"
+                  [clrAlertSizeSmall]="true"
+                  [clrAlertClosable]="false"
+                >
+                  <clr-alert-item>
+                    <span class="alert-text">
+                      {{ successMessage }}
+                    </span>
+                  </clr-alert-item>
+                </clr-alert>
+                <ng-container [ngTemplateOutlet]="sidePanelEditorTemplate"></ng-container>
+              </div>
+            </ng-template>
+          </hf-side-panel>
+        </ng-container>
+      </ng-template>
+    </hf-datagrid>
+
+    <hf-datagrid-multi-select
+      #grid
+      hfGridStretched
+      *ngIf="selectionMode === 'multi'"
+      [fields]="fields"
+      [cellTemplate]="cellTemplate"
+      [enableRowDetails]="enableRowDetails"
+      [enablePagination]="enablePagination"
+      [enableAutoLoad]="enableAutoLoad"
+      [enableRowSelection]="enableRowSelection"
+      [enableRowActions]="enableRowActions && rowActions.length > 0"
+      [enableServerDriven]="enableServerDriven"
+      [dataSource]="getDataSource()"
+      [enableAutoColumns]="enableAutoColumns"
+      [enableForceAutoColumns]="enableAutoColumns"
+      [rowDetailTemplate]="rowDetailTemplate"
+      [rowActions]="rowActions"
+      (selectionchanged)="onSelectionChanged($event)"
+      [compact]="compact"
+    >
+      <ng-template let-selected="selected">
+        <ng-container *ngIf="editorMode === 'custom'"
+          ><ng-container
+            *ngTemplateOutlet="
+							editorTemplate;
+							context: {
+								selected: selected
+							}
+						"
+          ></ng-container
+        ></ng-container>
+        <ng-container *ngIf="editorMode === 'sidepanel'">
+          <hf-side-panel
+            #sidePanel
+            [title]="editorTitle"
+            [(open)]="toggleEditor"
+            [direction]="sidePanelDirection"
+            (openChange)="onOpenChange($event)"
+            [accept]="accept()"
+            [dismissOnAccepted]="false"
+            (accepted)="accepted($event)"
+            [enableAccept]="isEditorDirty()"
+            (onException)="onException($event)"
+          >
+            <ng-template>
+              <div style="display: block; width: 100%">
+                <hf-error-msg *ngIf="error" [error]="error" [closable]="false">
+                  {{ error.details[0] | json }}
+                </hf-error-msg>
+                <clr-alert
+                  *ngIf="!error && successMessage && !dismissEditorOnAccepted"
+                  [clrAlertType]="'success'"
+                  [clrAlertSizeSmall]="true"
+                  [clrAlertClosable]="false"
+                >
+                  <clr-alert-item>
+                    <span class="alert-text">
+                      {{ successMessage }}
+                    </span>
+                  </clr-alert-item>
+                </clr-alert>
+                <ng-container [ngTemplateOutlet]="sidePanelEditorTemplate"></ng-container>
+              </div>
+            </ng-template>
+          </hf-side-panel>
+        </ng-container>
+      </ng-template>
+    </hf-datagrid-multi-select>
+
+    <hf-datagrid-single-select
+      #grid
+      hfGridStretched
+      *ngIf="selectionMode === 'single'"
+      [fields]="fields"
+      [searchString]="searchString"
+      [enableRowDetails]="enableRowDetails"
+      [enablePagination]="enablePagination"
+      [enableAutoLoad]="enableAutoLoad"
+      [enableRowSelection]="enableRowSelection"
+      [enableRowActions]="enableRowActions && rowActions.length > 0"
+      [enableServerDriven]="enableServerDriven"
+      [dataSource]="getDataSource()"
+      [enableAutoColumns]="enableAutoColumns"
+      [enableForceAutoColumns]="enableAutoColumns"
+      [rowDetailTemplate]="rowDetailTemplate"
+      [rowActions]="rowActions"
+      (selectionchanged)="onSelectionChanged($event)"
+      [compact]="compact"
+    >
+      <ng-template let-selected="selected">
+        <ng-container *ngIf="editorMode === 'custom'"
+          ><ng-container
+            *ngTemplateOutlet="
+							editorTemplate;
+							context: {
+								selected: selected
+							}
+						"
+          ></ng-container
+        ></ng-container>
+        <ng-container *ngIf="editorMode === 'sidepanel'">
+          <hf-side-panel
+            #sidePanel
+            [title]="title | inflector: 'singularize'"
+            [(open)]="toggleEditor"
+            (openChange)="onOpenChange($event)"
+            [accept]="accept()"
+            [dismissOnAccepted]="false"
+            (accepted)="accepted($event)"
+            [enableAccept]="isEditorDirty()"
+            (onException)="onException($event)"
+          >
+            <ng-template>
+              <div style="display: block; width: 100%">
+                <hf-error-msg *ngIf="error" [error]="error" [closable]="false">
+                  {{ error.details[0] | json }}
+                </hf-error-msg>
+                <clr-alert
+                  *ngIf="!error && successMessage && !dismissEditorOnAccepted"
+                  [clrAlertType]="'success'"
+                  [clrAlertSizeSmall]="true"
+                  [clrAlertClosable]="false"
+                >
+                  <clr-alert-item>
+                    <span class="alert-text">
+                      {{ successMessage }}
+                    </span>
+                  </clr-alert-item>
+                </clr-alert>
+                <ng-container [ngTemplateOutlet]="sidePanelEditorTemplate"></ng-container>
+              </div>
+            </ng-template>
+          </hf-side-panel>
+        </ng-container>
+      </ng-template>
+    </hf-datagrid-single-select>
+  </div>
+</hf-content-panel>
+
+<clr-modal [(clrModalOpen)]="needsConfirmation" [clrModalClosable]="true">
+  <h3 class="modal-title">Delete the selected record(s)?</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to delete the selected record(s)?</p>
+  </div>
+  <div class="modal-footer">
+    <button #btnDelete type="button" class="btn btn-danger">
+      Delete
+    </button>
+    <button type="button" class="btn btn-link" (click)="needsConfirmation = false">
+      Close
+    </button>
+  </div>
+</clr-modal>

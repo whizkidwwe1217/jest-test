@@ -1,0 +1,25 @@
+@include exports("page-title.hordeflowkit") {
+    .hf-page-title {
+        .hf-subtitle {
+            margin-top: 0.25rem;
+        }
+        .hf-page-title-heading {
+            display: flex;
+            align-items: center;
+            margin: 0 0 0 0;
+            padding: 0;
+
+            clr-icon {
+                margin-right: 0.5rem;
+            }
+
+            a {
+                transform: translateX(0);
+                transition: transform 200ms ease-in;
+                &:hover {
+                    transform: translateX(-0.25rem);
+                }
+            }
+        }
+    }
+}

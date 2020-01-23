@@ -1,0 +1,43 @@
+@include exports("content-panel.hordeflowkit") {
+    .hf-content-panel {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 0;
+
+        .hf-sticky-header {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+            border-bottom: 1px solid $clr-table-border-color;
+        }
+
+        hf-page-title {
+            width: 100%;
+        }
+
+        .hf-content-panel {
+            display: flex;
+            flex: 1;
+            min-height: 0px; /* IMPORTANT: you need this for non-chrome browsers */
+        }
+
+        .hf-overflow-content-panel {
+            flex: 1;
+            overflow: auto;
+            padding: 0.5rem;
+        }
+
+        .hf-sticky-footer {
+            flex: 0 0 auto;
+        }
+
+        .hf-header-content {
+            margin-top: 0.5rem;
+            &:empty {
+                display: none;
+            }
+        }
+    }
+}

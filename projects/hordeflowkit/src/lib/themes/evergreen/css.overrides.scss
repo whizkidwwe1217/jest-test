@@ -1,0 +1,4 @@
+//TODO: Remove this workaround when Clarity releases a new version that includes the fix for data grid spinner background color
+.datagrid-spinner {
+	background-color: $clr-datagrid-loading-background;
+}

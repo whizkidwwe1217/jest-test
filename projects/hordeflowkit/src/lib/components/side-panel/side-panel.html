@@ -1,0 +1,78 @@
+<div
+	*ngIf="open"
+	class="hf-side-panel-wrapper"
+	[@fadeInOut]
+	[ngClass]="{ 'hf-side-panel-open': open }"
+	(click)="onOpen(true)"
+></div>
+<div
+	*ngIf="open"
+	clrFocusTrap
+	class="hf-side-panel-container"
+	[ngClass]="getClasses()"
+	[@slideAnimation]="{ value: state, params: { width: width } }"
+	role="dialog"
+	aria-hidden="true"
+	aria-label="Side Panel Title"
+>
+	<div class="hf-side-panel-header">
+		<hf-page-title
+			[title]="title"
+			[isSubHeading]="true"
+			[subtitle]="subtitle"
+		></hf-page-title>
+		<div class="hf-side-panel-expand-icon">
+			<button
+				class="btn btn-icon btn-link"
+				(click)="full = !full"
+				title="{{ full ? 'Shrink' : 'Expand' }}"
+			>
+				<!--
+                    <clr-icon [attr.dir]="full ? (direction === 'left' ? 'left' : 'right') : (direction === 'left' ? 'right' : 'left')" shape="angle-double"></clr-icon>
+                -->
+				<clr-icon
+					[attr.dir]="
+						full
+							? direction === 'left'
+								? 'left'
+								: 'right'
+							: direction === 'left'
+							? 'right'
+							: 'left'
+					"
+					shape="angle-double"
+					class="hf-side-panel-expand-icon"
+					[ngClass]="{ 'hf-side-panel-expanded-icon': full }"
+				></clr-icon>
+			</button>
+		</div>
+		<div class="hf-side-panel-close-icon">
+			<button (click)="onOpen(false)" class="btn btn-icon btn-link">
+				<clr-icon shape="close"></clr-icon>
+			</button>
+		</div>
+	</div>
+	<div class="hf-side-panel-content">
+		<div *ngIf="loading" class="hf-side-panel-spinner">
+			<span class="spinner"></span>
+		</div>
+		<ng-container [ngTemplateOutlet]="template"></ng-container>
+	</div>
+	<div class="hf-side-panel-footer">
+		<button
+			[disabled]="!enableAccept"
+			class="btn btn-primary"
+			[clrLoading]="acceptButtonState"
+			(click)="onAccept()"
+		>
+			{{ primaryButtonText || "Save" }}
+		</button>
+		<button
+			[disabled]="!enableCancel"
+			class="btn btn-secondary"
+			(click)="onDiscard()"
+		>
+			{{ cancelButtonText || "Cancel" }}
+		</button>
+	</div>
+</div>

@@ -1,0 +1,7 @@
+@mixin hf-info-card {
+	box-shadow: 1px 3px 10px $hf-info-card-shadow-color;
+	border: 1px solid $hf-info-card-border-color;
+}
+$clr-global-app-background: #fafafa;
+$clr-global-hover-bg-color: #d9e4ea;
+$clr-datagrid-loading-background: rgba(255, 255, 255, 0.6);

@@ -1,0 +1,28 @@
+<clr-alert [clrAlertType]="'danger'" [clrAlertClosable]="closable" [clrAlertSizeSmall]="true">
+  <clr-alert-item>
+    <span class="alert-text">
+      <span class="error-title">{{ error?.title }}</span>
+      <div>
+        <span class="error-message">{{ error?.message }}</span>
+        <div *ngIf="error?.details && error?.details.length > 0" class="error-details">
+          <a href="javascript:void(0)" (click)="showDetails = !showDetails"
+            ><clr-icon shape="angle" [attr.dir]="showDetails ? 'up' : 'down'"></clr-icon>{{
+            showDetails ? "Hide Details" : "Show Details" }}</a
+          >
+        </div>
+        <div [class.hidden]="!showDetails">
+          <clr-icon
+            title="Copy to clipboard"
+            style="float: right"
+            shape="copy"
+            (click)="copyDetails()"
+          ></clr-icon>
+          <span class="error-code" *ngIf="error.code">Error code: {{ error?.code }}</span>
+          <div #details>
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+    </span>
+  </clr-alert-item>
+</clr-alert>

@@ -19,6 +19,7 @@ import { ClarityIcons } from "@clr/icons";
 import { AppRoutingModule } from "./app.routing";
 import { appInfoReducer } from "./data/reducers/app-info.reducer";
 import { RouterModule } from "@angular/router";
+import { HordeflowkitModule } from "hordeflowkit";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { RouterModule } from "@angular/router";
 		NgProgressHttpModule,
 		UikitModule,
 		HordeflowCommonModule,
+		HordeflowkitModule,
 		AppRoutingModule,
 		StoreModule.forRoot(
 			{

@@ -1,0 +1,104 @@
+$clr-global-app-background: #ffffff;
+$clr-global-selection-color: $blue-light;
+$clr-global-hover-bg-color: $blue-lightest;
+
+/**********
+   * Datagrid
+   * Datagrids are for organizing large volumes of data that users can scan, compare, and perform actions on.
+   *
+   * Usage: ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-datagrid-row-hover: $blue-lightest;
+// $clr-datagrid-row-selected: $clr-global-selection-color;
+// $clr-datagrid-popover-bg-color: $blue-lightest;
+// $clr-datagrid-action-toggle: $text-default;
+// $clr-datagrid-pagination-btn-color: #e9ecef;
+// $clr-datagrid-pagination-btn-disabled-color: #e9ecef;
+// $clr-datagrid-pagination-btn-disabled-opacity: 0.46;
+// $clr-datagrid-pagination-input-border-color: $blue-light;
+// $clr-datagrid-pagination-input-border-focus-color: #49afd9;
+// $clr-datagrid-popover-border-color: $blue-light;
+$clr-datagrid-action-popover-hover-color: $clr-datagrid-row-hover;
+// $clr-datagrid-loading-background: rgba(255, 255, 255, 0.5);
+// END: Datagrid
+
+/**********
+   * Header
+   * Headers provide branding, navigation, search, and access to global application actions such as settings and
+   * notifications. There are five header colors in the dark theme.
+   *
+   * Usage: ../layout/nav/_header.clarity.scss
+   * -
+   */
+$clr-header-bgColor: $green-dark;
+$clr-header-default-bg-color: $clr-header-bgColor;
+$clr-header-1-bg-color: $clr-header-bgColor;
+$clr-header-2-bg-color: $orange-dark;
+$clr-header-3-bg-color: $blue-dark;
+$clr-header-4-bg-color: $blue-dark;
+$clr-header-5-bg-color: $purple-dark;
+$clr-header-6-bg-color: $blue-dark;
+// END Header overrides
+
+/**********
+   * Table
+   * Use the table styles wherever you need to present static data in a tabular format.
+   *
+   * Usage:
+   * - ../data/_tables.clarity.scss
+   * - ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-thead-bgcolor: #ffffff;
+$clr-table-bgcolor: #ffffff;
+$clr-table-font-color: $text-default;
+$clr-datagrid-default-border-color: $neutral-light;
+$clr-table-header-border-bottom-color: $clr-datagrid-default-border-color;
+$clr-table-footer-border-top-color: $clr-datagrid-default-border-color;
+$clr-tablerow-bordercolor: $clr-datagrid-default-border-color;
+$clr-table-border-color: $clr-datagrid-default-border-color;
+$clr-table-bordercolor: $clr-datagrid-default-border-color;
+$clr-table-borderstyle: 1px solid $clr-datagrid-default-border-color;
+// END: Table
+
+/**********
+   * Typography
+   * Clarity uses the geometric sans-serif font, Metropolis.
+   *
+   * Usage:
+   * - ../typography/_typography.clarity.scss
+   * - ../data/datagrid/_datagrid.clarity.scss
+   */
+$clr-global-font-color: $text-default;
+$clr-global-font-color-secondary: $text-muted;
+
+$clr-h1-color: $clr-global-font-color;
+$clr-h2-color: $clr-global-font-color;
+$clr-h3-color: $clr-global-font-color;
+$clr-h4-color: $clr-global-font-color;
+$clr-h5-color: $clr-global-font-color;
+$clr-h6-color: $clr-global-font-color-secondary;
+
+$clr-p1-color: $clr-global-font-color-secondary;
+$clr-p2-color: $clr-global-font-color-secondary;
+$clr-p3-color: $clr-global-font-color-secondary;
+$clr-p4-color: $clr-global-font-color;
+$clr-p5-color: $clr-global-font-color;
+$clr-p6-color: $clr-global-font-color;
+$clr-p7-color: $clr-global-font-color;
+$clr-p8-color: $clr-global-font-color;
+
+/**********
+    * Vertical Nav
+    * This is a vertically-aligned navigational component.
+    *
+    * Usage: ../layout/vertical-nav/_vertical-nav.clarity.scss
+    */
+// $clr-vertical-nav-item-height: 1.5rem;
+$clr-vertical-nav-item-color: $text-default;
+$clr-vertical-nav-item-active-color: $blue-dark;
+$clr-vertical-nav-bg-color: #ffffff;
+$clr-vertical-nav-active-bg-color: $clr-global-selection-color;
+$clr-vertical-nav-hover-bg-color: $clr-global-hover-bg-color;
+$clr-vertical-nav-icon-active-color: $neutral-dark;
+$clr-vertical-nav-toggle-icon-color: $blue-dark;
+// END Vertical Nav

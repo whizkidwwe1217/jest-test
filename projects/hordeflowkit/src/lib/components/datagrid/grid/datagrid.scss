@@ -1,0 +1,13 @@
+clr-datagrid {
+  height: 100% !important; // Maybe remove this on mobile
+  width: 100% !important;
+  min-height: 0;
+}
+
+::ng-deep .datagrid {
+  height: 0px; // Maybe remove this on mobile
+}
+
+:host {
+  height: 100% !important; // Adjust this on mobile
+}

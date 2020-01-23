@@ -1,0 +1,15 @@
+@include exports("avatar.hordeflowkit") {
+	.hf-avatar {
+		border-radius: "50%";
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.avatar-content {
+			display: block;
+			object-fit: cover;
+		}
+	}
+}

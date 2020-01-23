@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/hordeflowkit",
+  "lib": {
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "lodash": "_",
+      "dateFns": "date-fns",
+      "@clr/angular": "@clr/angular",
+      "@clr/core": "@clr/core",
+      "hordeflow-common": "hordeflow-common",
+      "resize-observer-polyfill": "resize-observer-polyfill",
+      "xlsx": "xlsx",
+      "date-fns": "date-fns"
+    }
+  }
+}

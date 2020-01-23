@@ -1,0 +1,10 @@
+<!-- <div class="avatar-container" [ngStyle]="hostStyle">-->
+<div class="hf-avatar">
+    <div class="avatar-container" [ngStyle]="hostStyle">
+        <img *ngIf="src" [src]="src" [width]="size" [height]="size" [ngStyle]="avatarStyle" (error)="fetch($event)"
+            class="avatar-content" />
+
+        <div *ngIf="data && !src" [ngStyle]="avatarStyle" class="avatar-content">{{data}}
+        </div>
+    </div>
+</div>

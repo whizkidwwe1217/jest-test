@@ -1,0 +1,135 @@
+@include exports("accordion.hordeflowkit") {
+	$white: rgba(254, 255, 250, 1);
+	$grey: rgba(220, 231, 235, 1);
+	$red: rgba(255, 104, 115, 1);
+	$black: rgba(48, 69, 92, 0.8);
+
+	.hf-accordion {
+		min-height: 0;
+		display: inline-block;
+		position: relative;
+		width: 100%;
+		.hf-transition {
+			transition: all 200ms ease-in-out;
+		}
+		.hf-flipIn {
+			animation: flipdown 300ms ease both;
+		}
+		.hf-no-select {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.hf-title {
+			line-height: 34px;
+			font-weight: 300;
+			letter-spacing: 1px;
+			display: block;
+			margin: 0;
+			padding: 0.25rem;
+			cursor: pointer;
+			@extend .hf-no-select;
+			margin-left: 1rem;
+		}
+
+		.hf-item {
+			line-height: 26px;
+			letter-spacing: 1px;
+			position: relative;
+			font-size: 13px;
+			padding: 0 0.5rem;
+			overflow: hidden;
+			max-height: 800px;
+			@extend .hf-transition;
+			opacity: 1;
+			transform: translate(0, 0);
+			margin-top: 14px;
+			z-index: 2;
+		}
+
+		.hf-container {
+			perspective: 900;
+			padding: 0;
+			margin: 0;
+		}
+
+		.hf-content {
+			position: relative;
+			padding: 0;
+			margin: 0;
+			padding-bottom: 4px;
+			padding-top: 18px;
+			// border-top: 1px dotted $grey;
+			@extend .hf-flipIn;
+
+			& > clr-icon {
+				position: absolute;
+				transform: translate(-6px, 0);
+				margin-top: 16px;
+				margin-right: 0.25rem;
+				@extend .hf-transition;
+				position: absolute;
+				transform: translate(0, 0) rotate(90deg);
+			}
+		}
+
+		input[type="checkbox"] {
+			position: absolute;
+			cursor: pointer;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			opacity: 0;
+
+			&:not(:checked) {
+				& ~ .hf-item {
+					margin-top: 0;
+					max-height: 0;
+					opacity: 0;
+					transform: translate(0, 50%);
+				}
+				& ~ clr-icon {
+					transform: translate(0, 0) rotate(-90deg);
+				}
+			}
+
+			// &:focus {
+			// 	& ~ h2 {
+			// 		outline: $grey;
+			// 		outline-width: 1px;
+			// 		outline-style: solid;
+			// 		font-weight: bold;
+			// 	}
+			// }
+		}
+
+		@keyframes flipdown {
+			0% {
+				opacity: 0;
+				transform-origin: top center;
+				transform: rotateX(-90deg);
+			}
+			5% {
+				opacity: 1;
+			}
+			80% {
+				transform: rotateX(8deg);
+			}
+			83% {
+				transform: rotateX(6deg);
+			}
+			92% {
+				transform: rotateX(-3deg);
+			}
+			100% {
+				transform-origin: top center;
+				transform: rotateX(0deg);
+			}
+		}
+	}
+}

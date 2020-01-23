@@ -1,0 +1,32 @@
+<div *ngIf="last > 1" class="hf-pager">
+    <a
+        class="pagination-previous"
+        (click)="previous()"
+        [class.btn-disabled]="page == 1"
+    >
+        <clr-icon shape="angle left"></clr-icon>
+    </a>
+    <a *ngIf="page > 2" (click)="page = 1">1</a>
+    <span *ngIf="page > 3">...</span>
+
+    <ng-container *ngFor="let pageNum of middlePages">
+        <a
+            *ngIf="pageNum !== page; else: activePage"
+            (click)="page = pageNum"
+            >{{ pageNum }}</a
+        >
+        <ng-template #activePage>
+            <a class="active">{{ pageNum }}</a>
+        </ng-template>
+    </ng-container>
+
+    <span *ngIf="page < last - 2">...</span>
+    <a *ngIf="page < last - 1" (click)="page = last">{{ last }}</a>
+    <a
+        class="pagination-next"
+        (click)="next()"
+        [class.btn-disabled]="page == last"
+    >
+        <clr-icon shape="angle right"></clr-icon>
+    </a>
+</div>
