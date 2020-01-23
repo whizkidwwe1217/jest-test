@@ -5,7 +5,11 @@
 	"projects": {
 		"jest-test": {
 			"projectType": "application",
-			"schematics": {},
+			"schematics": {
+				"@schematics/angular:component": {
+					"styleext": "scss"
+				}
+			},
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "app",
@@ -20,7 +24,7 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"aot": false,
 						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": ["node_modules/@clr/icons/clr-icons.min.css", "src/styles.css"],
+						"styles": ["node_modules/@clr/icons/clr-icons.min.css", "src/styles.scss"],
 						"scripts": [
 							"node_modules/@webcomponents/custom-elements/custom-elements.min.js"
 						]
@@ -88,6 +92,72 @@
 							"tsconfig.app.json",
 							"tsconfig.spec.json",
 							"e2e/tsconfig.json"
+						],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
+		},
+		"uikit": {
+			"projectType": "library",
+			"root": "projects/uikit",
+			"sourceRoot": "projects/uikit/src",
+			"prefix": "kit",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/uikit/tsconfig.lib.json",
+						"project": "projects/uikit/ng-package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/uikit/src/test.ts",
+						"tsConfig": "projects/uikit/tsconfig.spec.json",
+						"karmaConfig": "projects/uikit/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/uikit/tsconfig.lib.json",
+							"projects/uikit/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
+		},
+		"hordeflow-common": {
+			"projectType": "library",
+			"root": "projects/hordeflow-common",
+			"sourceRoot": "projects/hordeflow-common/src",
+			"prefix": "hf",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "projects/hordeflow-common/tsconfig.lib.json",
+						"project": "projects/hordeflow-common/ng-package.json"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/hordeflow-common/src/test.ts",
+						"tsConfig": "projects/hordeflow-common/tsconfig.spec.json",
+						"karmaConfig": "projects/hordeflow-common/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"projects/hordeflow-common/tsconfig.lib.json",
+							"projects/hordeflow-common/tsconfig.spec.json"
 						],
 						"exclude": ["**/node_modules/**"]
 					}

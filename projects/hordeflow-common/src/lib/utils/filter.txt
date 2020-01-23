@@ -1,0 +1,194 @@
+/*!
+* xFilter Library v1.0.0
+*
+* Copyright 2010, Stefan Pirvu
+* Dual licensed under the MIT or GPL Version 2 licenses.
+* http://jquery.org/license
+*
+*
+* Date: Sep 09, 2010
+* 
+*
+* The framwork extends the jqGrid (http://www.trirand.com/blog/?page_id=5) filter functionality.
+* The filter uses JSON entities to hold filter rules and groups. Here is an example of a filter:
+
+{ "groupOp": "and",
+      "groups" : [ 
+        { "groupOp": "or",
+            "rules": [
+                { "field": "name", "op": "eq", "data": "England" }, 
+                { "field": "id", "op": "le", "data": "5"}
+             ]
+        } 
+      ],
+      "rules": [
+        { "field": "name", "op": "eq", "data": "Romania" }, 
+        { "field": "id", "op": "le", "data": "1"}
+      ]
+}
+*/
+export class Filter {
+    filter: any;
+
+    ops = [
+        { name: "eq", description: "==" },
+        { name: "ne", description: "!=" },
+        { name: "bw", description: "begins with" },
+        { name: "nb", description: "does not begin with" },
+        { name: "lt", description: "<" },
+        { name: "le", description: "<=" },
+        { name: "gt", description: ">" },
+        { name: "ge", description: ">=" },
+        { name: "ew", description: "ends with" },
+        { name: "nw", description: "does not end with" },
+        { name: "cn", description: "contains" },
+        { name: "nc", description: "does not contain" },
+        { name: "nu", description: "is null" },
+        { name: "nn", description: "is not null" }
+    ];
+
+    groupOps = ["and", "or"];
+
+    constructor(filter) {
+        this.filter = filter;
+        if (this.filter == null || this.filter == undefined) {
+            this.filter = {
+                groupOp: this.groupOps[0],
+                rules: [],
+                groups: []
+            }
+        }
+    }
+
+    getStringForGroup(group) {
+        let s = "(";
+
+        if (group.groups != undefined) {
+            for (let index = 0; index < group.groups.length; index++) {
+                if (s.length > 1) {
+                    if (group.groupOp == "or")
+                        s += " || ";
+                    else
+                        s += " && ";
+                }
+                s += this.getStringForGroup(group.groups[index]);
+            }
+        }
+
+        if (group.rules != undefined) {
+            for (let index = 0; index < group.rules.length; index++) {
+                if (s.length > 1) {
+                    if (group.groupOp == "or")
+                        s += " || ";
+                    else
+                        s += " && ";
+                }
+                s += this.getStringForRule(group.rules[index]);
+            }
+        }
+
+        s += ")";
+
+        if (s == "()")
+            return ""; // ignore groups that don't have rules
+        else
+            return s;
+    }
+
+    getStringForRule(rule) {
+        return rule.op + "(item." + rule.field + ",'" + rule.data + "')";
+    }
+
+    getUserFriendlyStringForGroup(group) {
+        let s = "(";
+        if (group.groups != undefined) {
+            for (let index = 0; index < group.groups.length; index++) {
+                if (s.length > 1)
+                    s += " " + group.groupOp + " ";
+
+                try {
+                    s += this.getUserFriendlyStringForGroup(group.groups[index]);
+                } catch (e) { alert(e); }
+            }
+        }
+
+        if (group.rules != undefined) {
+            try {
+                for (let index = 0; index < group.rules.length; index++) {
+                    if (s.length > 1)
+                        s += " " + group.groupOp + " ";
+                    s += this.getUserFriendlyStringForRule(group.rules[index]);
+                }
+            } catch (e) { alert(e); }
+        }
+
+        s += ")";
+
+        if (s == "()")
+            return ""; // ignore groups that don't have rules
+        else
+            return s;
+    }
+
+    getUserFriendlyStringForRule(rule) {
+        let opUF = "";
+        for (let i = 0; i < this.ops.length; i++) {
+            opUF = this.ops[i].description;
+            break;
+        }
+        return `${rule.field} ${opUF} "${rule.data}"`;
+    }
+
+    apply(jsonObj) {
+        if (jsonObj == null || jsonObj == undefined)
+            return [];
+
+        let filterString = this.getStringForGroup(this.filter);
+        if (filterString.replace("(", "").replace(")", "") === "")
+            return jsonObj;
+
+        let newJsonObj = [];
+        for (let index = 0; index < jsonObj.length; index++) {
+            let item = jsonObj[index];
+
+            if (eval(filterString) == true)
+                newJsonObj.push(item);
+        }
+
+        return newJsonObj;
+    }
+    // functions used for client-side filtering by the Apply method
+    eq(d1, d2) { return d1 == d2; }
+    ne(d1, d2) { return d1 != d2; }
+    lt(d1, d2) { return d1 < d2; }
+    le(d1, d2) { return d1 <= d2; }
+    gt(d1, d2) { return d1 > d2; }
+    ge(d1, d2) { return d1 >= d2; }
+    bw(d1, d2) { return d1.match("^" + d2); }
+    nb(d1, d2) { return !d1.match("^" + d2); }
+    ew(d1, d2) { return d1.match(d2 + "$"); }
+    nw(d1, d2) { return !d1.match(d2 + "$"); }
+    cn(d1, d2) { return d2.indexOf(d1) != -1; }
+    nc(d1, d2) { return d2.indexOf(d1) == -1; }
+    nu(d1, d2) { return d1 == null; }
+    nn(d1, d2) { return d1 != null; }
+}
+
+let f = {
+    "groupOp": "and",
+    "groups": [
+        {
+            "groupOp": "or",
+            "rules": [
+                { "field": "name", "op": "ne", "data": "England" },
+                { "field": "id", "op": "le", "data": "5" }
+            ]
+        }
+    ],
+    "rules": [
+        { "field": "name", "op": "ne", "data": "Romania" },
+        { "field": "id", "op": "ge", "data": "10" }
+    ]
+}
+let filter = new Filter(f);
+filter.getUserFriendlyStringForGroup(filter.getStringForGroup(f)); /*?*/

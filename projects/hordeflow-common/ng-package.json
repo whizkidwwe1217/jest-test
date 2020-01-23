@@ -1,0 +1,11 @@
+{
+	"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+	"dest": "../../dist/hordeflow-common",
+	"lib": {
+		"entryFile": "src/public-api.ts",
+		"umdModuleIds": {
+			"lodash": "_",
+			"@clr/angular": "@clr/angular"
+		}
+	}
+}

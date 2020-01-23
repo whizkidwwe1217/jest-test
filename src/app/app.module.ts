@@ -9,6 +9,15 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { NgProgressModule } from "ngx-progressbar";
 import { NgProgressHttpModule } from "ngx-progressbar/http";
 import { NgProgressRouterModule } from "ngx-progressbar/router";
+import { UikitModule } from 'uikit';
+import { HordeflowCommonModule } from 'hordeflow-common';
+import { StoreModule, Store } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import "@clr/icons";
+import "@clr/icons/shapes/all-shapes";
+import { ClarityIcons } from "@clr/icons";
+import { AppRoutingModule } from './app.routing';
+import { appInfoReducer } from './data/reducers/app-info.reducer';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -23,7 +32,14 @@ import { NgProgressRouterModule } from "ngx-progressbar/router";
 		NgxChartsModule,
 		NgProgressModule,
 		NgProgressRouterModule,
-		NgProgressHttpModule
+		NgProgressHttpModule,
+		UikitModule,
+		HordeflowCommonModule,
+		AppRoutingModule,
+		StoreModule.forRoot({
+			appInfo: appInfoReducer
+		}),
+		EffectsModule.forRoot([])
 	],
 	providers: [],
 	bootstrap: [AppComponent]

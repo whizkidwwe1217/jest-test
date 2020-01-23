@@ -16,7 +16,7 @@ module.exports = {
 	setupFilesAfterEnv: ["<rootDir>/src/setup-jest.ts"],
 	modulePaths: ["<rootDir>/dist"],
 	testMatch: ["**/+(*.)+(spec).+(ts)"],
-	collectCoverage: true,
+	collectCoverage: false,
 	coverageReporters: ["html"],
 	coverageDirectory: "coverage/my-app"
 };
