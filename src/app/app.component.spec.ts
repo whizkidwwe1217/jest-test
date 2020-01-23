@@ -17,7 +17,7 @@ import { EffectsModule } from "@ngrx/effects";
 let fixture: ComponentFixture<AppComponent> = null;
 let app: AppComponent = null;
 
-beforeEach(async () => {
+beforeEach(() => {
 	TestBed.configureTestingModule({
 		imports: [
 			HttpClientTestingModule,
