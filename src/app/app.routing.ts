@@ -1,6 +1,12 @@
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { NgModule } from "@angular/core";
-const appRoutes: Routes = [];
+import { AppComponent } from "./app.component";
+const appRoutes: Routes = [
+	{
+		path: "",
+		component: AppComponent
+	}
+];
 
 @NgModule({
 	imports: [

@@ -13,6 +13,10 @@ import { NgProgressRouterModule } from "ngx-progressbar/router";
 import { StoreModule } from "@ngrx/store";
 import { appInfoReducer } from "./data/reducers/app-info.reducer";
 import { EffectsModule } from "@ngrx/effects";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
+import { UikitModule } from "uikit";
+import { AppRoutingModule } from "./app.routing";
 
 let fixture: ComponentFixture<AppComponent> = null;
 let app: AppComponent = null;
@@ -20,17 +24,32 @@ let app: AppComponent = null;
 beforeEach(() => {
 	TestBed.configureTestingModule({
 		imports: [
-			HttpClientTestingModule,
-			NoopAnimationsModule,
-			FormsModule,
+			BrowserModule,
 			ClarityModule,
+			NoopAnimationsModule,
+			HttpClientModule,
+			FormsModule,
 			ReactiveFormsModule,
-			HordeflowCommonModule,
-			NgProgressModule,
 			NgxChartsModule,
-			NgProgressHttpModule,
+			NgProgressModule,
 			NgProgressRouterModule,
-			StoreModule.forRoot({ appInfo: appInfoReducer }),
+			NgProgressHttpModule,
+			UikitModule,
+			HordeflowCommonModule,
+			AppRoutingModule,
+			StoreModule.forRoot(
+				{
+					appInfo: appInfoReducer
+				},
+				{
+					runtimeChecks: {
+						strictActionImmutability: true,
+						strictActionSerializability: true,
+						strictStateImmutability: true,
+						strictStateSerializability: true
+					}
+				}
+			),
 			EffectsModule.forRoot([])
 		],
 		declarations: [AppComponent],
