@@ -9,7 +9,6 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { NgProgressModule } from "ngx-progressbar";
 import { NgProgressHttpModule } from "ngx-progressbar/http";
 import { NgProgressRouterModule } from "ngx-progressbar/router";
-import { UikitModule } from "uikit";
 import { HordeflowCommonModule } from "hordeflow-common";
 import { StoreModule, Store } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -34,7 +33,6 @@ import { HordeflowkitModule } from "hordeflowkit";
 		NgProgressModule,
 		NgProgressRouterModule,
 		NgProgressHttpModule,
-		UikitModule,
 		HordeflowCommonModule,
 		HordeflowkitModule,
 		AppRoutingModule,

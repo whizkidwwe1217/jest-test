@@ -15,7 +15,6 @@ import { appInfoReducer } from "./data/reducers/app-info.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
-import { UikitModule } from "uikit";
 import { AppRoutingModule } from "./app.routing";
 import { HordeflowkitModule } from "hordeflowkit";
 
@@ -35,7 +34,6 @@ beforeEach(() => {
 			NgProgressModule,
 			NgProgressRouterModule,
 			NgProgressHttpModule,
-			UikitModule,
 			HordeflowCommonModule,
 			HordeflowkitModule,
 			AppRoutingModule,

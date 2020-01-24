@@ -98,39 +98,6 @@
 				}
 			}
 		},
-		"uikit": {
-			"projectType": "library",
-			"root": "projects/uikit",
-			"sourceRoot": "projects/uikit/src",
-			"prefix": "kit",
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-ng-packagr:build",
-					"options": {
-						"tsConfig": "projects/uikit/tsconfig.lib.json",
-						"project": "projects/uikit/ng-package.json"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "projects/uikit/src/test.ts",
-						"tsConfig": "projects/uikit/tsconfig.spec.json",
-						"karmaConfig": "projects/uikit/karma.conf.js"
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"projects/uikit/tsconfig.lib.json",
-							"projects/uikit/tsconfig.spec.json"
-						],
-						"exclude": ["**/node_modules/**"]
-					}
-				}
-			}
-		},
 		"hordeflow-common": {
 			"projectType": "library",
 			"root": "projects/hordeflow-common",
