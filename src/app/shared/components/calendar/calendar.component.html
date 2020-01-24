@@ -1,0 +1,56 @@
+<input type="date" name="date" [(clrDate)]="current" />
+<input type="date" name="newEvent" [(clrDate)]="newEvent" />
+<button class="btn btn-primary" (click)="addEvent()">Add Event</button>
+<button class="btn" (click)="fixedHeight = !fixedHeight">
+	{{ fixedHeight ? "Fluid Height" : "Fixed Height" }}
+</button>
+<div class="calendar">
+	<div class="calendar-header">
+		<button class="btn btn-link" (click)="previousMonth()">
+			<clr-icon shape="angle" dir="left"></clr-icon>
+		</button>
+		<span class="calendar-month-year">{{ getMonthYear() }}</span>
+		<button class="btn btn-link" (click)="nextMonth()">
+			<clr-icon shape="angle" dir="right"></clr-icon>
+		</button>
+	</div>
+	<!-- <table id="day-names">
+		<td *ngFor="let day of getDayNames()">{{ day }}</td>
+	</table> -->
+	<table class="calendar-days">
+		<tbody>
+			<tr>
+				<th *ngFor="let day of getDayNames()">{{ day }}</th>
+			</tr>
+			<tr *ngFor="let week of getDisplayWeeks()">
+				<td
+					*ngFor="let day of week.days"
+					[class.is-not-in-month]="!day.isInCurrentMonth"
+				>
+					<div class="day-number">
+						<span [class.is-current-date]="day.isCurrentDate">
+							{{ day.text }}
+						</span>
+					</div>
+					<div class="event" [class.fixed-height]="fixedHeight">
+						<ul>
+							<li
+								*ngFor="let event of getEvent(day)"
+								[ngStyle]="{ color: event.textColor }"
+							>
+								<clr-icon
+									[attr.shape]="
+										event.icon ? event.icon : 'circle'
+									"
+									[ngClass]="{ 'is-solid': event.important }"
+									[ngStyle]="{ color: event.color }"
+								></clr-icon>
+								{{ event.text }}
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

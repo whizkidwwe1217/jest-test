@@ -1,0 +1,17 @@
+<form [formGroup]="form" hfForm clrLayout="horizontal" class="form-flex">
+  <input type="hidden" formControlName="employeeId" />
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-2  clr-col-lg-4">Pay Item</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfSearch
+      [dataSource]="'api/v1/payitem'"
+      [displayField]="'name'"
+      [enableLookup]="true"
+      [valueField]="'id'"
+      formControlName="payItemId"
+      name="payItemId"
+    ></hf-search>
+    <hf-control-error *clrIfError="'required'">You must provide a Pay Item!</hf-control-error>
+  </hf-search-container>
+</form>

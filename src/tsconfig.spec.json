@@ -5,7 +5,9 @@
 		"types": ["jest", "node"],
 		"module": "commonjs",
 		"target": "es2015",
-		"allowJs": true
+		"allowJs": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"files": ["polyfills.ts"],
 	"include": ["**/*.spec.ts", "**/*.d.ts"]

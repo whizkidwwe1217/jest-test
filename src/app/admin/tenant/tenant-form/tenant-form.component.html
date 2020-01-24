@@ -1,0 +1,119 @@
+<hf-content-panel [icon]="'id-badge'" [title]="title">
+  <form [formGroup]="tenantForm" hfForm hfLayout="horizontal" class="form-flex">
+    <hf-input-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Tenant Name</label>
+      <input
+        hfFocusInput="true"
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfInput
+        type="text"
+        formControlName="name"
+        name="name"
+      />
+      <hf-control-helper>Enter a unique Tenant name.</hf-control-helper>
+      <hf-control-error *hfIfError="'required'"
+        >You must provide a the name of the tenant!</hf-control-error
+      >
+    </hf-input-container>
+
+    <hf-textarea-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Description</label>
+      <textarea
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfTextarea
+        rows="4"
+        formControlName="description"
+        name="description"
+      ></textarea>
+    </hf-textarea-container>
+
+    <hf-input-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Host Name</label>
+      <input
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfInput
+        type="text"
+        formControlName="hostName"
+        name="hostName"
+      />
+      <hf-control-helper>Enter a unique available host name.</hf-control-helper>
+      <hf-control-error *hfIfError="'required'">You must provide a host name.!</hf-control-error>
+    </hf-input-container>
+
+    <hf-search-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Database Provider</label>
+      <hf-search
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfSearch
+        [dataSource]="databaseProviders"
+        [enableLookup]="true"
+        [valueField]="'name'"
+        (onselect)="onSelect($event)"
+        [displayField]="'description'"
+        formControlName="databaseProvider"
+        name="databaseProvider"
+        [placeholder]="'Select a database provider'"
+      >
+      </hf-search>
+    </hf-search-container>
+
+    <hf-toggle-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Dedicated</label>
+      <hf-toggle-wrapper>
+        <input
+          class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+          type="checkbox"
+          hfToggle
+          name="isDedicated"
+          formControlName="isDedicated"
+        />
+        <label>This tenant is provisioned with a separate database connection</label>
+      </hf-toggle-wrapper>
+    </hf-toggle-container>
+
+    <hf-toggle-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Tenant Administrator</label>
+      <hf-toggle-wrapper>
+        <input
+          class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+          type="checkbox"
+          hfToggle
+          name="isTenantAdministrator"
+          formControlName="isTenantAdministrator"
+        />
+        <label>This tenant can also add new or manage existing tenants.</label>
+      </hf-toggle-wrapper>
+    </hf-toggle-container>
+
+    <hf-textarea-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Connection String</label>
+      <textarea
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfTextarea
+        rows="4"
+        formControlName="connectionString"
+        name="connectionString"
+      ></textarea>
+    </hf-textarea-container>
+
+    <hf-search-container>
+      <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Theme</label>
+      <hf-search
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfSearch
+        [dataSource]="themes"
+        [enableLookup]="true"
+        [valueField]="'theme'"
+        [displayField]="'name'"
+        formControlName="theme"
+        name="theme"
+        placeholder="Select a theme"
+      >
+      </hf-search>
+    </hf-search-container>
+
+    <section class="form-block">
+      <button class="btn btn-primary" (click)="save()">Save</button>
+    </section>
+  </form>
+</hf-content-panel>

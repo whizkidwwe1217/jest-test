@@ -1,0 +1,140 @@
+<hf-content-panel
+	[title]="'Settings'"
+	[icon]="'settings'"
+	[subtitle]="
+		'This page allows you to view server configurations, assemblies and plugins that are loaded at runtime as well as database
+migrations.'
+	"
+>
+	<div class="card">
+		<div class="card-block">
+			<button class="btn btn-primary" (click)="ping()">Ping</button>
+			<button class="btn btn-primary" (click)="deploy()">Deploy</button>
+			<button class="btn btn-primary" (click)="drop()">Drop</button>
+			<button class="btn btn-primary" (click)="generateScript()">
+				Generate Script
+			</button>
+			<ng-progress
+				style="position: absolute"
+				[color]="'red'"
+				id="settings-progress"
+			></ng-progress>
+			<clr-alert
+				*ngIf="msg"
+				[clrAlertType]="error ? 'danger' : 'success'"
+			>
+				<clr-alert-item>
+					<span class="alert-text">
+						{{ msg }}
+					</span>
+				</clr-alert-item>
+			</clr-alert>
+			<pre
+				*ngIf="script"
+			><code highlight [code]="script" [language]="['sql']"></code></pre>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<clr-icon shape="scroll" size="18"></clr-icon> Server Configurations
+		</div>
+		<div class="card-block">
+			<table
+				*ngIf="configuration"
+				class="table table-vertical table-breakword"
+			>
+				<tbody>
+					<tr>
+						<th>Connection String</th>
+						<td>{{ configuration.connectionString }}</td>
+					</tr>
+					<tr>
+						<th>Database Provider</th>
+						<td>{{ configuration.databaseProvider }}</td>
+					</tr>
+					<tr>
+						<th>Multitenancy Mode</th>
+						<td>
+							{{ configuration.multitenancyMode }}
+						</td>
+					</tr>
+					<!-- <tr>
+          <th>Browser/OS Info</th>
+          <td>{{getBrowserInfo()|json}}</td>
+        </tr> -->
+				</tbody>
+			</table>
+			<p *ngIf="!configuration">No configurations loaded.</p>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-header">
+			<clr-icon shape="deploy" size="18"></clr-icon> Migrations
+		</div>
+		<div class="card-block">
+			<p *ngIf="migrations.length === 0">No Migrations</p>
+			<table class="table table-compact table-breakword">
+				<thead>
+					<th>Migration Id</th>
+					<th>Applied</th>
+				</thead>
+				<tbody>
+					<tr *ngFor="let m of migrations">
+						<td>{{ m.id }}</td>
+						<td>
+							<clr-icon
+								[ngStyle]="{
+									color: m.applied ? 'green' : 'red'
+								}"
+								[attr.shape]="
+									m.applied ? 'check' : 'unknown-status'
+								"
+							></clr-icon>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-header">
+			<clr-icon shape="plugin" size="18"></clr-icon> Loaded Assemblies
+		</div>
+		<div class="card-block">
+			<p *ngIf="assemblies.length === 0">No Loaded Assemblies</p>
+			<clr-stack-view>
+				<clr-stack-block
+					[clrSbExpanded]="expanded"
+					*ngFor="let a of assemblies"
+				>
+					<clr-stack-label>{{ a.name }}</clr-stack-label>
+					<clr-stack-content>{{ a.version }}</clr-stack-content>
+				</clr-stack-block>
+			</clr-stack-view>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-header">
+			<clr-icon shape="plugin" size="18"></clr-icon> Loaded Entity
+			Configurations
+		</div>
+
+		<div class="card-block">
+			<p *ngIf="entityConfigurations.length === 0">
+				No Loaded Entity Configurations
+			</p>
+			<clr-stack-view>
+				<clr-stack-block
+					[clrSbExpanded]="expanded"
+					*ngFor="let a of entityConfigurations"
+				>
+					<clr-stack-label>{{ a.name }}</clr-stack-label>
+					<clr-stack-content>{{ a.version }}</clr-stack-content>
+				</clr-stack-block>
+			</clr-stack-view>
+		</div>
+	</div>
+</hf-content-panel>

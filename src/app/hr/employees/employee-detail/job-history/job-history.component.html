@@ -1,0 +1,73 @@
+<button class="btn btn-link" (click)="addJobHistory($event)">
+  <clr-icon shape="plus"></clr-icon> Add Job History
+</button>
+
+<ul #historyList class="clr-timeline clr-timeline-vertical">
+  <li id="{{ history.id }}" *ngFor="let history of jobHistories | async" class="clr-timeline-step">
+    <div class="clr-timeline-step-header" style="min-width: 5rem">
+      {{ history.dateHired | date: "MMM dd, yyyy" }}
+    </div>
+    <clr-icon
+      [attr.shape]="history.dateSeparated ? 'success-standard' : 'dot-circle'"
+      aria-label="Current"
+    ></clr-icon>
+    <div class="clr-timeline-step-body">
+      <span class="clr-timeline-step-title"
+        >{{ history.employer }} ● <span class="p6">{{ history.jobTitle }}</span></span
+      >
+      <span class="clr-timeline-step-description">{{ history.jobDescription }}</span>
+      <span class="tiny-timeline-step-description p8"
+        >{{
+          history.dateSeparated
+            ? "Resigned last " + (history.dateSeparated | date: "MMM dd, yyyy")
+            : "Currently employed"
+        }}
+
+        <a href="javascript:void(0)" style="margin-left: 0.25rem" (click)="editJobHistory(history)"
+          >Edit</a
+        >
+        <a
+          href="javascript:void(0)"
+          style="margin-left: 0.25rem"
+          (click)="markJobHistoryForRemoval(history)"
+          >Remove</a
+        ></span
+      >
+    </div>
+  </li>
+</ul>
+
+<hf-side-panel
+  [title]="'Add New Job History'"
+  [(open)]="openHistoryForm"
+  [primaryButtonText]="this.datagridService.editorState.status === 'adding' ? 'Add' : 'Update'"
+  [cancelButtonText]="'Discard'"
+  [accept]="accept()"
+  (accepted)="onAccepted($event)"
+>
+  <ng-template>
+    <hrf-job-history-form
+      [employeeId]="employeeId"
+      style="padding:0.25rem; width: 100%;"
+    ></hrf-job-history-form>
+  </ng-template>
+</hf-side-panel>
+
+<clr-modal [(clrModalOpen)]="showJobHistoryRemovalConfirmation" [clrModalClosable]="true">
+  <h3 class="modal-title">Delete this job history?</h3>
+  <div class="modal-body">
+    <p>
+      Are you sure you want to permanently delete this job history at
+      <b>{{ jobHistoryMarkedForRemoval?.employer }}</b
+      >?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="removeJobHistory()">
+      Delete
+    </button>
+    <button type="button" class="btn btn-link" (click)="showJobHistoryRemovalConfirmation = false">
+      Close
+    </button>
+  </div>
+</clr-modal>

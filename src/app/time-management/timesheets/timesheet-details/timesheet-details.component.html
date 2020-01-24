@@ -1,0 +1,89 @@
+<!-- <div class="timesheet-details-container" *ngIf="details?.length === 0">
+	<img
+		src="/assets/graphics/timekeeping/empty-timesheet-details.svg"
+		width="600px"
+		height="200px"
+	/>
+	<h3>No Timesheet Details</h3>
+	<p>You can generate a timesheet for your employees. It will not take long.</p>
+	<button class="btn btn-primary" (click)="generate()">Generate Timesheet</button>
+</div> -->
+
+<hf-datagrid-view-page
+	#grid
+	style="width: 100%"
+	[noHeader]="false"
+	[dataSource]="dataSource"
+	[compact]="false"
+	(selectionchange)="selectionChange($event)"
+	[fields]="timesheetDetailFields"
+	[selectionMode]="'multi'"
+	[enableEdit]="false"
+	[compact]="true"
+	[enableAdd]="false"
+	[commands]="commands"
+	[title]="timesheet ? timesheet.description : 'Timesheet Details'"
+	[icon]="'applet-executive-team'"
+	[subtitle]="
+		'Timesheet details for the period of ' +
+		(timesheet?.startDate | date: 'MMM. dd, yyyy') +
+		' - ' +
+		(timesheet?.endDate | date: 'MMM. dd, yyyy')
+	"
+>
+	<ng-template>
+		<hf-datagrid-view-page
+			style="width: 100%"
+			[noHeader]="true"
+			[dataSource]="'api/v1/organization/employee'"
+			(selectionchange)="selectionChange($event)"
+			[fields]="fields"
+			[selectionMode]="'multi'"
+			[title]="'Timesheets'"
+			[enableAdd]="false"
+			[enableEdit]="false"
+			[enableDelete]="false"
+			[icon]="'applet-executive-team'"
+		>
+		</hf-datagrid-view-page>
+	</ng-template>
+</hf-datagrid-view-page>
+
+<hf-side-panel
+	[title]="'Generate Timesheet'"
+	[subtitle]="'Generate timesheet from 1/2/'"
+	[(open)]="onEmployeeSelectorOpen"
+	[primaryButtonText]="'Generate'"
+	(accepted)="onAccepted($event)"
+	[accept]="accept"
+	[cancelButtonText]="'Discard'"
+>
+	<ng-template>
+		<hf-datagrid-view-page
+			style="width: 100%"
+			[noHeader]="true"
+			[enableRowSelection]="true"
+			[dataSource]="'api/v1/organization/employee'"
+			(selectionchange)="selectionChange($event)"
+			[fields]="fields"
+			[selectionMode]="'multi'"
+			[title]="'Timesheets'"
+			[enableAdd]="false"
+			[enableEdit]="false"
+			[enableDelete]="false"
+			[icon]="'applet-executive-team'"
+		>
+		</hf-datagrid-view-page>
+	</ng-template>
+</hf-side-panel>
+
+<ng-template #checkTimeTemplate let-data="data">
+	<span class="missing-log" *ngIf="!data.value"
+		><clr-icon shape="warning" style="margin-right: 0.25rem;"></clr-icon>missing log
+	</span>
+	<span *ngIf="data.value" style="font-weight: bold;">{{ getFormattedTime(data.value) }}</span>
+</ng-template>
+
+<ng-template #anchorPerson let-data="data">
+	<a href="javascript:void(0)" (click)="navigateToEmployee(data)">{{ data.value | person }}</a>
+</ng-template>

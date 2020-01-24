@@ -1,0 +1,149 @@
+<form [formGroup]="form" clrForm clrLayout="horizontal" class="form-flex">
+  <div class="clr-form-control">
+    <label
+      for="preview"
+      style="padding: 0"
+      class="clr-control-label clr-col-xs-12 clr-col-md-2 clr-col-lg-4"
+      >Preview</label
+    >
+    <div class="clr-control-container clr-col-xs-12 clr-col-md-10 clr-col-lg-8">
+      <div class="clr-input-wrapper">
+        <div
+          style="margin: 0;
+                font-size: medium;
+                padding: 4px;
+                border-radius: 50px;
+                text-align: center;
+                font-weight: bold;"
+          class="hf-sequence-preview"
+        >
+          {{ getNumberSequencePreview() }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <clr-control-helper>Enter a unique Name</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">You must provide an Name!</clr-control-error>
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Starting Number</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="number"
+      formControlName="startingValue"
+      name="startingValue"
+    />
+    <clr-control-helper>Enter a starting number</clr-control-helper>
+    <clr-control-error *clrIfError="'required'"
+      >You must provide a starting number!</clr-control-error
+    >
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Prefix</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="prefix"
+      name="prefix"
+    />
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Suffix</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="suffix"
+      name="suffix"
+    />
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Left Padding</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="number"
+      formControlName="leftPadding"
+      name="leftPadding"
+    />
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Right Padding</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="number"
+      formControlName="rightPadding"
+      name="rightPadding"
+    />
+  </clr-input-container>
+
+  <clr-checkbox-container clrInline>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Cycle Sequence</label>
+    <clr-checkbox-wrapper>
+      <input
+        #cycleSequence
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        type="checkbox"
+        clrCheckbox
+        name="cycleSequence"
+        formControlName="cycleSequence"
+      />
+      <label>Reset Starting Number</label>
+    </clr-checkbox-wrapper>
+    <clr-control-helper
+      >If this option is checked, the number sequences are incremented in cycles. In each cycle, the
+      starting number resets to the initial starting number when it reaches End Cycle
+      Position.</clr-control-helper
+    >
+  </clr-checkbox-container>
+
+  <clr-input-container *ngIf="cycleSequence.checked">
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">End Cycle Position</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="number"
+      formControlName="endCyclePosition"
+      name="endCyclePosition"
+    />
+  </clr-input-container>
+  <clr-input-container *ngIf="cycleSequence.checked">
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Reset Value</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="number"
+      formControlName="resetValue"
+      name="resetValue"
+    />
+  </clr-input-container>
+
+  <clr-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Remarks</label>
+    <textarea
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrTextarea
+      rows="6"
+      formControlName="remarks"
+      name="remarks"
+    ></textarea>
+  </clr-textarea-container>
+</form>

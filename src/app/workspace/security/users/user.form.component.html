@@ -1,0 +1,194 @@
+<form [formGroup]="form" hfForm class="form-container clr-form-compact form-flex">
+  <h4>Basic User Information</h4>
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Username</label>
+    <input
+      hfInput
+      hfFocusInput="true"
+      hfDisableAutofill
+      autocomplete="off"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="userName"
+    />
+    <hf-control-helper>Enter a user name. </hf-control-helper>
+    <hf-control-error *hfIfError="'required'">A username must be provided.</hf-control-error>
+    <hf-control-error *hfIfError="'minlength'"
+      >The length of the username must be minimum of 5 characters.
+    </hf-control-error>
+  </hf-input-container>
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Email</label>
+    <input
+      hfInput
+      hfDisableAutofill
+      autocomplete="off"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="email"
+    />
+    <hf-control-helper>Enter an email address.</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">An email address must be provided.</hf-control-error>
+    <hf-control-error *hfIfError="'invalidEmailAddress'"
+      >The email address is invalid.</hf-control-error
+    >
+    <hf-control-error *hfIfError="'minlength'"
+      >The length of the email address must be minimum of 5 characters.
+    </hf-control-error>
+  </hf-input-container>
+  <hf-password-container *ngIf="mode === 'adding'">
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Password</label>
+    <input
+      hfPassword
+      hfDisableAutofill
+      autocomplete="off"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="password"
+    />
+    <hf-control-helper>Enter a password for this user account. </hf-control-helper>
+    <hf-control-error *hfIfError="'required'"
+      >A password must be provided for this user account.</hf-control-error
+    >
+    <hf-control-error *hfIfError="'minlength'"
+      >The length of the password must be minimum of 5 characters.
+    </hf-control-error>
+  </hf-password-container>
+
+  <h4>Addtional Security Options</h4>
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Phone Number</label>
+    <input
+      hfInput
+      hfDisableAutofill
+      type="tel"
+      autocomplete="off"
+      placeholder="ex. (02)-555-1234"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="phoneNumber"
+    />
+  </hf-input-container>
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Mobile Number</label>
+    <input
+      hfInput
+      hfDisableAutofill
+      type="tel"
+      placeholder="ex. (+63) 947-695-1219"
+      autocomplete="off"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="mobileNumber"
+    />
+  </hf-input-container>
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Recovery Email</label>
+    <input
+      hfInput
+      hfDisableAutofill
+      type="email"
+      autocomplete="off"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      formControlName="recoveryEmail"
+    />
+  </hf-input-container>
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Lockout End</label>
+    <input
+      type="text"
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      hfDate
+      formControlName="lockoutEnd"
+    />
+  </hf-date-container>
+  <hf-toggle-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">
+      Advanced
+    </label>
+    <hf-toggle-wrapper>
+      <input
+        type="checkbox"
+        class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+        hfToggle
+        formControlName="lockoutEnabled"
+      />
+      <label
+        >Lockout Enabled<clr-signpost>
+          <a style="padding-left: 0.25rem;" href="javascript:void(0)" clrSignpostTrigger>[?]</a>
+          <clr-signpost-content [clrPosition]="'top-middle'" *clrIfOpen>
+            If the user fails the login at certain number of attempts, the account will be locked
+            out in a specific time duration.
+          </clr-signpost-content>
+        </clr-signpost></label
+      >
+    </hf-toggle-wrapper>
+    <hf-toggle-wrapper>
+      <input
+        type="checkbox"
+        class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+        hfToggle
+        formControlName="twoFactorEnabled"
+      />
+      <label
+        >Two-Factor Enabled<clr-signpost>
+          <a style="padding-left: 0.25rem;" href="javascript:void(0)" clrSignpostTrigger>[?]</a>
+          <clr-signpost-content [clrPosition]="'top-middle'" *clrIfOpen>
+            Two-Factor or 2FA is an extra layer of security used to make sure that people trying to
+            gain access to an online account are who they say they are.
+          </clr-signpost-content>
+        </clr-signpost></label
+      >
+    </hf-toggle-wrapper>
+
+    <hf-toggle-wrapper>
+      <input
+        type="checkbox"
+        class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+        hfToggle
+        formControlName="isSystemAdministrator"
+      />
+      <label
+        >System Administrator<clr-signpost>
+          <a style="padding-left: 0.25rem;" href="javascript:void(0)" clrSignpostTrigger>[?]</a>
+          <clr-signpost-content [clrPosition]="'top-middle'" *clrIfOpen>
+            This user has full and unrestricted access to all controls, screens, pages, services,
+            and resources of the system.
+          </clr-signpost-content>
+        </clr-signpost></label
+      >
+    </hf-toggle-wrapper>
+  </hf-toggle-container>
+
+  <h4>Claims</h4>
+  <hf-dynamic-list [enableGrouping]="false"></hf-dynamic-list>
+  <hf-empty-page
+    [imageUrl]="'assets/graphics/empty-state-search-gray.svg'"
+    title="We can't find the record you are looking for"
+    [centered]="false"
+    [height]="150"
+    [width]="150"
+    [description]="'Click Refresh or try refining your search.'"
+  ></hf-empty-page>
+  <div style="margin-top: 1rem">
+    <button *ngIf="!addingClaim" class="btn btn-success btn-link" (click)="newClaim()">
+      <clr-icon shape="plus"></clr-icon> New Claim
+    </button>
+    <form [formGroup]="claimsForm" hfForm *ngIf="addingClaim">
+      <hf-search
+        style="margin-right: 0.5rem;"
+        placeholder="Claim Type"
+        [dataSource]="claimTypes"
+        [valueField]="'type'"
+        [displayField]="'name'"
+        [enableLookup]="true"
+        formControlName="type"
+      ></hf-search>
+      <input
+        style="margin-right: 0.5rem;"
+        type="text"
+        placeholder="Value"
+        hfInput
+        formControlName="value"
+      />
+      <button type="button" class="btn btn-success btn-link" (click)="addClaim()">
+        <clr-icon shape="floppy"></clr-icon> Add
+      </button>
+    </form>
+  </div>
+</form>

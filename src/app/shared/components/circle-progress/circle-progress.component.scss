@@ -1,0 +1,28 @@
+.hf-progress {
+    position: relative;
+}
+
+.hf-progress__value-text {
+    position: absolute;
+    top: 48px;
+    left: 45px;
+    font-size: 20px;
+}
+
+.hf-progress__svg {
+    transform: rotate(-90deg);
+}
+
+.hf-progress__meter,
+.hf-progress__value {
+    fill: none;
+}
+
+.hf-progress__meter {
+    stroke: #ccc;
+}
+
+.hf-progress__value {
+    stroke: #4caf50;
+    transition: all 100ms;
+}

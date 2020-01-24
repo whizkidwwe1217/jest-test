@@ -1,0 +1,233 @@
+<hf-content-panel
+	[title]="title"
+	[icon]="'key'"
+	[isSubHeading]="true"
+	[hasNoIcon]="false"
+	[subtitle]="description"
+>
+	<clr-alert [clrAlertType]="'info'" [clrAlertClosable]="false" *ngIf="isSuperUser">
+		<clr-alert-item>
+			<span class="alert-text">
+				This {{ permissionType }} owns the highest previliges with unrestricted access to
+				all functionalities of the system. All modifications made to any of the permissions
+				below have no effect to this {{ permissionType }}.
+			</span>
+		</clr-alert-item>
+	</clr-alert>
+
+	<clr-tabs>
+		<clr-tab>
+			<button clrTabLink id="link1">Permissions</button>
+			<clr-tab-content id="tabContentPermissions" *clrIfActive="true">
+				<div class="permission-container">
+					<h4>General</h4>
+					<clr-toggle-container clrInline>
+						<label>Read</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowRead"
+								[(ngModel)]="allowRead"
+								(click)="permissionChanged($event, 'read')"
+							/>
+							<label>View records.</label>
+						</clr-toggle-wrapper>
+						<clr-control-helper
+							>Members of this group can create, modify and delete build definitions
+							and manage queued and completed builds.</clr-control-helper
+						>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-toggle-container>
+
+					<clr-toggle-container clrInline>
+						<label>Create</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowCreate"
+								[(ngModel)]="allowCreate"
+								(click)="permissionChanged($event, 'create')"
+							/>
+							<label>Create records.</label>
+						</clr-toggle-wrapper>
+						<clr-control-helper
+							>Members of this group can create, modify and delete build definitions
+							and manage queued and completed builds.</clr-control-helper
+						>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-toggle-container>
+
+					<clr-toggle-container clrInline>
+						<label>Update</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowUpdate"
+								[(ngModel)]="allowUpdate"
+								(click)="permissionChanged($event, 'update')"
+							/>
+							<label>Create records.</label>
+						</clr-toggle-wrapper>
+						<clr-control-helper
+							>Members of this group can create, modify and delete build definitions
+							and manage queued and completed builds.</clr-control-helper
+						>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-toggle-container>
+
+					<clr-toggle-container clrInline>
+						<label>Delete</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowDelete"
+								[(ngModel)]="allowDelete"
+								(click)="permissionChanged($event, 'delete')"
+							/>
+							<label>Create records.</label>
+						</clr-toggle-wrapper>
+						<clr-control-helper
+							>Members of this group can create, modify and delete build definitions
+							and manage queued and completed builds.</clr-control-helper
+						>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-toggle-container>
+
+					<h4>Organization</h4>
+					<clr-toggle-container clrInline>
+						<label>Display Employee Profile</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowDisplayProfile"
+								[(ngModel)]="allowDisplayProfile"
+								(click)="permissionChanged($event, 'profile.display')"
+							/>
+							<label
+								>View employee personal information, salary, employment information,
+								etc.</label
+							>
+						</clr-toggle-wrapper>
+						<clr-control-helper
+							>Members of this group can create, modify and delete build definitions
+							and manage queued and completed builds.</clr-control-helper
+						>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-toggle-container>
+
+					<clr-toggle-container clrInline>
+						<label>Manage Employee Profile</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowManageProfile"
+								[(ngModel)]="allowManageProfile"
+								(click)="permissionChanged($event, 'profile.manage')"
+							/>
+							<label
+								>Updates employee personal information, salary, employment
+								information, etc.</label
+							>
+						</clr-toggle-wrapper>
+					</clr-toggle-container>
+
+					<clr-toggle-container clrInline>
+						<label>Manage Workshift Schedules</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowManageWorkshifts"
+								[(ngModel)]="allowManageWorkshifts"
+								(click)="permissionChanged($event, 'workshifts.manage')"
+							/>
+							<label>Updates employee workshifts.</label>
+						</clr-toggle-wrapper>
+					</clr-toggle-container>
+					<clr-toggle-container clrInline>
+						<label>Manage Departments</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowManageDepartments"
+								[(ngModel)]="allowManageDepartments"
+								(click)="permissionChanged($event, 'departments.manage')"
+							/>
+							<label>Creates, updates and deletes company departments.</label>
+						</clr-toggle-wrapper>
+					</clr-toggle-container>
+					<clr-toggle-container clrInline>
+						<label>Manage Teams</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowManageTeams"
+								[(ngModel)]="allowManageTeams"
+								(click)="permissionChanged($event, 'teams.manage')"
+							/>
+							<label>Alows adding, editing and deleting teams.</label>
+						</clr-toggle-wrapper>
+					</clr-toggle-container>
+					<clr-toggle-container clrInline>
+						<label>Manage Positions</label>
+						<clr-toggle-wrapper>
+							<input
+								type="checkbox"
+								clrToggle
+								[disabled]="isSuperUser"
+								value="true"
+								name="allowManagePositions"
+								[(ngModel)]="allowManagePositions"
+								(click)="permissionChanged($event, 'positions.manage')"
+							/>
+							<label>Alows adding, editing and deleting employee positions.</label>
+						</clr-toggle-wrapper>
+					</clr-toggle-container>
+				</div>
+			</clr-tab-content>
+		</clr-tab>
+		<clr-tab>
+			<button clrTabLink>Member Of</button>
+			<clr-tab-content *clrIfActive>
+				<dynamic-list
+					[lookupResource]="'api/v1/auth/role'"
+					[enableLookup]="true"
+					[enableGrouping]="false"
+					[displayField]="'name'"
+					[defaultIcon]="'users'"
+					[items]="userRoles"
+					[onCreateItem]="onCreateItem"
+					(itemadded)="onItemAdded($event)"
+					(itemdeleted)="onItemDeleted($event)"
+				>
+				</dynamic-list>
+			</clr-tab-content>
+		</clr-tab>
+	</clr-tabs>
+</hf-content-panel>

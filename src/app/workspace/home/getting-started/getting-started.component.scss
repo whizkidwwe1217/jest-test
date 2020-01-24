@@ -1,0 +1,46 @@
+label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.input-container {
+  margin-top: 0.5rem;
+}
+
+.helper {
+  font-size: 10px;
+}
+
+@media only screen and (min-width: 480) {
+  label {
+    width: 100%;
+  }
+  .input-container {
+    display: block;
+    margin-top: 1rem;
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.list-avatar {
+  padding-left: 0.25rem;
+}
+
+.list-header {
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+.list-detail {
+  margin: 0;
+  line-height: 1;
+  font-size: small;
+}
+.list-content {
+  padding: 0.25rem;
+}

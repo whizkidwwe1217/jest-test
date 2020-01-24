@@ -1,0 +1,106 @@
+<button class="btn btn-primary" (click)="open = true">Open</button>
+<button class="btn btn-secondary" (click)="setForm()">Set Form</button>
+<button class="btn btn-secondary" (click)="setEmpty()">Set Form</button>
+<hf-search [enableCreatableItem]="true" [dataSource]="['Apple', 'Papaya', 'Orange', 'Mango']">
+</hf-search>
+<form hfForm [formGroup]="form">
+  <hf-search-container>
+    <label>Employee:</label>
+    <hf-search
+      hfSearch
+      [dataSource]="'api/v1/organization/employee'"
+      [displayField]="'firstName'"
+      [valueField]="'id'"
+      [selectionField]="'lastName'"
+      [filters]="filters"
+      formControlName="vendor"
+      [disableBodyTrigger]="true"
+      [enableCreatableItem]="true"
+      [enableLookup]="true"
+      [multiselect]="false"
+      [enableGrouping]="false"
+      [groupField]="'gender'"
+      [loopFocus]="true"
+    >
+      <ng-template let-data="data">
+        <hf-avatar [name]="data.firstName" [size]="24"></hf-avatar>
+        <span style="padding-left: 0.5rem;">{{ data.firstName }} {{ data.lastName }}</span>
+      </ng-template>
+    </hf-search>
+    <hf-control-helper>THis is using a hf-search component</hf-control-helper>
+    <hf-control-error>This field is required!</hf-control-error>
+  </hf-search-container>
+  <hf-checkbox-container>
+    <label>Paid</label>
+    <hf-checkbox-wrapper>
+      <input type="checkbox" hfCheckbox formControlName="paid" />
+    </hf-checkbox-wrapper>
+  </hf-checkbox-container>
+
+  <button class="btn btn-primary" (click)="submit()">Submit</button>
+</form>
+
+<hf-search-container>
+  <label>Employee:</label>
+  <hf-search
+    hfSearch
+    [disabled]="true"
+    [dataSource]="'api/v1/organization/employee'"
+    [displayField]="'firstName'"
+    [valueField]="'id'"
+    [selectionField]="'lastName'"
+    [enableLookup]="true"
+    [multiselect]="false"
+    [loopFocus]="true"
+  >
+    <ng-template let-data="data">
+      <hf-avatar [name]="data.firstName" [size]="24"></hf-avatar>
+      <span style="padding-left: 0.5rem;">{{ data.firstName }} {{ data.lastName }}</span>
+    </ng-template>
+  </hf-search>
+  <hf-control-helper>THis is using a hf-search component</hf-control-helper>
+  <hf-control-error>This field is required!</hf-control-error>
+</hf-search-container>
+
+<hf-date-container>
+  <label>Vendor:</label>
+  <input type="date" hfDate />
+  <hf-control-helper>THis is using a hf-search component</hf-control-helper>
+  <hf-control-error>This field is required!</hf-control-error>
+</hf-date-container>
+
+<hf-side-panel [(open)]="open">
+  <ng-template
+    ><form hfForm [formGroup]="form" class="form-flex">
+      <hf-search-container>
+        <label>Employee:</label>
+        <hf-search
+          hfSearch
+          [dataSource]="'api/v1/organization/employee'"
+          [displayField]="'firstName'"
+          [valueField]="'id'"
+          [selectionField]="'lastName'"
+          formControlName="vendor"
+          [enableLookup]="true"
+          [multiselect]="false"
+          [loopFocus]="true"
+        >
+          <ng-template let-data="data">
+            <hf-avatar [name]="data.firstName" [size]="24"></hf-avatar>
+            <span style="padding-left: 0.5rem;">{{ data.firstName }} {{ data.lastName }}</span>
+          </ng-template>
+        </hf-search>
+        <hf-control-helper>THis is using a hf-search component</hf-control-helper>
+        <hf-control-error>This field is required!</hf-control-error>
+      </hf-search-container>
+      <hf-checkbox-container>
+        <label>Paid</label>
+        <hf-checkbox-wrapper>
+          <input type="checkbox" hfCheckbox formControlName="paid" />
+        </hf-checkbox-wrapper>
+      </hf-checkbox-container>
+
+      <button class="btn btn-primary" (click)="submit()">Submit</button>
+    </form>
+  </ng-template>
+</hf-side-panel>

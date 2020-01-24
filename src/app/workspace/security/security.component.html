@@ -1,0 +1,162 @@
+<hf-content-panel
+	[showBreadcrumb]="true"
+	[title]="'Security Settings'"
+	[icon]="'shield-check'"
+>
+	<div style="height: 100%; display: flex; flex-direction: row">
+		<nav class="sidenav">
+			<section class="sidenav-content">
+				<section class="nav-group">
+					<label style="padding: 0;">MANAGE</label>
+					<ul class="nav-list">
+						<li>
+							<a
+								routerLink="users"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="user"></clr-icon> Users</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="roles"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="users"></clr-icon> Roles</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="claims"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="id-badge"></clr-icon> Claims</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="password-policy"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="key"></clr-icon> Password
+								Policy</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="advanced-settings"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="wrench"></clr-icon> Advanced
+								Settings</a
+							>
+						</li>
+					</ul>
+				</section>
+
+				<section class="nav-group">
+					<label style="padding: 0;">ACTIVITY</label>
+					<ul class="nav-list">
+						<li>
+							<a
+								routerLink="sign-ins"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="login"></clr-icon> Sign-ins</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="audit-logs"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="history"></clr-icon> Audit
+								logs</a
+							>
+						</li>
+						<li>
+							<a
+								routerLink="registered-devices"
+								routerLinkActive="active"
+								class="nav-link"
+							>
+								<clr-icon shape="devices"></clr-icon> Registered
+								Devices</a
+							>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</nav>
+
+		<div
+			style="height: 100%; width: 100%; overflow-x: hidden"
+			[@fadeAnimation]="getState(outlet)"
+		>
+			<router-outlet #outlet="outlet"></router-outlet>
+		</div>
+	</div>
+
+	<!-- <div class="security-container">
+        <nav class="sidenav" [clr-nav-level]="2">
+            <section class="sidenav-content">
+                <section class="nav-group">
+                    <label style="padding: 0;">MANAGE</label>
+                    <ul class="nav-list">
+                        <li>
+                            <a routerLink="users" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="user"></clr-icon> Users</a>
+                        </li>
+                        <li>
+                            <a routerLink="roles" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="users"></clr-icon> Roles</a>
+                        </li>
+                        <li>
+                            <a routerLink="claims" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="id-badge"></clr-icon> Claims</a>
+                        </li>
+                        <li>
+                            <a routerLink="password-policy" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="key"></clr-icon> Password Policy</a>
+                        </li>
+                        <li>
+                            <a routerLink="advanced-settings" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="wrench"></clr-icon> Advanced Settings</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="nav-group">
+                    <label style="padding: 0;">ACTIVITY</label>
+                    <ul class="nav-list">
+                        <li>
+                            <a routerLink="sign-ins" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="login"></clr-icon> Sign-ins</a>
+                        </li>
+                        <li>
+                            <a routerLink="audit-logs" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="history"></clr-icon> Audit logs</a>
+                        </li>
+                        <li>
+                            <a routerLink="registered-devices" routerLinkActive="active" class="nav-link">
+                                <clr-icon shape="devices"></clr-icon> Registered Devices</a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </nav>
+
+        <div class="security-content">
+            <div class="security-overflow-content">
+                    
+            </div>
+        </div>
+    </div> -->
+</hf-content-panel>

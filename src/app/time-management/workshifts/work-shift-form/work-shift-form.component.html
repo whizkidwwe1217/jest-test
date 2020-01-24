@@ -1,0 +1,58 @@
+<form
+	[formGroup]="form"
+	clrForm
+	clrLayout="horizontal"
+	class="form-container clr-form-compact form-flex"
+>
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Name</label>
+		<input
+			class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+			clrInput
+			type="text"
+			formControlName="name"
+			name="name"
+		/>
+		<clr-control-error *clrIfError="'required'">You must provide a Name!</clr-control-error>
+	</clr-input-container>
+
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Start Time</label>
+		<input
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrInput
+			type="time"
+			formControlName="startTime"
+			name="startTime"
+		/>
+		<clr-control-error *clrIfError="'required'"
+			>You must provide a Start Time.</clr-control-error
+		>
+	</clr-input-container>
+
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">End Time</label>
+		<input
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrInput
+			type="time"
+			formControlName="endTime"
+			name="endTime"
+		/>
+		<clr-control-error *clrIfError="'required'">You must provide a End Time.</clr-control-error>
+	</clr-input-container>
+
+	<clr-checkbox-container clrInline>
+		<label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Other Options</label>
+		<clr-checkbox-wrapper>
+			<input
+				class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+				type="checkbox"
+				clrCheckbox
+				name="isFlexiTime"
+				formControlName="isFlexiTime"
+			/>
+			<label>Is Flexi-time</label>
+		</clr-checkbox-wrapper>
+	</clr-checkbox-container>
+</form>

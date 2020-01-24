@@ -1,0 +1,78 @@
+<form [formGroup]="form" hfForm clrLayout="horizontal" class="form-flex">
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Start Date</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="startDate"
+      name="startDate"
+    />
+    <hf-control-helper>Enter a Start Date.</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">You must provide a Start Date!</hf-control-error>
+  </hf-date-container>
+
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">End Date</label>
+    <input
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="endDate"
+      name="endDate"
+    />
+    <hf-control-error *hfIfError="'required'">You must provide an End Date!</hf-control-error>
+  </hf-date-container>
+
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Employee</label>
+    <hf-search
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      [dataSource]="'api/v1/organization/employee'"
+      hfSearch
+      [enableLookup]="true"
+      [valueField]="'id'"
+      [displayField]="'lastName'"
+      formControlName="employeeId"
+    ></hf-search>
+    <hf-control-error *hfIfError="'required'">You must provide an Employee.</hf-control-error>
+  </hf-search-container>
+
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Request Type</label>
+    <hf-search
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      [dataSource]="'api/v1/time-management/timeoffrequesttype'"
+      hfSearch
+      [enableLookup]="true"
+      [valueField]="'id'"
+      [displayField]="'name'"
+      formControlName="timeOffRequestTypeId"
+    ></hf-search>
+    <hf-control-error *hfIfError="'required'"
+      >You must provide the type of request.</hf-control-error
+    >
+  </hf-search-container>
+
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Reason</label>
+    <textarea
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      hfTextarea
+      rows="4"
+      formControlName="reason"
+      name="reason"
+    ></textarea>
+  </hf-textarea-container>
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Notes</label>
+    <textarea
+      class="clr-col-12 clr-col-sm-4 clr-col-lg-8"
+      hfTextarea
+      rows="4"
+      formControlName="notes"
+      name="notes"
+    ></textarea>
+  </hf-textarea-container>
+</form>

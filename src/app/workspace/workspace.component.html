@@ -1,0 +1,208 @@
+<clr-main-container>
+	<!-- Multi-level Alerts -->
+	<clr-alerts>
+		<clr-alert
+			[clrAlertAppLevel]="true"
+			[clrAlertType]="'warning'"
+			[(clrAlertClosed)]="isOnline"
+		>
+			<clr-alert-item>
+				<div class="alert-text">
+					Warning: You are currently working in offline mode.
+				</div>
+				<div class="alert-actions">
+					<button class="btn alert-action">Action</button>
+				</div>
+			</clr-alert-item>
+		</clr-alert>
+		<clr-alert
+			[clrAlertAppLevel]="true"
+			[clrAlertType]="'info'"
+			[(clrAlertClosed)]="!hasNewUpdates"
+		>
+			<clr-alert-item>
+				<div class="alert-text">
+					A new update is now available. Upgrade to v.1234.
+				</div>
+				<div class="alert-actions">
+					<button class="btn alert-action">Install Update</button>
+				</div>
+			</clr-alert-item>
+		</clr-alert>
+	</clr-alerts>
+
+	<clr-header class="header header-6" id="workspace-header">
+		<div class="branding">
+			<a routerLink="/" class="nav-link">
+				<img width="150" height="64" src="assets/logo-dark.svg" class="logo" />
+			</a>
+			<a routerLink="../workspace" class="nav-link">
+				<span class="title">WORKSPACE</span>
+			</a>
+		</div>
+		<div class="header-nav" [clr-nav-level]="2">
+			<a title="Home" routerLink="home" routerLinkActive="active" class="nav-link nav-icon"
+				><clr-icon shape="home"></clr-icon
+			></a>
+			<a
+				title="Dashboard"
+				routerLink="dashboard"
+				routerLinkActive="active"
+				class="nav-link nav-icon"
+				><clr-icon shape="dashboard"></clr-icon
+			></a>
+			<a
+				title="Reports"
+				routerLink="reports"
+				routerLinkActive="active"
+				class="nav-link nav-icon"
+				><clr-icon shape="file-group"></clr-icon
+			></a>
+		</div>
+		<form class="search">
+			<hf-search-input></hf-search-input>
+		</form>
+		<div class="header-actions">
+			<!--
+                <a title="{{getThemeIconTitle()}}" href="javascript:void(0)" (click)="switchTheme()" class="nav-link nav-icon">
+                    <clr-icon [attr.shape]="theme.name == 'dark' ? 'sun' : 'moon'"></clr-icon>
+                </a>
+            -->
+
+			<!-- <a
+				href="javascript:void(0)"
+				(click)="switchThemeMode()"
+				class="nav-link nav-icon"
+			>
+				<clr-icon
+					[attr.shape]="
+						theme.name === 'default light' ? 'moon' : 'sun'
+					"
+				></clr-icon>
+			</a> -->
+
+			<!-- <clr-dropdown class="theme-selector">
+				<button class="nav-text" clrDropdownTrigger>
+					{{ theme.name }}
+					<clr-icon shape="caret down"></clr-icon>
+				</button>
+				<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+					<a
+						*ngFor="let theme of themes; let index = index"
+						href="javascript:void(0)"
+						(click)="switchTheme(index)"
+						clrDropdownItem
+						>{{ theme.name }}</a
+					>
+				</clr-dropdown-menu>
+			</clr-dropdown> -->
+
+			<!--
+                <hf-notifications-dropdown [headerDropdown]=true position="top-right">
+                    <div target>
+                        <a #link href="javascript:void(0)" class="nav-link nav-icon">
+                            <clr-icon shape="bell" class="has-badge"></clr-icon>
+                        </a>
+                    </div>
+                    <div content>
+                        <app-notification-list-item *ngFor="let e of employees" avatar={{e.avatar}} title={{e.name}} smallText="2d1h" subTitle="167th Drive">
+                            <a href="javasscript:void(0)" title>{{e.name}}</a>
+                        </app-notification-list-item>
+                    </div>
+                </hf-notifications-dropdown>
+            -->
+
+			<clr-dropdown>
+				<button
+					class="nav-icon"
+					clrDropdownTrigger
+					style="padding-left: 0.5rem; margin-right: 0.25rem"
+					aria-label="open user profile"
+				>
+					<div style="display: flex">
+						<hf-avatar
+							placeholder="Image"
+							name="{{ username }}"
+							src="assets/graphics/avatars/guy-beard.svg"
+							value="28%"
+							size="32"
+							[round]="true"
+						>
+						</hf-avatar>
+						<!--
+                            <img style="height: 32px; width: 32px; border-radius: 50%" src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=Prescription02&hairColor=Auburn&facialHairType=Blank&clotheType=Hoodie&clotheColor=Red&eyeType=Happy&eyebrowType=RaisedExcited&mouthType=Vomit&skinColor=Pale">
+                        -->
+
+						<!--
+                            <div style="align-content: right; text-align: right; display: flex; flex-direction: column; margin: 0; padding: 2px">
+                                <p style="line-height: 16px; color: white; margin: 0; padding: 0;">Wendell Wayne Estrada</p>
+                                <p style="line-height: 16px; color: white; margin: 0; padding: 0;">HordeFlow Inc.</p>
+                            </div>
+                        -->
+					</div>
+					<clr-icon
+						shape="caret down"
+						style="left: 2rem; margin-left: 0.25rem"
+					></clr-icon>
+				</button>
+				<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+					<div
+						style="display: flex; flex-direction: column; align-items: center; margin: 0; padding: 8px"
+					>
+						<p style="margin: 0; padding: 0; line-height: 16px; font-weight: bold;">
+							{{ username }}
+						</p>
+						<p
+							style="color: #a2a2a2; font-size: 0.5rem; margin: 0; padding: 0.25rem 0; line-height: 16px;"
+						>
+							{{ (appInfo$ | async).tenant?.name }}
+						</p>
+					</div>
+					<div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+					<clr-dropdown class="theme-selector">
+						<button class="nav-text" clrDropdownTrigger>
+							<clr-icon shape="paint-roller"></clr-icon> Theme
+						</button>
+						<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+							<a
+								*ngFor="let theme of themes; let index = index"
+								href="javascript:void(0)"
+								(click)="switchTheme(index)"
+								clrDropdownItem
+								>{{ theme.name }}</a
+							>
+						</clr-dropdown-menu>
+					</clr-dropdown>
+					<div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+					<button clrDropdownItem>
+						<clr-icon shape="wrench"></clr-icon> Preferences
+					</button>
+					<button (click)="login()" clrDropdownItem>
+						<clr-icon shape="logout"></clr-icon> Log out
+					</button>
+				</clr-dropdown-menu>
+			</clr-dropdown>
+		</div>
+	</clr-header>
+	<router-outlet></router-outlet>
+
+	<footer class="footer" [ngStyle]="{ background: isProduction ? 'black' : '#cf7520' }">
+		<div>
+			<span class="copyright">&copy; 2017-2018 HordeFlow, Inc. All Rights Reserved.</span>
+			<span class="mode" *ngIf="!isProduction">DEVELOPER MODE</span>
+			<span style="float: right; padding-right: 0.5rem"
+				><clr-icon shape="bell" class="is-solid"></clr-icon
+			></span>
+			<span style="float: right; padding-right: 0.5rem"
+				><clr-icon shape="happy-face" class="is-solid"></clr-icon
+			></span>
+			<span style="float: right; padding-right: 0.5rem"
+				><clr-icon shape="info-standard" class="is-solid"></clr-icon> v1.0.0-alpha</span
+			>
+			<span class="company-name"
+				><clr-icon shape="building" class="is-solid"></clr-icon>
+				{{ (appInfo$ | async).tenant?.name }}</span
+			>
+		</div>
+	</footer>
+</clr-main-container>

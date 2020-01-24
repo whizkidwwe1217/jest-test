@@ -1,0 +1,236 @@
+<hf-content-panel
+  [title]="'Employee Profile'"
+  [icon]="'applet-executive-team'"
+  [isSubHeading]="true"
+  [showBackNavigation]="true"
+  (navigateBack)="onNavigateBack()"
+>
+  <clr-alerts>
+    <clr-alert [clrAlertType]="'info'" [clrAlertAppLevel]="true">
+      <clr-alert-item>
+        <span class="alert-text"> {{ employee | person }} is on a leave today. </span>
+        <div class="alert-actions">
+          <button class="btn alert-action">Fix</button>
+        </div>
+      </clr-alert-item>
+    </clr-alert>
+    <clr-alert [clrAlertType]="'warning'" [clrAlertAppLevel]="true">
+      <clr-alert-item>
+        <span class="alert-text"> {{ employee | person }} has too many absences this week! </span>
+        <div class="alert-actions">
+          <button class="btn alert-action">Fix</button>
+        </div>
+      </clr-alert-item>
+    </clr-alert>
+  </clr-alerts>
+  <div class="card profile">
+    <div class="card-body">
+      <div class="profile-header">
+        <div class="profile-photo">
+          <hf-avatar
+            placeholder="Image"
+            name="{{ employee?.firstName }} {{ employee?.lastName }}"
+            size="128"
+            [src]="photo"
+            [round]="true"
+            #avatar
+          ></hf-avatar>
+          <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput />
+          <a
+            title="Upload image"
+            href="javascript:void(0)"
+            class="profile-photo-upload"
+            (click)="fileInput.click()"
+          >
+            <clr-icon shape="upload" size="32"></clr-icon>
+          </a>
+        </div>
+
+        <div class="profile-header-text">
+          <h3 id="employee-name">{{ employee | person }}</h3>
+          <h6 id="employee-code">{{ employee?.code }}</h6>
+          <h6>{{ employee?.position }}</h6>
+          <div class="profile-header-actions">
+            <button class="btn btn-primary">Create Payroll</button>
+          </div>
+        </div>
+
+        <div class="profile-header-details">
+          <div class="clr-row">
+            <clr-tooltip>
+              <span clrTooltipTrigger class="clr-col clr-col-sm-12"
+                ><clr-icon shape="mobile"></clr-icon> +63 947-695-1219</span
+              >
+              <clr-tooltip-content clrPosition="bottom-right" clrSize="sm" *clrIfOpen>
+                <span>Phone Number</span>
+              </clr-tooltip-content>
+            </clr-tooltip>
+          </div>
+          <div class="clr-row" *ngIf="employee?.emailAddress">
+            <clr-tooltip>
+              <span clrTooltipTrigger style="word-break: break-all" class="clr-col clr-col-sm-12"
+                ><clr-icon shape="email"></clr-icon> {{ employee?.emailAddress }}</span
+              >
+              <clr-tooltip-content clrPosition="bottom-right" clrSize="sm" *clrIfOpen>
+                <span>Email Address</span>
+              </clr-tooltip-content>
+            </clr-tooltip>
+          </div>
+          <div class="clr-row" *ngIf="employee?.emailAddress">
+            <clr-tooltip>
+              <span clrTooltipTrigger class="clr-col clr-col-sm-12"
+                ><clr-icon shape="calendar"></clr-icon>
+                {{ employee?.birthDate | date: "MMMM d, y" }}</span
+              >
+              <clr-tooltip-content clrPosition="bottom-right" clrSize="sm" *clrIfOpen>
+                <span>Birthdate</span>
+              </clr-tooltip-content>
+            </clr-tooltip>
+          </div>
+          <div class="clr-row">
+            <clr-tooltip>
+              <span clrTooltipTrigger class="clr-col clr-col-sm-12"
+                ><clr-icon shape="map-marker"></clr-icon> Unit 919 Cityland Condominium, Pio del
+                Pilar, Makati City</span
+              >
+              <clr-tooltip-content clrPosition="bottom-right" clrSize="sm" *clrIfOpen>
+                <span>Residence</span>
+              </clr-tooltip-content>
+            </clr-tooltip>
+          </div>
+          <div class="clr-row">
+            <clr-tooltip>
+              <span clrTooltipTrigger class="clr-col clr-col-sm-21">
+                <clr-icon shape="building"></clr-icon>
+                {{ employee?.department }}
+              </span>
+              <clr-tooltip-content clrPosition="bottom-right" clrSize="sm" *clrIfOpen>
+                <span>Department</span>
+              </clr-tooltip-content>
+            </clr-tooltip>
+          </div>
+
+          <!-- <div class="clr-row time-summary">
+						<div class="time-summary-block">
+							<p class="time-summary-block-title">check In</p>
+							<p class="time-summary-block-details">
+								{{ timelog?.checkIn ? timelog?.checkIn : "--" }}
+							</p>
+						</div>
+
+						<div class="time-summary-block">
+							<p class="time-summary-block-title">check Out</p>
+							<p class="time-summary-block-details">
+								{{ timelog?.checkOut ? timelog?.checkOut : "--" }}
+							</p>
+						</div>
+
+						<div class="time-summary-block">
+							<p class="time-summary-block-title">Status</p>
+							<p class="time-summary-block-details">On a break</p>
+						</div>
+					</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 0">
+    <div class="card-block time-summary">
+      <div class="time-summary-actions">
+        <button class="btn btn-success" (click)="checkIn($event)" [disabled]="timelog?.checkIn">
+          <clr-icon shape="alarm-clock" size="24"></clr-icon>
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="checkOut($event)"
+          [disabled]="timelog?.checkOut || !timelog?.checkIn"
+        >
+          <clr-icon shape="alarm-off" size="24"></clr-icon>
+        </button>
+      </div>
+      <div class="time-summary-content">
+        <h4 class="time-summary-title">Shift: {{ currentDayShift ? currentDayShift : "--" }}</h4>
+        <div class="time-summary-block-container">
+          <div class="time-summary-block">
+            <p class="time-summary-block-title">Check In</p>
+            <p class="time-summary-block-details">
+              {{ timelog?.checkIn ? timelog?.checkIn : "--" }}
+            </p>
+          </div>
+
+          <div class="time-summary-block">
+            <p class="time-summary-block-title">Check Out</p>
+            <p class="time-summary-block-details">
+              {{ timelog?.checkOut ? timelog?.checkOut : "--" }}
+            </p>
+          </div>
+
+          <div class="time-summary-block">
+            <p class="time-summary-block-title">
+              Status
+              <clr-icon
+                style="margin-bottom: 2px"
+                [ngStyle]="{
+                  color: timelog?.checkIn ? (timelog?.checkOut ? 'red' : 'green') : 'orange'
+                }"
+                size="10"
+                shape="circle"
+                [class.is-solid]="timelog?.checkIn"
+              ></clr-icon>
+            </p>
+            <p class="time-summary-block-details">
+              {{ timelog?.checkOut ? "Signed out" : "Working" }}
+            </p>
+          </div>
+
+          <div class="time-summary-block">
+            <p class="time-summary-block-title">Time Zone</p>
+            <p
+              class="time-summary-block-details"
+              style="font-size: 12px;
+						line-height: 2em;"
+            >
+              {{ timeZone }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <hf-command-bar [showSearchBar]="false" [items]="commands"></hf-command-bar> -->
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink id="tabLinkJobDetails">Job Details</button>
+      <clr-tab-content id="tabContentJobDetails" *clrIfActive>
+        <hrf-emp-job-details [employee]="employee"></hrf-emp-job-details>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLinkTimesheet">Timesheet</button>
+      <clr-tab-content id="tabContentTimesheet">
+        <hrf-emp-timesheet
+          [employee]="employee"
+          (workshiftfetched)="onWorkShiftFetched($event)"
+        ></hrf-emp-timesheet>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLinkPayroll">Payroll</button>
+      <clr-tab-content id="tabContentPayroll" *clrIfActive> </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLinkPersonal">Personal</button>
+      <clr-tab-content id="tabContentPersonal">
+        <hrf-emp-personal-info [employee]="employee"></hrf-emp-personal-info>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLinkCompensationAndBenefits">Compensation & Benefits</button>
+      <clr-tab-content id="tabContentCompensationAndBenefits" *clrIfActive> </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLinkCareer">Career</button>
+      <clr-tab-content id="tabContentCareer" *clrIfActive> </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+</hf-content-panel>

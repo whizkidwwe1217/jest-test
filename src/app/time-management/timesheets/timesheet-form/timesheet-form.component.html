@@ -1,0 +1,51 @@
+<form [formGroup]="form" hfForm hfLayout="horizontal" class="form-flex">
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Start Date</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="startDate"
+      name="startDate"
+    />
+    <hf-control-error *hfIfError="'required'">You must provide a Start Date.</hf-control-error>
+  </hf-date-container>
+
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">End Date</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="endDate"
+      name="endDate"
+    />
+    <hf-control-error *hfIfError="'required'">You must provide a End Date.</hf-control-error>
+  </hf-date-container>
+
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Description</label>
+    <textarea
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      hfTextarea
+      type="text"
+      formControlName="description"
+      name="description"
+    ></textarea>
+    <hf-control-error *hfIfError="'required'">You must provide a Description!</hf-control-error>
+  </hf-textarea-container>
+
+  <hf-checkbox-container hfInline>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Other Options</label>
+    <hf-checkbox-wrapper>
+      <input
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        type="checkbox"
+        hfCheckbox
+        name="isLocked"
+        formControlName="isLocked"
+      />
+      <label>Is Locked?</label>
+    </hf-checkbox-wrapper>
+  </hf-checkbox-container>
+</form>

@@ -1,0 +1,89 @@
+<form [formGroup]="form" hfForm hfLayout="horizontal" class="form-flex">
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <hf-control-helper>Enter a unique Name</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">You must provide an Name.!</hf-control-error>
+  </hf-input-container>
+
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Description</label>
+    <textarea
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfTextarea
+      type="text"
+      formControlName="description"
+      name="description"
+    ></textarea>
+  </hf-textarea-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4"
+      >Factor Rate<clr-signpost>
+        <clr-signpost-content *clrIfOpen>
+          <h3>Factor Rate</h3>
+          <p>This is the number of days in a year.</p>
+          <code>
+            1. If unworked * No pay, unless there is a favorable company policy, practice or
+            collective bargaining agreement (CBA) granting payment of wages on special days even if
+            unworked. 2. If worked * 1st 8 hours – plus 30% of the daily rate of 100% * excess of 8
+            hours – plus 30% of hourly rate on said day 3. Falling on the employee’s rest day and if
+            worked * 1st 8 hours – plus 50% of the daily rate of 100% * excess of 8 hours – plus 30%
+            of hourly rate on said day
+          </code>
+        </clr-signpost-content>
+      </clr-signpost></label
+    >
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="number"
+      formControlName="factorRate"
+      name="factorRate"
+    />
+    <hf-control-helper>Enter a unique Name</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">You must provide an Name.!</hf-control-error>
+  </hf-input-container>
+
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Frequency</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      hfSearch
+      [enableLookup]="true"
+      [dataSource]="frequencies"
+      [valueField]="'code'"
+      [displayField]="'name'"
+      formControlName="payrollFrequency"
+    ></hf-search>
+  </hf-search-container>
+
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Period Start</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="startDate"
+      name="startDate"
+    />
+  </hf-date-container>
+
+  <hf-date-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Period End</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfDate
+      type="date"
+      formControlName="endDate"
+      name="endDate"
+    />
+  </hf-date-container>
+</form>

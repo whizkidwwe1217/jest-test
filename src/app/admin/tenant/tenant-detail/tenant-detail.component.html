@@ -1,0 +1,236 @@
+<hf-content-panel
+  [title]="tenant?.name"
+  [icon]="'id-badge'"
+  [subtitle]="tenant?.description ? tenant?.description : 'No description available.'"
+>
+  <div style="display: flex">
+    <a
+      class="btn btn-link btn-sm"
+      style="padding-left: 0"
+      title="Edit"
+      routerLink="../{{ tenant?.id }}/edit"
+    >
+      <clr-icon *ngIf="tenant" size="24" shape="note"></clr-icon> Edit
+    </a>
+    <a class="btn btn-link btn-sm" title="Deploy" routerLink="../{{ tenant?.id }}/edit">
+      <clr-icon *ngIf="tenant" size="24" shape="deploy"></clr-icon> Deploy
+    </a>
+    <a class="btn btn-link btn-sm" title="Delete" routerLink="../{{ tenant?.id }}/edit">
+      <clr-icon *ngIf="tenant" size="24" shape="trash"></clr-icon> Delete
+    </a>
+  </div>
+
+  <hf-searchbox
+    *ngIf="false"
+    [items]="spinners"
+    [(ngModel)]="spinner"
+    name="spinners"
+    [lookup]="true"
+    [valueField]="'name'"
+    [displayField]="'description'"
+  >
+  </hf-searchbox>
+
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink>Demo</button>
+      <clr-tab-content>
+        <hf-circle-progress [value]="100"></hf-circle-progress>
+        <form class="form">
+          <div class="form-group">
+            <label for="deployment">Engine</label>
+            <hf-search
+              [dataSource]="items"
+              name="confection2"
+              [(ngModel)]="confection"
+              [placeholder]="'Select a confection'"
+            >
+            </hf-search>
+          </div>
+
+          <div class="form-group">
+            <label for="deployment">Engine {{ vegetable }}</label>
+            <hf-search
+              [dataSource]="$j"
+              [valueField]="'id'"
+              [displayField]="'name'"
+              [(ngModel)]="vegetable"
+              name="vegetable"
+              [placeholder]="'Select a vegetable'"
+            >
+            </hf-search>
+          </div>
+
+          <div class="form-group">
+            <label for="deployment">Engine</label>
+            <hf-search
+              [dataSource]="items"
+              [(ngModel)]="confection"
+              name="confection"
+              [placeholder]="'Search for a confection'"
+            >
+            </hf-search>
+          </div>
+          <div class="form-group">
+            <label for="deployment">Engine</label>
+            <hf-search
+              name="tenant"
+              [dataSource]="'api/v1/admin/catalog'"
+              [valueField]="'id'"
+              [displayField]="'name'"
+              [placeholder]="'Search for a tenant'"
+            >
+            </hf-search>
+          </div>
+        </form>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabGeneral">General</button>
+      <clr-tab-content id="tabContentGeneral" *clrIfActive="true">
+        <table class="table table-vertical table-breakword">
+          <tbody>
+            <tr>
+              <th>Host Name</th>
+              <td>{{ tenant?.hostName }}</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>{{ tenant?.engine }}</td>
+            </tr>
+            <tr>
+              <th>Is Isolated?</th>
+              <td>{{ tenant?.isIsolated }}</td>
+            </tr>
+            <tr>
+              <th>Is Administrator?</th>
+              <td>{{ tenant?.isTenantAdministrator }}</td>
+            </tr>
+            <tr>
+              <th>Connection String</th>
+              <td>{{ tenant?.connectionString }}</td>
+            </tr>
+            <tr>
+              <th>Deployment Status</th>
+              <td>
+                {{ tenant?.deploymentStatus }}
+                <clr-signpost>
+                  <clr-signpost-content *clrIfOpen>
+                    <h6>
+                      What does this Deployment Status mean?
+                    </h6>
+                    <ul class="contextual-help-list">
+                      <li>
+                        <p>Success</p>
+                        <p>
+                          The tenant database was successfully deployed.
+                        </p>
+                      </li>
+                      <li>
+                        <p>Failed</p>
+                        <p>
+                          The deployment of the tenant database failed.
+                        </p>
+                      </li>
+                      <li>
+                        <p>Deploying</p>
+                        <p>
+                          The tenant database is being deployed.
+                        </p>
+                      </li>
+                      <li>
+                        <p>Dropped</p>
+                        <p>
+                          The tenant database has been dropped.
+                        </p>
+                      </li>
+                    </ul>
+                  </clr-signpost-content>
+                </clr-signpost>
+              </td>
+            </tr>
+            <tr>
+              <th>Id</th>
+              <td>{{ tenant?.id }}</td>
+            </tr>
+            <tr>
+              <th>Theme</th>
+              <td>{{ tenant?.theme }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="float: right; font-size: 12px;">
+          {{
+            (tenant?.dateCreated ? tenant?.dateCreated + "Z" : "")
+              | date: "MM/dd/yyyy
+          hh:mm:ss a"
+          }}
+        </p>
+        <br />
+        <p style="float: right; font-size: 12px;">
+          {{ tenant?.dateCreated | date: "full" }}
+        </p>
+        <br />
+        <p style="float: right; font-size: 12px;">
+          {{ (tenant?.dateCreated ? tenant?.dateCreated + "Z" : "") | timeAgo }}
+        </p>
+        <br />
+        <clr-alert
+          *ngIf="errorMsg"
+          [clrAlertType]="'alert-danger'"
+          [clrAlertClosable]="false"
+          [(clrAlertClosed)]="!errorMsg"
+        >
+          <div class="alert-item">
+            <span class="alert-text">
+              {{ errorMsg }}
+            </span>
+          </div>
+        </clr-alert>
+        <hf-spinner
+          *ngIf="isDeploying || isLoading"
+          [backgroundColor]="'#2e2e2e'"
+          spinner="{{ spinner }}"
+        ></hf-spinner>
+        <button
+          *ngIf="!isDeploying"
+          class="btn btn-primary"
+          [clrLoading]="isDeploying"
+          (click)="deploy()"
+        >
+          Deploy
+        </button>
+        <button
+          *ngIf="
+            !isDeploying &&
+            tenant?.deploymentStatus &&
+            tenant?.deploymentStatus !== 'Dropped' &&
+            tenant?.deploymentStatus !== 'Failed'
+          "
+          class="btn btn-danger"
+          (click)="dropDatabase()"
+        >
+          Delete Database
+        </button>
+        <button
+          *ngIf="
+            !isDeploying &&
+            (!tenant?.deploymentStatus ||
+              tenant?.deploymentStatus === 'Dropped' ||
+              tenant?.deploymentStatus === 'Failed')
+          "
+          class="btn btn-danger"
+          (click)="deleteTenant()"
+        >
+          Delete
+        </button>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="tabLogs">Logs</button>
+      <clr-tab-content id="tabContentLogs">
+        <pre><code highlight [code]="'script'"></code></pre>
+      </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+</hf-content-panel>

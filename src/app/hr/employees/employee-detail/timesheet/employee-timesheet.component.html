@@ -1,0 +1,140 @@
+<clr-tabs clrLayout="vertical">
+  <clr-tab>
+    <button clrTabLink>Overview</button>
+    <clr-tab-content *clrIfActive></clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Work Shifts</button>
+    <clr-tab-content *clrIfActive>
+      <h4>Work Shift Schedules for the Week</h4>
+      <p>
+        Set the default weekly work shift schedules for
+        {{ employee | person }}.
+      </p>
+      <form clrForm id="shift-schedules" [formGroup]="workShiftForm">
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Monday</label>
+          <select
+            clrSelect
+            name="mondayShift"
+            formControlName="mondayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Tuesday</label>
+          <select
+            clrSelect
+            name="tuesdayShift"
+            formControlName="tuesdayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Wednesday</label>
+          <select
+            clrSelect
+            name="wednesdayShift"
+            formControlName="wednesdayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Thursday</label>
+          <select
+            clrSelect
+            name="thursdayShift"
+            formControlName="thursdayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Friday</label>
+          <select
+            clrSelect
+            name="fridayShift"
+            formControlName="fridayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Saturday</label>
+          <select
+            clrSelect
+            name="saturdayShift"
+            formControlName="saturdayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <clr-select-container>
+          <label class="clr-col clr-col-sm-12 clr-col-md-4">Sunday</label>
+          <select
+            clrSelect
+            name="sundayShift"
+            formControlName="sundayShift"
+            class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+          >
+            <option value="null">No Schedule</option>
+            <option value="{{ shift.id }}" *ngFor="let shift of shiftTemplates">{{
+              shift.name
+            }}</option>
+          </select>
+        </clr-select-container>
+        <button
+          class="btn btn-primary"
+          *ngIf="workShiftForm.dirty"
+          (click)="applyWorkShift($event)"
+        >
+          Apply Work Shift
+        </button>
+        <button class="btn btn-link" *ngIf="workShiftForm.dirty">
+          Discard
+        </button>
+      </form>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Timesheet</button>
+    <clr-tab-content *clrIfActive></clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Time-offs</button>
+    <clr-tab-content *clrIfActive></clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Leave Balances</button>
+    <clr-tab-content *clrIfActive>
+      <hrf-leave-balances [employee]="_employee"></hrf-leave-balances>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

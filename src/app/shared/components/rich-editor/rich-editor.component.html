@@ -1,0 +1,34 @@
+<div
+	(focus)="onEditorFocus()"
+	class="rich-editor"
+	id="richEditor"
+	[style.width]="config.width"
+	[style.minWidth]="config.minWidth"
+>
+	<rich-editor-toolbar
+		#editorToolbar
+		(execute)="executeCommand($event)"
+	></rich-editor-toolbar>
+
+	<div class="rich-editor-wrapper" #editorWrapper>
+		<div
+			#editor
+			id="editor"
+			class="rich-editor-textarea"
+			[attr.contenteditable]="config.editable"
+			[attr.translate]="config.translate"
+			[attr.spellcheck]="config.spellcheck"
+			[style.height]="config.height"
+			[style.minHeight]="config.minHeight"
+			[style.maxHeight]="config.maxHeight"
+			(input)="onContentChange($event.target.innerHTML)"
+			(focus)="onTextAreaFocus()"
+			(blur)="onTextAreaBlur($event)"
+			(click)="exec()"
+			(keyup)="exec()"
+		></div>
+		<span class="rich-editor-placeholder">{{
+			placeholder || config["placeholder"]
+		}}</span>
+	</div>
+</div>

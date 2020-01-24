@@ -1,0 +1,12 @@
+<label *ngFor="let record of skills" class="label label-info"
+  >{{ record.skill }}
+  <a href="javascript:void(0)" (click)="removeSkill(record)"
+    ><clr-icon style="margin-left: 0.15rem" shape="times"></clr-icon></a
+></label>
+<input
+  [(ngModel)]="inputValue"
+  class="clr-input"
+  type="text"
+  placeholder="Enter a skill"
+  (keydown)="onSkillEntered($event)"
+/>

@@ -1,0 +1,67 @@
+<form [formGroup]="form" clrForm class="form-flex">
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Employer/Company Name</label>
+		<input
+			hfFocusInput="true"
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrInput
+			type="text"
+			formControlName="employer"
+			name="employer"
+		/>
+		<clr-control-error *clrIfError="'required'"
+			>You must specify the name of the employer or company!</clr-control-error
+		>
+	</clr-input-container>
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Job Title</label>
+		<input
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrInput
+			type="text"
+			formControlName="jobTitle"
+			name="jobTitle"
+		/>
+		<clr-control-error *clrIfError="'required'"
+			>You must provide the Job Title!</clr-control-error
+		>
+	</clr-input-container>
+
+	<clr-textarea-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Job Description</label>
+		<textarea
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrTextarea
+			rows="6"
+			formControlName="jobDescription"
+			name="jobDescription"
+		></textarea>
+	</clr-textarea-container>
+
+	<clr-date-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Date Hired</label>
+		<input
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrDate
+			type="date"
+			formControlName="dateHired"
+			name="dateHired"
+		/>
+		<clr-control-error *clrIfError="'required'">You must provide Date Hired!</clr-control-error>
+	</clr-date-container>
+
+	<clr-date-container>
+		<label class="clr-col-xs-12 clr-col-md-4  clr-col-lg-4">Date Separated/Resigned</label>
+		<input
+			class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+			clrDate
+			type="date"
+			formControlName="dateSeparated"
+			[min]="getDateHired()"
+			name="dateSeparated"
+		/>
+		<clr-control-helper>This is optional.</clr-control-helper>
+	</clr-date-container>
+
+	<div style="height: 800px;"></div>
+</form>

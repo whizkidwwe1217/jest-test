@@ -1,0 +1,70 @@
+<form [formGroup]="form" hfForm clrLayout="horizontal" class="form-flex">
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Employee</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      [dataSource]="'api/v1/organization/employee'"
+      hfSearch
+      [enableLookup]="true"
+      [valueField]="'id'"
+      [getDisplayText]="getEmployeeLookupText"
+      [displayField]="'lastName'"
+      formControlName="requesterId"
+    ></hf-search>
+    <hf-control-error *hfIfError="'required'">You must provide an Employee.</hf-control-error>
+  </hf-search-container>
+
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Approver</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      [dataSource]="'api/v1/organization/employee'"
+      hfSearch
+      [enableLookup]="true"
+      [valueField]="'id'"
+      [getDisplayText]="getEmployeeLookupText"
+      [displayField]="'lastName'"
+      formControlName="approverId"
+    ></hf-search>
+    <hf-control-error *hfIfError="'required'">You must provide an Approver.</hf-control-error>
+  </hf-search-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Level</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="number"
+      formControlName="level"
+      name="level"
+    />
+  </hf-input-container>
+
+  <hf-radio-container hfInline>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Requirement</label>
+    <hf-radio-wrapper>
+      <input
+        checked
+        type="radio"
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        hfRadio
+        name="requirement"
+        value="Required"
+        formControlName="requirement"
+      />
+      <label>Required</label>
+    </hf-radio-wrapper>
+    <hf-radio-wrapper>
+      <input
+        #checkOut
+        type="radio"
+        hfRadio
+        class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+        name="requirement"
+        value="Optional"
+        formControlName="requirement"
+      />
+      <label>Optional</label>
+    </hf-radio-wrapper>
+  </hf-radio-container>
+</form>

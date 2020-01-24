@@ -19,9 +19,17 @@ import { AppRoutingModule } from "./app.routing";
 import { appInfoReducer } from "./data/reducers/app-info.reducer";
 import { RouterModule } from "@angular/router";
 import { HordeflowkitModule } from "hordeflowkit";
+import { SharedModule } from "./shared/shared.module";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { AdminAuthenticationGuard } from "./authentication/guards/admin-authentication.guard";
+import { AuthenticationGuard } from "./authentication/guards/authentication.guard";
+import { NoCompanyGuard } from "./authentication/guards/no-company.guard";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { AdminModule } from "./admin/admin.module";
+import { WorkspaceModule } from "./workspace/workspace.module";
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, WelcomeComponent],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
@@ -35,6 +43,10 @@ import { HordeflowkitModule } from "hordeflowkit";
 		NgProgressHttpModule,
 		HordeflowCommonModule,
 		HordeflowkitModule,
+		SharedModule,
+		AuthenticationModule,
+		AdminModule.forRoot(),
+		WorkspaceModule,
 		AppRoutingModule,
 		StoreModule.forRoot(
 			{
@@ -51,7 +63,7 @@ import { HordeflowkitModule } from "hordeflowkit";
 		),
 		EffectsModule.forRoot([])
 	],
-	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	providers: [AdminAuthenticationGuard, AuthenticationGuard, NoCompanyGuard]
 })
 export class AppModule {}

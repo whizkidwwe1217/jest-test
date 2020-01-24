@@ -1,0 +1,88 @@
+<clr-main-container>
+	<clr-header class="header header-6">
+		<div class="branding">
+			<a routerLink="/" class="nav-link">
+				<clr-icon shape="blocks-group"></clr-icon>
+			</a>
+			<a routerLink="../admin" class="nav-link">
+				<span class="title">HordeFlow Admin</span>
+			</a>
+		</div>
+
+		<!--
+            <div class="header-nav" [clr-nav-level]="this.pageService.currentNavLevel2 === 'admin' ? 2 : 1">
+              <a routerLink="dashboard" routerLinkActive="active" class="nav-link nav-text">Dashboard</a>
+              <a routerLink="tenant" routerLinkActive="active" class="nav-link nav-text">Tenants</a>
+              <a routerLink="settings" routerLinkActive="active" class="nav-link nav-text">Settings</a>
+            </div>
+        -->
+
+		<div class="header-nav" [clr-nav-level]="2">
+			<a
+				routerLink="dashboard"
+				routerLinkActive="active"
+				class="nav-link nav-text"
+				>Dashboard</a
+			>
+			<a
+				routerLink="tenant"
+				routerLinkActive="active"
+				class="nav-link nav-text"
+				>Tenants</a
+			>
+			<a
+				routerLink="settings"
+				routerLinkActive="active"
+				class="nav-link nav-text"
+				>Settings</a
+			>
+		</div>
+
+		<div class="header-actions">
+			<!--
+                <hf-notifications-dropdown [headerDropdown]=true position="top-right">
+                  <div target>
+                    <a #link href="javascript:void(0)" class="nav-link nav-icon">
+                      <clr-icon shape="bell" class="has-badge"></clr-icon>
+                    </a>
+                  </div>
+                  <div content>
+                    <clr-tabs>
+                      <clr-tab>
+                        <button clrTabLink id="link1">Tab1</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                          ...
+                        </clr-tab-content>
+                      </clr-tab>
+                      <clr-tab>
+                        <button clrTabLink>Tab2</button>
+                        <clr-tab-content *clrIfActive="true">
+                          ...
+                        </clr-tab-content>
+                      </clr-tab>
+                    </clr-tabs>
+                    <app-notification-list-item *ngFor="let e of employees" avatar={{e.avatar}} title={{e.name}} smallText="2d1h" subTitle="167th Drive">
+                      <a href="#" title>{{e.name}}</a>
+                    </app-notification-list-item>
+                  </div>
+                </hf-notifications-dropdown>
+            -->
+			<clr-dropdown>
+				<button class="nav-text" clrDropdownTrigger>
+					{{account?.username}}
+				</button>
+				<clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+					<a href="..." clrDropdownItem>About</a>
+					<a href="..." clrDropdownItem>Preferences</a>
+					<a
+						href="javascript:void(0)"
+						(click)="login()"
+						clrDropdownItem
+						>Log out</a
+					>
+				</clr-dropdown-menu>
+			</clr-dropdown>
+		</div>
+	</clr-header>
+	<div class="content-container"><router-outlet></router-outlet></div>
+</clr-main-container>

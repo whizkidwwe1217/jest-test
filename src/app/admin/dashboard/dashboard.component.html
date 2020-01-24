@@ -1,0 +1,129 @@
+<main class="content-area">
+	<hf-content-panel [title]="'Migrations'" [icon]="'data-cluster'">
+		<div class="page-container">
+			<div class="clr-row">
+				<div class="clr-col-6">
+					<ngx-charts-number-card
+						[view]="[600, 150]"
+						cardColor="#fff"
+						[scheme]="'picnic'"
+						emptyColor="#1e222e"
+						[results]="tenantsByEngine"
+						[animations]="true"
+					></ngx-charts-number-card>
+				</div>
+			</div>
+			<div class="clr-row">
+				<div class="clr-col-12">
+					<div class="card">
+						<div class="card-header">
+							Tenant Catalog Migration Status
+						</div>
+						<div class="card-block">
+							<div class="clr-row">
+								<div class="clr-col-8">
+									<table
+										class="table table-compact table-noborder table-breakword"
+									>
+										<thead>
+											<th class="left">Migration Id</th>
+											<th>Applied</th>
+											<th class="left">Date Applied</th>
+										</thead>
+										<tbody>
+											<tr *ngFor="let m of migrations">
+												<td class="left">{{ m.id }}</td>
+												<td>
+													<clr-icon
+														[ngStyle]="{
+															color: m.applied
+																? '#5AA454'
+																: '#A10A28'
+														}"
+														shape="circle"
+														class="is-solid"
+													></clr-icon>
+												</td>
+												<td class="left">
+													{{
+														parseMigrationDate(m.id)
+													}}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="clr-col-4">
+									<div
+										style="display: flex; align-items: center; align-content: center"
+									>
+										<ngx-charts-gauge
+											style="margin: 0 auto"
+											[max]="max"
+											[showAxis]="false"
+											[scheme]="{
+												domain: [
+													'#5AA454',
+													'#A10A28',
+													'#C7B42C',
+													'#A10A28'
+												]
+											}"
+											[results]="migrationChartData"
+										>
+										</ngx-charts-gauge>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button
+								class="btn btn-sm btn-link"
+								(click)="applyMigrations()"
+							>
+								Apply Migrations
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clr-row">
+				<div class="clr-col-12">
+					<div class="card">
+						<div class="card-header">Migrations Heatmap</div>
+						<div class="card-block">
+							<div class="heatmap-container">
+								<ngx-charts-heat-map
+									[min]="heatmapMin"
+									[max]="heatmapMax"
+									[view]="[1100, 200]"
+									[scheme]="'vivid'"
+									[results]="heatmapEntries"
+									[animations]="true"
+									[legend]="true"
+									[gradient]="false"
+									[xAxis]="true"
+									[yAxis]="true"
+									[xAxisTickFormatting]="calendarAxisTickFormatting"
+									[tooltipText]="calendarTooltipText"
+									[showXAxisLabel]="false"
+									[showYAxisLabel]="false"
+									[xAxisLabel]="true"
+									[yAxisLabel]="true"
+									[innerPadding]="'10%'"
+									[tooltipDisabled]="false"
+									[trimXAxisTicks]="true"
+									[trimYAxisTicks]="true"
+									[rotateXAxisTicks]="true"
+									[maxXAxisTickLength]="4"
+									[maxYAxisTickLength]="4"
+								>
+								</ngx-charts-heat-map>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</hf-content-panel>
+</main>

@@ -1,0 +1,92 @@
+hf-select {
+  margin-bottom: 1rem;
+}
+
+.footer {
+  text-align: center;
+  margin: 0 auto;
+  padding: 24px 24px;
+  font-size: 12px;
+}
+
+.footer > label > a:not(:last-child) {
+  padding-right: 4px;
+}
+
+.footer > label > a:not(:first-child) {
+  padding-left: 4px;
+}
+
+.welcome {
+  display: block;
+  overflow: auto;
+  width: 100%;
+}
+
+.login-wrapper > .welcome {
+  & > .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .image-container {
+      background-image: url("../../../assets/graphics/hr/business_deal.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      height: 100%;
+      flex: 1;
+      width: 100%;
+    }
+
+    h1 {
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 64px;
+      color: #414141;
+      font-weight: 300;
+    }
+
+    h2 {
+      text-align: center;
+      color: #606060;
+    }
+
+    .btn {
+      margin: 0 auto;
+      display: block;
+      margin-top: 48px;
+    }
+  }
+}
+
+.login-wrapper {
+  // background-color: #5488ac;
+  // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='44' viewBox='0 0 34 44'%3E%3Cg fill='%2371bdf4' fill-opacity='0.59'%3E%3Cpath fill-rule='evenodd' d='M1 6.2C.72 5.55.38 4.94 0 4.36v13.28c.38-.58.72-1.2 1-1.84A12.04 12.04 0 0 0 7.2 22 12.04 12.04 0 0 0 1 28.2c-.28-.65-.62-1.26-1-1.84v13.28c.38-.58.72-1.2 1-1.84A12.04 12.04 0 0 0 7.2 44h21.6a12.05 12.05 0 0 0 5.2-4.36V26.36A12.05 12.05 0 0 0 28.8 22a12.05 12.05 0 0 0 5.2-4.36V4.36A12.05 12.05 0 0 0 28.8 0H7.2A12.04 12.04 0 0 0 1 6.2zM17.36 23H12a10 10 0 1 0 0 20h5.36a11.99 11.99 0 0 1 0-20zm1.28-2H24a10 10 0 1 0 0-20h-5.36a11.99 11.99 0 0 1 0 20zM12 1a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-3.46-2a2 2 0 1 0-3.47 2 2 2 0 0 0 3.47-2zm0-4a2 2 0 1 0-3.47-2 2 2 0 0 0 3.47 2zM12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3.46 2a2 2 0 1 0 3.47-2 2 2 0 0 0-3.47 2zm0 4a2 2 0 1 0 3.47 2 2 2 0 0 0-3.47-2zM24 43a10 10 0 1 0 0-20 10 10 0 0 0 0 20zm0-14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3.46 2a2 2 0 1 0 3.47-2 2 2 0 0 0-3.47 2zm0 4a2 2 0 1 0 3.47 2 2 2 0 0 0-3.47-2zM24 37a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-3.46-2a2 2 0 1 0-3.47 2 2 2 0 0 0 3.47-2zm0-4a2 2 0 1 0-3.47-2 2 2 0 0 0 3.47 2z'/%3E%3C/g%3E%3C/svg%3E");
+
+  // background-repeat: no-repeat;
+  // background-size: 100%;
+  // background-position: center;
+  // background-size: cover;
+  background: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .welcome {
+    display: none;
+  }
+}
+
+hf-select {
+  width: 100%;
+  border: none;
+  padding: 0;
+}
+
+::ng-deep .hf-select {
+  width: 100%;
+}
+
+::ng-deep .clr-input-wrapper {
+  margin-right: 24px;
+}

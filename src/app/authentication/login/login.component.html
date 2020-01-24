@@ -1,0 +1,147 @@
+<div class="login-wrapper">
+	<form class="login form-flex" *ngIf="info?.hasCompany || info?.isAdmin" [formGroup]="loginForm">
+		<section class="title">
+			<h3 class="welcome">Welcome to</h3>
+			{{ selectedCompany ? selectedCompany.name : "HordeFlow" }}
+			<h5 class="hint">Use your username or email address to log in</h5>
+		</section>
+		<div class="login-group">
+			<hf-search-container [class.skeleton]="!isReady">
+				<hf-search
+					hfSearch
+					[readonly]="!info"
+					*ngIf="isTenant"
+					#companyLookup
+					(onselect)="onCompanySelected($event)"
+					name="companyId"
+					formControlName="companyId"
+					[dataSource]="'api/v1/tenant/companies|root=true'"
+					[enableLookup]="true"
+					[valueField]="'id'"
+					[displayField]="'name'"
+					[placeholder]="'Search for your company'"
+				>
+				</hf-search>
+				<hf-control-error *hfIfError="'required'">Select a company</hf-control-error>
+			</hf-search-container>
+
+			<hf-input-container [class.skeleton]="!isReady">
+				<input
+					class="username"
+					hfInput
+					hfDisableAutofill
+					autocomplete="off"
+					type="text"
+					name="username"
+					placeholder="Email address or username"
+					formControlName="username"
+				/>
+				<hf-control-error *hfIfError="'required'">Enter your username</hf-control-error>
+			</hf-input-container>
+			<hf-password-container [class.skeleton]="!isReady">
+				<input
+					type="password"
+					name="password"
+					autocomplete="off"
+					hfDisableAutofill
+					formControlName="password"
+					hfPassword
+					placeholder="Password"
+				/>
+				<hf-control-error *hfIfError="'required'">Enter your password</hf-control-error>
+			</hf-password-container>
+			<hf-checkbox-wrapper [class.skeleton]="!isReady">
+				<label>Remember me</label>
+				<input
+					type="checkbox"
+					id="rememberme"
+					hfCheckbox
+					formControlName="rememberCredentials"
+				/>
+			</hf-checkbox-wrapper>
+			<div *ngIf="companyId.invalid && companyId.touched" class="error active">
+				Select a company
+			</div>
+			<div
+				*ngIf="
+					(companyId.untouched || companyId.valid) && username.invalid && username.touched
+				"
+				class="error active"
+			>
+				Enter a username
+			</div>
+			<div
+				*ngIf="
+					(companyId.untouched || companyId.valid) &&
+					(username.untouched || username.valid) &&
+					password.invalid &&
+					password.touched
+				"
+				class="error active"
+			>
+				Enter a password
+			</div>
+			<div *ngIf="hasErrors && errorText != ''" class="error active">
+				{{ errorText }}
+			</div>
+			<button
+				[disabled]="!isReady"
+				[clrLoading]="loading"
+				type="submit"
+				[class.skeleton]="!isReady"
+				class="btn btn-primary"
+				(click)="login()"
+			>
+				{{ loading ? "Logging in" : "Log in" }}
+			</button>
+			<a href="javascript://" class="signup" [class.skeleton]="!isReady"
+				>I forgot my password</a
+			>
+		</div>
+	</form>
+	<div class="login" *ngIf="!info?.hasCompany && info?.isTenant">
+		<h2>Welcome to HordeFlow!</h2>
+		<p>
+			Help us set up your company configuration by filling out the details below.
+		</p>
+		<form hfForm class="setup-form" [formGroup]="setupForm">
+			<hf-input-container>
+				<label for="name">Tell us the name of your company</label>
+				<input type="text" hfInput formControlName="name" />
+			</hf-input-container>
+			<hf-input-container>
+				<label for="phone">What's your company phone number?</label>
+				<input
+					type="tel"
+					formControlName="phoneNumber"
+					hfInput
+					placeholder="ex. (+1) 555 1234"
+				/>
+			</hf-input-container>
+			<hf-textarea-container>
+				<label for="address">Where is it located?</label>
+				<textarea
+					rows="4"
+					hfTextarea
+					formControlName="address"
+					placeholder="Type your company address"
+				></textarea>
+			</hf-textarea-container>
+			<button
+				[disabled]="!setupForm.valid"
+				class="btn btn-primary"
+				(click)="setupCompany()"
+				[clrLoading]="loading"
+			>
+				Let's Get Started
+			</button>
+		</form>
+	</div>
+	<div class="welcome">
+		<div class="content">
+			<h1>HordeFlow</h1>
+			<h2>Tranforming your business through innovation.</h2>
+			<div class="image-container"></div>
+		</div>
+	</div>
+</div>

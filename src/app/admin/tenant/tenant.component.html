@@ -1,0 +1,38 @@
+<main class="content-area" [@routerTransition]="getState(o)">
+	<router-outlet #o="outlet"></router-outlet>
+</main>
+
+<clr-vertical-nav
+	[clrVerticalNavCollapsible]="true"
+	[(clrVerticalNavCollapsed)]="collapsed"
+	[clr-nav-level]="1"
+>
+	<button routerLink="new" *ngIf="!collapsed" class="btn btn-primary register">
+		<clr-icon shape="plus"></clr-icon> Create Tenant
+	</button>
+	<button
+		[routerLink]="['/tenant/new']"
+		*ngIf="collapsed"
+		type="button"
+		class="btn btn-icon btn-link"
+	>
+		<clr-icon shape="plus"></clr-icon>
+	</button>
+	<a
+		*ngFor="let tenant of tenants"
+		clrVerticalNavLink
+		[routerLink]="[tenant.id]"
+		routerLinkActive="active"
+		[title]="tenant.hostName"
+	>
+		<clr-icon shape="host" class="is-solid"></clr-icon>
+		{{ tenant.name | ellipsis: 50 }}
+		<span style="color: orange">
+			<clr-icon
+				shape="warning"
+				title="The database for this tenant needs to be deployed."
+				style="display: inline-block;"
+			></clr-icon>
+		</span>
+	</a>
+</clr-vertical-nav>

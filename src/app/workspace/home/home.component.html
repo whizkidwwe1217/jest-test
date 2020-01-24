@@ -1,0 +1,69 @@
+<div class="content-container" style="overflow-x: hidden">
+	<main class="content-area" [@fadeAnimation]="getState(outlet)">
+		<router-outlet #outlet="outlet"></router-outlet>
+	</main>
+
+	<clr-vertical-nav
+		[clrVerticalNavCollapsible]="collapsible"
+		[(clrVerticalNavCollapsed)]="collapsed"
+		[clr-nav-level]="1"
+	>
+		<ng-container *ngFor="let page of pages; let i = index">
+			<!--
+                Use this if only on group should expand at a time <clr-vertical-nav-group *ngIf="page.subPages.length > 0" [routerLinkActive]="page.disableRouting ? '' : 'active'" [clrVerticalNavGroupExpanded]="expanded[i]" (clrVerticalNavGroupExpandedChange)="toggle($event, i)" >
+            -->
+			<clr-vertical-nav-group
+				*ngIf="page.subPages.length > 0"
+				[hfPermission]="page.permission"
+				[routerLinkActive]="page.disableRouting ? '' : 'active'"
+			>
+				<a
+					clrVerticalNavLink
+					[routerLinkActive]="page.disableRouting ? '' : 'active'"
+					[routerLink]="page.disableRouting ? null : page.route"
+					[routerLinkActiveOptions]="{ exact: true }"
+				>
+					<clr-icon
+						clrVerticalNavIcon
+						[attr.shape]="page.icon && page.icon !== '' ? page.icon : 'application'"
+					></clr-icon>
+					{{ page.name }}
+					<span *ngIf="page.tag" class="badge badge-warning">{{ page.tag.name }}</span>
+				</a>
+
+				<clr-vertical-nav-group-children *clrIfExpanded="!page.collapsed">
+					<a
+						clrVerticalNavLink
+						*ngFor="let subPage of page.subPages"
+						[routerLink]="
+							subPage.disableRouting ? null : page.route + '/' + subPage.route
+						"
+						[hfPermission]="subPage.permission"
+						[routerLinkActive]="subPage.disableRouting ? '' : 'active'"
+					>
+						<!--
+                            <clr-icon clrVerticalNavIcon [attr.shape]="subPage.icon && subPage.icon !== '' ? subPage.icon : 'application'"></clr-icon>
+                        -->
+						{{ subPage.name }}
+						<span *ngIf="subPage.tag" class="badge badge-warning">{{
+							subPage.tag.name
+						}}</span>
+					</a>
+				</clr-vertical-nav-group-children>
+			</clr-vertical-nav-group>
+
+			<a
+				*ngIf="page.subPages.length === 0"
+				clrVerticalNavLink
+				[routerLinkActive]="page.disableRouting ? '' : 'active'"
+				[routerLink]="page.disableRouting ? null : page.route"
+			>
+				<clr-icon
+					clrVerticalNavIcon
+					[attr.shape]="page.icon && page.icon !== '' ? page.icon : 'application'"
+				></clr-icon>
+				{{ page.name }}
+			</a>
+		</ng-container>
+	</clr-vertical-nav>
+</div>

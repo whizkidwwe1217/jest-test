@@ -1,0 +1,37 @@
+<clr-accordion [clrAccordionMultiPanel]="true">
+	<clr-accordion-panel [(clrAccordionPanelOpen)]="accJobDetailsExpanded">
+		<clr-accordion-title>Employment Info</clr-accordion-title>
+		<clr-accordion-content>
+			<div class="clr-row">
+				<label class="clr-col clr-col-sm-12 clr-col-md-4">Employee ID</label>
+				<span class="clr-col clr-col-sm-12 clr-col-md-6">{{ employee?.code }}</span>
+			</div>
+			<div class="clr-row">
+				<label class="clr-col clr-col-sm-12 clr-col-md-4">Position</label>
+				<span class="clr-col clr-col-sm-12 clr-col-md-6">{{ employee?.position }}</span>
+			</div>
+			<div class="clr-row">
+				<label class="clr-col clr-col-sm-12 clr-col-md-4">Department</label>
+				<span class="clr-col clr-col-sm-12 clr-col-md-6">{{ employee?.department }}</span>
+			</div>
+			<div class="clr-row">
+				<label class="clr-col clr-col-sm-12 clr-col-md-4">Team</label>
+				<span class="clr-col clr-col-sm-12 clr-col-md-6">{{ employee?.team }}</span>
+			</div>
+		</clr-accordion-content>
+	</clr-accordion-panel>
+
+	<clr-accordion-panel [(clrAccordionPanelOpen)]="accSkillsExpanded">
+		<clr-accordion-title>Skills</clr-accordion-title>
+		<clr-accordion-content *clrIfExpanded>
+			<hrf-skills [employeeId]="employee?.id" style="width: 100%;"></hrf-skills>
+		</clr-accordion-content>
+	</clr-accordion-panel>
+
+	<clr-accordion-panel [(clrAccordionPanelOpen)]="accJobHistoryExpanded">
+		<clr-accordion-title>Job History</clr-accordion-title>
+		<clr-accordion-content *clrIfExpanded>
+			<hrf-job-history [employeeId]="employee?.id" style="width: 100%;"></hrf-job-history>
+		</clr-accordion-content>
+	</clr-accordion-panel>
+</clr-accordion>

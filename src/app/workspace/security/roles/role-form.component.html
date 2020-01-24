@@ -1,0 +1,61 @@
+<clr-alert>
+	<clr-alert-item>
+		<span class="alert-text">
+			A role must be unique. You can assign this role to one or more users.
+			<a href="javascript:void(0)">Learn more.</a>
+		</span>
+	</clr-alert-item>
+</clr-alert>
+<h4>Details about this role</h4>
+<form [formGroup]="form" clrForm class="form-container clr-form-compact form-flex">
+	<clr-input-container>
+		<label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+		<input
+			hfFocusInput="true"
+			clrInput
+			hfDisableAutofill
+			autocomplete="off"
+			class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+			formControlName="name"
+		/>
+		<clr-control-helper>Enter a name for the role.</clr-control-helper>
+		<clr-control-error *clrIfError="'required'"
+			>An name for the role must be provided.</clr-control-error
+		>
+	</clr-input-container>
+	<clr-textarea-container>
+		<label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Description</label>
+		<textarea
+			rows="4"
+			clrTextarea
+			class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+			formControlName="description"
+		></textarea>
+	</clr-textarea-container>
+	<clr-toggle-container>
+		<label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">
+			Advanced
+		</label>
+		<clr-toggle-wrapper>
+			<input
+				type="checkbox"
+				class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+				clrToggle
+				formControlName="isSystemAdministrator"
+			/>
+			<label
+				>System Administrator<clr-signpost>
+					<a style="padding-left: 0.25rem;" href="javascript:void(0)" clrSignpostTrigger
+						>[?]</a
+					>
+					<clr-signpost-content [clrPosition]="'top-middle'" *clrIfOpen>
+						This user has full and unrestricted access to all controls, screens, pages,
+						services, and resources of the system.
+					</clr-signpost-content>
+				</clr-signpost></label
+			>
+		</clr-toggle-wrapper>
+	</clr-toggle-container>
+</form>
+<h4>Members</h4>
+<hf-dynamic-list [enableGrouping]="false" (itemadded)="onMemberAdded($event)"></hf-dynamic-list>

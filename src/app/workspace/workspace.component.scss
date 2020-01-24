@@ -1,0 +1,52 @@
+.logo {
+	padding: 0.4rem;
+	padding-right: 0rem;
+	height: 64px;
+	width: 64px;
+}
+
+.footer {
+	background: #002538;
+	color: #e1f1f6;
+}
+
+.company-name {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	float: right;
+	padding-right: 4px;
+
+	clr-icon {
+		margin-right: 4px;
+	}
+}
+
+.copyright {
+	font-size: 11px;
+	padding-left: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+	.company-name {
+		position: fixed;
+	}
+
+	.mode,
+	hf-search-input {
+		display: none;
+	}
+}
+
+hf-search-input {
+	padding-left: 1rem;
+}
+
+.mode {
+	border-radius: 20px;
+	margin: 0 1rem;
+	padding: 0 1rem;
+	background: white;
+	color: #002538;
+	font-weight: bold;
+}

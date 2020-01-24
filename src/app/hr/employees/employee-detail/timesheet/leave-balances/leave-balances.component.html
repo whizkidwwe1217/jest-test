@@ -1,0 +1,77 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Leave Type</th>
+			<th>Entitlement</th>
+			<th>Balance</th>
+			<th>Earned</th>
+			<th>Consumed</th>
+			<th>Valid from</th>
+			<th>Valid until</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let b of balances">
+			<td>
+				<clr-dropdown [clrCloseMenuOnItemClick]="true">
+					<button clrDropdownTrigger aria-label="More options" style="padding:0;">
+						<clr-icon shape="ellipsis-vertical"></clr-icon>
+					</button>
+					<clr-dropdown-menu *clrIfOpen [clrPosition]="'top-left'">
+						<label class="dropdown-header" aria-hidden="true">Other Options</label>
+						<div aria-label="Dropdown header Action 1" clrDropdownItem>Forfeit</div>
+						<div aria-label="Dropdown header Action 2" clrDropdownItem>Replenish</div>
+						<div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+						<div clrDropdownItem>Set Validity</div>
+						<div clrDropdownItem>Add Rules</div>
+					</clr-dropdown-menu>
+				</clr-dropdown>
+			</td>
+			<td class="left" style="font-weight: bold;">
+				{{ b.requestType }} ({{ b.requestTypeCode }})
+			</td>
+			<td class="right">{{ b.balance }}</td>
+			<td class="right">{{ b.balance }}</td>
+			<td class="right">{{ b.earned }}</td>
+
+			<td class="right" *ngIf="b.consumed <= 0 || !b.consumed">{{ b.consumed }}</td>
+			<td class="right" *ngIf="b.consumed > 0">
+				<button class="btn btn-sm btn-link">{{ b.consumed }}</button>
+			</td>
+			<td class="right">1/4/2020</td>
+			<td class="right">1/4/2020</td>
+			<td>
+				<button class="btn btn-sm btn-link" (click)="toggleUpdatingBalance(b)">
+					<clr-icon shape="form"></clr-icon>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<clr-modal [(clrModalOpen)]="showUpdateConfirmation">
+	<h3 class="modal-title" tabindex="-1">Update leave balance</h3>
+	<div class="modal-body">
+		<form clrForm [formGroup]="form">
+			<clr-input-container>
+				<label>Balance</label>
+				<input #input clrInput type="number" formControlName="balance" />
+			</clr-input-container>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button
+			type="button"
+			class="btn btn-outline"
+			[clrLoading]="updatingBalance"
+			(click)="showUpdateConfirmation = false"
+		>
+			Cancel
+		</button>
+		<button class="btn btn-primary" type="button" (click)="updateBalance()">
+			Update
+		</button>
+	</div>
+</clr-modal>

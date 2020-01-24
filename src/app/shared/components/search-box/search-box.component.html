@@ -1,0 +1,69 @@
+<div class="search">
+    <span
+        (mousedown)="onCaretIconClick($event)"
+        class="icon-wrapper"
+        [ngClass]="{ disabled: disabled, readonly: readonly }"
+    >
+        <clr-icon
+            size="12"
+            [attr.shape]="icon ? icon : open ? 'caret up' : 'caret down'"
+        ></clr-icon>
+    </span>
+    <input
+        #txtSearch
+        (blur)="onBlur()"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        role="combobox"
+        autocomplete="off"
+        type="text"
+        aria-label="Search Box"
+        [attr.autofocus]="autofocus"
+        placeholder="{{placeholder}}"
+        [(ngModel)]="selectedText"
+    />
+    <div
+        tabindex="-1"
+        #scrollbox
+        *ngIf="!(readonly || disabled)"
+        class="scroll-box open"
+        [class.active]="open"
+        [ngClass]="{ open: open }"
+        (mouseup)="onScrollBoxMouseUp($event)"
+        (mousedown)="onScrollBoxMouseDown($event)"
+    >
+        <div tabindex="-1" *ngIf="!searching" class="dropdown-list">
+            <ul tabindex="-1" #list (click)="onItemClick($event)">
+                <li tabindex="-1" *ngFor="let i of filteredItems; let index = index">
+                    <a
+                        tabindex="-1"
+                        *ngIf="i"
+                        (mouseover)="hover(index)"
+                        [ngClass]="{ active: index === activeIndex }"
+                        id="{{i[valueField]}}"
+                        href="#{{i[valueField]}}"
+                        >{{
+                            displayRenderer
+                                ? displayRenderer(i)
+                                : displayField
+                                ? i[displayField].toString()
+                                : i
+                        }}
+                    </a>
+                </li>
+            </ul>
+            <a *ngIf="(!filteredItems || filteredItems.length === 0) && items.length > 0"
+                >No results found</a
+            >
+        </div>
+        <div *ngIf="searching" id="spinner">
+            Searching for match... <span class="spinner spinner-sm"></span>
+        </div>
+        <a *ngIf="items.length === 0 && filteredItems.length === 0 && !searching" id="no-records">
+            <span *ngIf="hasError; else: emptyBlock" style="color: red">
+                Error: {{ errorMsg }}
+            </span>
+            <ng-template #emptyBlock>Empty records</ng-template>
+        </a>
+    </div>
+</div>

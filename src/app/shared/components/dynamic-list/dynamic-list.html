@@ -1,0 +1,108 @@
+<div class="dynamic-list">
+  <ng-container *ngIf="editorOnTop || (adding && alwaysShowEditor)" [ngTemplateOutlet]="editor">
+  </ng-container>
+  <ul>
+    <ng-container *ngFor="let obj of itemsForDisplay">
+      <li *ngIf="obj.group !== null && enableGrouping" class="group">
+        <span *ngIf="obj.group">{{ obj.group?.name }} ({{ obj.items.length }})</span>
+        <button class="btn btn-sm btn-link" (click)="newItemToGroup(obj.group)">
+          Add
+        </button>
+      </li>
+      <p *ngIf="obj.group && enableGrouping">
+        {{ obj.group.description }}
+      </p>
+      <li *ngFor="let item of obj.items; let i = index">
+        <clr-icon *ngIf="showIcons" [attr.shape]="item.icon ? item.icon : defaultIcon"></clr-icon>
+        <span>{{ item.name }}</span>
+        <clr-icon
+          *ngIf="canEdit && !item.readonly"
+          class="float"
+          shape="pencil"
+          (click)="edit(item)"
+        ></clr-icon>
+        <clr-icon
+          *ngIf="canDelete && !item.readonly"
+          class="float"
+          shape="trash"
+          (click)="delete(item)"
+        ></clr-icon>
+        <clr-icon *ngIf="showMenu" class="float" shape="ellipsis-vertical"></clr-icon>
+      </li>
+    </ng-container>
+  </ul>
+  <ng-container *ngIf="!editorOnTop && (adding || alwaysShowEditor)" [ngTemplateOutlet]="editor">
+  </ng-container>
+  <ng-template #editor>
+    <form
+      [ngClass]="{
+				valid: groupForNewItem,
+				'top-editor': editorOnTop
+			}"
+      class="input-box"
+      (submit)="add($event)"
+      (reset)="focusInput($event)"
+    >
+      <div class="input-container">
+        <label class="label" *ngIf="groupForNewItem && this.enableGrouping"
+          >{{ groupForNewItem.name }}</label
+        >
+        <hf-search
+          *ngIf="enableLookup"
+          #lookup
+          style="width: 100%"
+          [dataSource]="lookupResource"
+          [displayField]="lookupDisplayField"
+          [valueField]="lookupValueField"
+        ></hf-search>
+        <input
+          *ngIf="!enableLookup"
+          #inputBox
+          class="clrInput"
+          type="text"
+          hfDisableAutofill
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="inputString"
+          required
+          placeholder="Add new item {{ groupForNewItem?.name }}"
+        />
+      </div>
+      <div class="clear" *ngIf="!enableLookup">
+        <button
+          style="padding: 0 0.125rem; margin: 0"
+          class="btn btn-sm btn-icon btn-link"
+          type="reset"
+        >
+          <clr-icon shape="times-circle"></clr-icon>
+        </button>
+        <button
+          class="btn btn-sm btn-link"
+          style="padding: 0 0.125rem; margin: 0; min-width: 0.25rem;"
+          type="submit"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </ng-template>
+  <button
+    *ngIf="
+			!editorOnTop &&
+			!adding &&
+			showAddItem &&
+			canAddItem &&
+			!alwaysShowEditor
+		"
+    class="btn btn-sm btn-link"
+    (click)="onAddNewItemClick($event)"
+  >
+    <clr-icon shape="plus"></clr-icon> Add New Item
+  </button>
+  <button
+    *ngIf="adding && showAddItem && canAddItem && !alwaysShowEditor"
+    class="btn btn-sm btn-link"
+    (click)="cancelAdding($event)"
+  >
+    Discard
+  </button>
+</div>

@@ -1,0 +1,28 @@
+<form [formGroup]="form" clrForm clrLayout="horizontal" class="form-flex">
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <clr-control-helper>Enter a unique Name</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">You must provide an Name.!</clr-control-error>
+  </clr-input-container>
+
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Symbol</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="code"
+      name="code"
+    />
+    <clr-control-helper>Enter a unique Symbol</clr-control-helper>
+    <clr-control-error *clrIfError="'required'">You must provide Symbol!</clr-control-error>
+  </clr-input-container>
+</form>

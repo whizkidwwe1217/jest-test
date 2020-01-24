@@ -1,0 +1,49 @@
+<form [formGroup]="form" hfForm hfLayout="horizontal" class="form-flex">
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <hf-control-helper>Enter a unique Name</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">You must provide an Name.!</hf-control-error>
+  </hf-input-container>
+
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Description</label>
+    <textarea
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfTextarea
+      rows="6"
+      formControlName="description"
+      name="description"
+    ></textarea>
+  </hf-textarea-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Pay Item Type</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfSearch
+      type="text"
+      formControlName="payItemType"
+      name="payItemType"
+      [dataSource]="['Earning', 'Deduction']"
+    ></hf-search>
+  </hf-input-container>
+
+  <hf-checkbox-container>
+    <hf-checkbox-wrapper>
+      <input type="checkbox" hfCheckbox name="isTaxable" formControlName="isTaxable" />
+      <label>Taxable?</label>
+    </hf-checkbox-wrapper>
+    <hf-checkbox-wrapper>
+      <input type="checkbox" hfCheckbox name="isStandard" formControlName="isStandard" />
+      <label>Standard Pay Item?</label>
+    </hf-checkbox-wrapper>
+  </hf-checkbox-container>
+</form>

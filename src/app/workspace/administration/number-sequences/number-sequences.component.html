@@ -1,0 +1,12 @@
+<hf-datagrid-view-page
+	[dataSource]="'api/v1/numbersequence'"
+	[fields]="fields"
+	[title]="'Number Sequences'"
+	[icon]="'number'"
+	[selectionMode]="'none'"
+	[enableRowActions]="true"
+>
+	<ng-template>
+		<app-number-sequence-form></app-number-sequence-form>
+	</ng-template>
+</hf-datagrid-view-page>

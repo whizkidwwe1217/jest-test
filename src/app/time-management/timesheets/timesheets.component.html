@@ -1,0 +1,35 @@
+<hf-content-panel [title]="'Timesheet and Attendance'">
+	<div class="tab-container">
+		<clr-tabs>
+			<clr-tab>
+				<button clrTabLink id="tab1">Timesheet</button>
+				<clr-tab-content>
+					<hf-datagrid-view-page
+						[dataSource]="'api/v1/time-management/timesheet'"
+						[fields]="fields"
+						[subtitle]="'Timesheets'"
+						[icon]="'applet-executive-team'"
+						[enableRowActions]="true"
+						[noHeader]="true"
+						[selectionMode]="'multi'"
+					>
+						<ng-template><hrf-timesheet-form></hrf-timesheet-form></ng-template>
+					</hf-datagrid-view-page>
+					<ng-template #booleanTemplate let-data="data">
+						<clr-icon
+							[ngStyle]="{ color: data.value ? 'red' : 'green' }"
+							[attr.shape]="data.value ? 'lock' : 'unlock'"
+						></clr-icon>
+					</ng-template>
+					<ng-template #anchorTemplate let-data="data">
+						<a routerLink="{{ data.record.id }}">{{ data.value }}</a>
+					</ng-template>
+				</clr-tab-content>
+			</clr-tab>
+			<clr-tab>
+				<button clrTabLink id="tab1">Attendance</button>
+				<clr-tab-content *clrIfActive></clr-tab-content
+			></clr-tab>
+		</clr-tabs>
+	</div>
+</hf-content-panel>

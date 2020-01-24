@@ -1,0 +1,26 @@
+:host {
+	display: flex;
+	flex: 1;
+	flex-flow: column;
+	justify-content: center;
+	height: 100%;
+}
+
+p {
+	text-align: center;
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+h1 {
+	text-align: center;
+	font-size: 48pt;
+	color: #646464;
+}

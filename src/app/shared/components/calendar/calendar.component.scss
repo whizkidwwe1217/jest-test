@@ -1,0 +1,117 @@
+$border: 1px solid #eeeeee;
+$day-width: 4rem; //50px;
+
+.calendar {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.calendar-header {
+	font-weight: bold;
+	font-size: 14pt;
+	padding: 0.5rem;
+	display: inline-block;
+	* {
+		margin-right: 0.25rem;
+	}
+
+	.calendar-month-year {
+		display: inline-block;
+		width: 7rem;
+		text-align: center;
+	}
+
+	button {
+		&:focus {
+			outline: none;
+			background: #eeeeee;
+		}
+		&:hover {
+			background: #eeeeee;
+		}
+	}
+}
+
+.calendar table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.calendar-days {
+	td {
+		width: $day-width;
+		height: $day-width;
+		vertical-align: top;
+		font-weight: bold;
+		border-left: $border;
+		border-bottom: $border;
+		border-top: $border;
+		&:last-child {
+			border-right: $border;
+		}
+
+		&:hover {
+			background: #eeeeee;
+		}
+
+		.day-number {
+			width: 100%;
+			text-align: right;
+			padding: 0.25rem;
+		}
+
+		.event {
+			text-align: left;
+			font-size: 9pt;
+
+			& li {
+				list-style: none;
+				padding: 0 0.25rem;
+			}
+
+			.fitted {
+				background: #ffc3c3;
+			}
+
+			&.fixed-height {
+				height: $day-width;
+				overflow: auto;
+			}
+		}
+	}
+
+	tr:first-child {
+		td {
+			border-top: $border;
+		}
+	}
+
+	th {
+		width: $day-width;
+		height: $day-width;
+		text-align: right;
+		padding: 0.25rem;
+		vertical-align: top;
+		height: 1rem;
+		font-weight: bold;
+		border: none;
+	}
+}
+
+.is-current-date {
+	background: #d9e4ea;
+	font-weight: bold;
+	border-radius: 50%;
+	padding: 0.15rem;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
+.is-not-in-month {
+	color: #cccccc;
+}

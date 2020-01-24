@@ -1,0 +1,95 @@
+<form [formGroup]="form" hfForm hfLayout="horizontal" class="form-flex">
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Code</label>
+    <input
+      hfFocusInput="true"
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="text"
+      formControlName="code"
+      name="code"
+    />
+    <hf-control-helper>Enter a unique Code</hf-control-helper>
+    <hf-control-error *hfIfError="'required'">You must provide an Code!</hf-control-error>
+  </hf-input-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Name</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <hf-control-error *hfIfError="'required'">You must provide an Name!</hf-control-error>
+  </hf-input-container>
+
+  <hf-search-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Type</label>
+    <hf-search
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="select"
+      [dataSource]="['Office', 'Warehouse']"
+      formControlName="type"
+      name="type"
+    ></hf-search>
+    <hf-control-error *hfIfError="'required'">You must provide Type!</hf-control-error>
+  </hf-search-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Email</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="email"
+      formControlName="email"
+      name="email"
+    />
+  </hf-input-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Phone Number</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="tel"
+      formControlName="phoneNumber"
+      name="phoneNumber"
+    />
+  </hf-input-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Fax Number</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="tel"
+      formControlName="faxNumber"
+      name="faxNumber"
+    />
+  </hf-input-container>
+
+  <hf-input-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Website</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfInput
+      type="url"
+      formControlName="website"
+      name="website"
+    />
+  </hf-input-container>
+
+  <hf-textarea-container>
+    <label class="clr-col-xs-12 clr-col-md-2 clr-col-lg-4">Notes</label>
+    <textarea
+      class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+      hfTextarea
+      rows="6"
+      formControlName="notes"
+      name="notes"
+    ></textarea>
+  </hf-textarea-container>
+</form>

@@ -1,0 +1,162 @@
+.card.profile {
+	margin: 0 0 0.5rem 0;
+}
+
+.profile-header {
+	display: flex;
+	padding: 0.25rem;
+}
+
+.profile-header-text {
+	margin: 0.5rem 0.5rem;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	#employee-code {
+		font-weight: bold;
+	}
+
+	#employee-name {
+		font-weight: bold;
+	}
+}
+
+label {
+	font-weight: 600;
+}
+
+.profile-header-details {
+	margin: 0.5rem 1rem;
+	flex: 1;
+	label {
+		font-weight: 600;
+	}
+}
+
+.profile-photo {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	hf-avatar {
+		opacity: 1;
+		-webkit-transition: 0.3s ease-in-out;
+		transition: 0.3s ease-in-out;
+	}
+	&:hover {
+		hf-avatar {
+			opacity: 0.25;
+		}
+
+		.profile-photo-upload {
+			visibility: visible;
+		}
+	}
+
+	.profile-photo-upload {
+		position: absolute;
+		visibility: hidden;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		text-align: center;
+		top: 50%;
+		transition: 80ms ease-in visibility;
+		color: rgb(63, 96, 204);
+	}
+}
+
+.profile-header-actions {
+	padding-top: 0.5rem;
+}
+
+th,
+table,
+td,
+tr {
+	border: none;
+}
+
+table {
+	margin-top: 0;
+}
+
+$S: 550px;
+$M: 800px;
+$L: 1000px;
+
+// media queries
+
+@mixin MQ($canvas) {
+	@if $canvas == S {
+		@media only screen and (max-width: $S) {
+			@content;
+		}
+	} @else if $canvas == M {
+		@media only screen and (max-width: $M) {
+			@content;
+		}
+	} @else if $canvas == L {
+		@media only screen and (max-width: $L) {
+			@content;
+		}
+	}
+}
+
+.card-block.time-summary {
+	display: flex;
+	align-items: center;
+}
+
+.time-summary-actions {
+	display: flex;
+	@include MQ(S) {
+		flex-direction: column;
+		button {
+			margin-bottom: 0.25rem;
+		}
+	}
+}
+
+.time-summary-content {
+	margin-left: 0.5rem;
+}
+
+.time-summary-title {
+	margin: 0;
+}
+
+.time-summary-block-container {
+	display: flex;
+
+	.time-summary-block {
+		float: left;
+		margin: 0;
+		font-weight: 400;
+		letter-spacing: normal;
+		line-height: 1rem;
+		margin-right: 18px;
+
+		.time-summary-block-title {
+			margin: 0;
+			font-weight: 600;
+			font-size: 12px;
+			line-height: normal;
+		}
+
+		.time-summary-block-details {
+			padding: 0;
+			margin: 0;
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 1.2em;
+		}
+	}
+}

@@ -1,0 +1,25 @@
+<form [formGroup]="form" clrForm clrLayout="horizontal" class="form-flex">
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Code</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      clrInput
+      hfFocusInput="true"
+      type="text"
+      formControlName="code"
+      name="code"
+    />
+    <clr-control-error *clrIfError="'required'">You must provide a Code!</clr-control-error>
+  </clr-input-container>
+  <clr-input-container>
+    <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Name</label>
+    <input
+      class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+      clrInput
+      type="text"
+      formControlName="name"
+      name="name"
+    />
+    <clr-control-error *clrIfError="'required'">You must provide a Name!</clr-control-error>
+  </clr-input-container>
+</form>

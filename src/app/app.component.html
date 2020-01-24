@@ -1,1 +1,5 @@
 <ng-progress></ng-progress> <router-outlet></router-outlet>
+<!-- I indicate that a router module is being loaded asynchronously. -->
+<div *ngIf="isShowingRouteLoadIndicator" class="router-load-indicator">
+	Please wait a moment while the {{ lazyLoadedModuleName }} is being loaded...
+</div>

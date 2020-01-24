@@ -1,0 +1,380 @@
+<clr-accordion [clrAccordionMultiPanel]="true">
+    <clr-accordion-panel [(clrAccordionPanelOpen)]="accPersonalDetailsExpanded">
+        <clr-accordion-title>Personal Details</clr-accordion-title>
+        <clr-accordion-content>
+            <div class="clr-row">
+                <div class="clr-col-md-6">
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >First Name</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.firstName
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Last Name</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.lastName
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Middle Name</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.middleName
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Nickname</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.nickname
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Birthdate</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.birthDate
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Gender</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.gender
+                        }}</span>
+                    </div>
+                </div>
+                <div class="clr-col-md-6">
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Citizenship</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.citizenship
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Marital Status</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.maritalStatus
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Religion</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.religion
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Race</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.race
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Ethnicity</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.ethnicity
+                        }}</span>
+                    </div>
+                    <div class="clr-row">
+                        <label class="clr-col clr-col-sm-12 clr-col-md-4"
+                            >Country</label
+                        >
+                        <span class="clr-col clr-col-sm-12 clr-col-md-6">{{
+                            employee?.country
+                        }}</span>
+                    </div>
+                </div>
+            </div>
+        </clr-accordion-content>
+    </clr-accordion-panel>
+    <clr-accordion-panel [(clrAccordionPanelOpen)]="accContactsExpanded">
+        <clr-accordion-title>Emergency Contacts</clr-accordion-title>
+        <clr-accordion-content>
+            <table class="table">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Relationship</th>
+                <th></th>
+                <tr *ngFor="let contact of contacts">
+                    <td>{{ contact | person }}</td>
+                    <td>{{ contact?.emailAddress }}</td>
+                    <td>{{ contact?.phoneNumber }}</td>
+                    <td>{{ contact?.relationship }}</td>
+                    <td style="display: flex">
+                        <a style="padding: 0 0.5rem" href="javascript:void(0)"
+                            ><clr-icon
+                                shape="pencil"
+                                (click)="editEmergencyContact(contact)"
+                            ></clr-icon
+                        ></a>
+                        <a
+                            style="padding: 0 0.5rem"
+                            href="javascript:void(0)"
+                            (click)="deleteEmergencyContact(contact)"
+                            ><clr-icon shape="trash"></clr-icon
+                        ></a>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="btn btn-link" (click)="contactDialogOpen = true">
+                <clr-icon shape="plus"></clr-icon> Add Contact
+            </button>
+            <hf-side-panel
+                [title]="'Add New Emergency Contact'"
+                [(open)]="contactDialogOpen"
+                (openChange)="onEmergencyContactOpenChange($event)"
+                [accept]="acceptEmergencyContact()"
+            >
+                <ng-template>
+                    <form
+                        clrForm
+                        [formGroup]="emergencyContactForm"
+                        class="form-flex"
+                        style="padding: 0.5rem"
+                    >
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >First Name</label
+                            >
+                            <input
+                                clrInput
+                                type="text"
+                                formControlName="firstName"
+                                name="firstName"
+                                required
+                                class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+                            />
+                            <clr-control-error
+                                >Provide a first name.</clr-control-error
+                            >
+                        </clr-input-container>
+
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Last Name</label
+                            >
+                            <input
+                                clrInput
+                                type="text"
+                                formControlName="lastName"
+                                name="lastName"
+                                required
+                                class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+                            />
+                            <clr-control-error
+                                >Provide as last name.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Phone Number</label
+                            >
+                            <input
+                                clrInput
+                                type="text"
+                                formControlName="phoneNumber"
+                                name="phoneNumber"
+                                required
+                                class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+                            />
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Relationship</label
+                            >
+                            <input
+                                clrInput
+                                type="tel"
+                                formControlName="relationship"
+                                name="relationship"
+                                required
+                                class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+                            />
+                            <clr-control-error
+                                >Specify the relationship of this emergency contact
+                                person with the employee.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Email Address <sup>(Optional)</sup></label
+                            >
+                            <input
+                                clrInput
+                                type="text"
+                                formControlName="emailAddress"
+                                name="emailAddress"
+                                class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+                            />
+                        </clr-input-container>
+                    </form>
+                </ng-template>
+            </hf-side-panel>
+        </clr-accordion-content>
+    </clr-accordion-panel>
+    <clr-accordion-panel [(clrAccordionPanelOpen)]="accEducationExpanded">
+        <clr-accordion-title>Education</clr-accordion-title>
+        <clr-accordion-content>
+            <table class="table">
+                <th>School/University</th>
+                <th>Degree</th>
+                <th>Year Graduated</th>
+                <th>Level Attained</th>
+                <th>GPA</th>
+                <th>School/University Address</th>
+                <th></th>
+                <tr *ngFor="let education of educations">
+                    <td>{{ education?.institution }}</td>
+                    <td>{{ education?.degree }}</td>
+                    <td>{{ education?.yearGraduated }}</td>
+                    <td>{{ education?.levelAttained }}</td>
+                    <td>{{ education?.gradePointAverage }}</td>
+                    <td [attr.title]="education?.address">
+                        {{ education?.address }}
+                    </td>
+                    <td style="display: flex">
+                        <a style="padding: 0 0.5rem" href="javascript:void(0)"
+                            ><clr-icon
+                                shape="pencil"
+                                (click)="editEducation(education)"
+                            ></clr-icon
+                        ></a>
+                        <a
+                            style="padding: 0 0.5rem"
+                            href="javascript:void(0)"
+                            (click)="deleteEducation(education)"
+                            ><clr-icon shape="trash"></clr-icon
+                        ></a>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="btn btn-link" (click)="educationDialogOpen = true">
+                <clr-icon shape="plus"></clr-icon> Add Education
+            </button>
+            <hf-side-panel
+                [title]="'Add New Education'"
+                [(open)]="educationDialogOpen"
+                (openChange)="onEducationOpenChange($event)"
+                [accept]="acceptEducation()"
+            >
+                <ng-template>
+                    <form
+                        clrForm
+                        [formGroup]="educationForm"
+                        class="form-flex"
+                        style="padding: 0.5rem"
+                    >
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >School/University</label
+                            >
+                            <input
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                clrInput
+                                type="text"
+                                formControlName="institution"
+                                name="institution"
+                                required
+                            />
+                            <clr-control-error
+                                >You need to provide a school or
+                                institution.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Degree</label
+                            >
+                            <input
+                                clrInput
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                type="text"
+                                formControlName="degree"
+                                name="degree"
+                            />
+                            <clr-control-error
+                                >You need to provide a degree.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Year Graduated</label
+                            >
+                            <input
+                                clrInput
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                type="text"
+                                formControlName="yearGraduated"
+                                name="yearGraduated"
+                            />
+                            <clr-control-error
+                                >You need to provide the year the employee
+                                graduated.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >Level Attained</label
+                            >
+                            <input
+                                clrInput
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                type="text"
+                                formControlName="levelAttained"
+                                name="levelAttained"
+                            />
+                            <clr-control-error
+                                >Provide the level attained.</clr-control-error
+                            >
+                        </clr-input-container>
+                        <clr-input-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >GPA</label
+                            >
+                            <input
+                                clrInput
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                type="text"
+                                formControlName="gradePointAverage"
+                                name="gradePointAverage"
+                            />
+                        </clr-input-container>
+                        <clr-textarea-container>
+                            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+                                >School/University Address</label
+                            >
+                            <textarea
+                                clrTextarea
+                                class="clr-col-xs-12 clr-col-md-10 clr-col-lg-8"
+                                formControlName="address"
+                                name="address"
+                            ></textarea>
+                        </clr-textarea-container>
+                    </form>
+                </ng-template>
+            </hf-side-panel>
+        </clr-accordion-content>
+    </clr-accordion-panel>
+</clr-accordion>

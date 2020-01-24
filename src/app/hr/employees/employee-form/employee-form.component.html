@@ -1,0 +1,325 @@
+<form [formGroup]="form" hfForm clrLayout="horizontal" class="form-flex">
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink id="link1">Personal Info</button>
+      <clr-tab-content id="content1">
+        <section class="form-block">
+          <h4>Basic Information</h4>
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Code</label>
+            <input
+              hfFocusInput="true"
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="code"
+              name="code"
+            />
+            <hf-control-helper>Enter a unique Code.</hf-control-helper>
+            <hf-control-error *hfIfError="'required'">You must provide a Code!</hf-control-error>
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">First Name</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="firstName"
+              name="firstName"
+            />
+            <hf-control-error *hfIfError="'required'"
+              >You must provide a First Name!</hf-control-error
+            >
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Last Name</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="lastName"
+              name="lastName"
+            />
+            <hf-control-error *hfIfError="'required'"
+              >You must provide a Last Name!</hf-control-error
+            >
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Middle Name</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="middleName"
+              name="middleName"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Nickname</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="nickname"
+              name="nickname"
+            />
+          </hf-input-container>
+
+          <hf-date-container clrPosition="'bottom-right'">
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Birth Date</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfDate
+              type="date"
+              formControlName="birthDate"
+              name="birthDate"
+            />
+            <hf-control-error *hfIfError="'required'"
+              >You must provide a Birth Date!</hf-control-error
+            >
+          </hf-date-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Birth Place</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="birthPlace"
+              name="birthPlace"
+            />
+          </hf-input-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Gender</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfSearch
+              formControlName="gender"
+              [dataSource]="['Male', 'Female']"
+              [loopFocus]="true"
+            ></hf-search>
+            <hf-control-error>Specify the Gender.</hf-control-error>
+          </hf-search-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Marital Status</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfSearch
+              [dataSource]="['Single', 'Married', 'Separated', 'Widowed']"
+              formControlName="maritalStatus"
+            ></hf-search>
+            <hf-control-error *hfIfError="'required'">Specify the Marital Status.</hf-control-error>
+          </hf-search-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Citizenship</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="citizenship"
+              name="citizenship"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Email Address</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="email"
+              formControlName="emailAddress"
+              name="emailAddress"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Religion</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="religion"
+              name="religion"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Race</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="race"
+              name="race"
+            />
+          </hf-input-container>
+        </section>
+
+        <section class="form-block">
+          <h4>Personal Identification Numbers</h4>
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Social Security Number</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="sss"
+              name="sss"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Tax Identification Number</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="tin"
+              name="tin"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">PhilHealth Number</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="phic"
+              name="phic"
+            />
+          </hf-input-container>
+
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4"
+              >Government Service Insurance System</label
+            >
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="text"
+              formControlName="gsis"
+              name="gsis"
+            />
+          </hf-input-container>
+        </section>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>Employment Info</button>
+      <clr-tab-content>
+        <section class="form-block">
+          <hf-date-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Date Employed</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfDate
+              type="date"
+              formControlName="dateEmployed"
+              name="dateEmployed"
+            />
+          </hf-date-container>
+
+          <hf-date-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Date Regularized</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfDate
+              type="date"
+              formControlName="dateRegularized"
+              name="dateRegularized"
+            />
+          </hf-date-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Department</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              [dataSource]="'api/v1/organization/department'"
+              hfSearch
+              [enableLookup]="true"
+              [valueField]="'id'"
+              [displayField]="'name'"
+              formControlName="departmentId"
+            ></hf-search>
+          </hf-search-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Team</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfSearch
+              [dataSource]="'api/v1/organization/team'"
+              [enableLookup]="true"
+              [valueField]="'id'"
+              [displayField]="'name'"
+              formControlName="teamId"
+            ></hf-search>
+          </hf-search-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Position</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              [dataSource]="'api/v1/organization/position'"
+              [enableLookup]="true"
+              hfSearch
+              [valueField]="'id'"
+              [displayField]="'name'"
+              formControlName="positionId"
+            ></hf-search>
+          </hf-search-container>
+
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Supervisor</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              [dataSource]="'api/v1/organization/employee'"
+              hfSearch
+              [enableLookup]="true"
+              [valueField]="'id'"
+              [displayField]="'lastName'"
+              formControlName="supervisorId"
+            ></hf-search>
+          </hf-search-container>
+        </section>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>Payroll Info</button>
+      <clr-tab-content>
+        <section class="form-block">
+          <hf-input-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Rate</label>
+            <input
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfInput
+              type="number"
+              formControlName="baseRate"
+              name="baseRate"
+            />
+          </hf-input-container>
+          <hf-search-container>
+            <label class="clr-col-xs-12 clr-col-md-4 clr-col-lg-4">Salary Frequency</label>
+            <hf-search
+              class="clr-col-xs-12 clr-col-md-8 clr-col-lg-8"
+              hfSearch
+              [enableLookup]="true"
+              [dataSource]="frequencies"
+              [valueField]="'code'"
+              [displayField]="'name'"
+              formControlName="salaryFrequency"
+            ></hf-search>
+          </hf-search-container>
+        </section>
+      </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+</form>

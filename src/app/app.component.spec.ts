@@ -17,6 +17,14 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app.routing";
 import { HordeflowkitModule } from "hordeflowkit";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { SharedModule } from "./shared/shared.module";
+import { AdminAuthenticationGuard } from "./authentication/guards/admin-authentication.guard";
+import { AuthenticationGuard } from "./authentication/guards/authentication.guard";
+import { NoCompanyGuard } from "./authentication/guards/no-company.guard";
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { AdminModule } from "./admin/admin.module";
+import { WorkspaceModule } from "./workspace/workspace.module";
 
 let fixture: ComponentFixture<AppComponent> = null;
 let app: AppComponent = null;
@@ -27,6 +35,7 @@ beforeEach(() => {
 			BrowserModule,
 			ClarityModule,
 			NoopAnimationsModule,
+			ClarityModule,
 			HttpClientModule,
 			FormsModule,
 			ReactiveFormsModule,
@@ -36,6 +45,10 @@ beforeEach(() => {
 			NgProgressHttpModule,
 			HordeflowCommonModule,
 			HordeflowkitModule,
+			SharedModule,
+			AuthenticationModule,
+			AdminModule.forRoot(),
+			WorkspaceModule,
 			AppRoutingModule,
 			StoreModule.forRoot(
 				{
@@ -52,12 +65,15 @@ beforeEach(() => {
 			),
 			EffectsModule.forRoot([])
 		],
-		declarations: [AppComponent],
+		declarations: [AppComponent, WelcomeComponent],
 		providers: [
 			{
 				provide: APP_BASE_HREF,
 				useValue: "/"
-			}
+			},
+			AdminAuthenticationGuard,
+			AuthenticationGuard,
+			NoCompanyGuard
 		]
 	}).compileComponents();
 });
