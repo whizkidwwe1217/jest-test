@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+// @import "wijmo/styles/wijmo.css";
+// @import "assets/themes/wijmo/wijmo.theme.claritylight.css";
+
+// .clr-vertical-nav {
+//     &:not(.is-collapsed) {
+//         width: 12.8rem;
+//         min-width: 2.8rem;
+//     }
+//     .is-collapsed {
+//         width: 2.8rem;
+//         min-width: 2.8rem;
+//     }
+// }
+
+$color-orange: #f03c14;
+$color-orange-light: #f5846b;
+$color-blue: #3e64c4;
+$color-blue-light: #6b92f5;
+$color-marigold: #f7ec3e;
+$color-denim: #1a2930;
+$color-cobalt-denim: #0dacf7;
+
+// .header {
+// 	background: $color-denim !important;
+// }
+
+.branding {
+	min-width: 10rem !important;
+}
+
+.content-area {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.table-breakword td {
+	word-break: break-all;
+}
