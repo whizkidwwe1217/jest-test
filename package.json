@@ -37,6 +37,11 @@
 		"lint:fix": "tslint -p . -c tslint.json --fix \"src/**/*.ts\" -e \"**/node_modules/**\"",
 		"bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer dist/hordeflow/stats.json"
 	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "~8.2.14",
