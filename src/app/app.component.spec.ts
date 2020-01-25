@@ -26,60 +26,68 @@ import { AuthenticationModule } from "./authentication/authentication.module";
 import { AdminModule } from "./admin/admin.module";
 import { WorkspaceModule } from "./workspace/workspace.module";
 
-let fixture: ComponentFixture<AppComponent> = null;
-let app: AppComponent = null;
+describe("App Component", () => {
+	let fixture: ComponentFixture<AppComponent> = null;
+	let component: AppComponent = null;
 
-beforeEach(() => {
-	TestBed.configureTestingModule({
-		imports: [
-			BrowserModule,
-			ClarityModule,
-			NoopAnimationsModule,
-			ClarityModule,
-			HttpClientModule,
-			FormsModule,
-			ReactiveFormsModule,
-			NgxChartsModule,
-			NgProgressModule,
-			NgProgressRouterModule,
-			NgProgressHttpModule,
-			HordeflowCommonModule,
-			HordeflowkitModule,
-			SharedModule,
-			AuthenticationModule,
-			AdminModule.forRoot(),
-			WorkspaceModule,
-			AppRoutingModule,
-			StoreModule.forRoot(
-				{
-					appInfo: appInfoReducer
-				},
-				{
-					runtimeChecks: {
-						strictActionImmutability: true,
-						strictActionSerializability: true,
-						strictStateImmutability: true,
-						strictStateSerializability: true
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [
+				BrowserModule,
+				ClarityModule,
+				NoopAnimationsModule,
+				ClarityModule,
+				HttpClientModule,
+				FormsModule,
+				ReactiveFormsModule,
+				NgxChartsModule,
+				NgProgressModule,
+				NgProgressRouterModule,
+				NgProgressHttpModule,
+				HordeflowCommonModule,
+				HordeflowkitModule,
+				SharedModule,
+				AuthenticationModule,
+				AdminModule.forRoot(),
+				WorkspaceModule,
+				AppRoutingModule,
+				StoreModule.forRoot(
+					{
+						appInfo: appInfoReducer
+					},
+					{
+						runtimeChecks: {
+							strictActionImmutability: true,
+							strictActionSerializability: true,
+							strictStateImmutability: true,
+							strictStateSerializability: true
+						}
 					}
-				}
-			),
-			EffectsModule.forRoot([])
-		],
-		declarations: [AppComponent, WelcomeComponent],
-		providers: [
-			{
-				provide: APP_BASE_HREF,
-				useValue: "/"
-			},
-			AdminAuthenticationGuard,
-			AuthenticationGuard,
-			NoCompanyGuard
-		]
-	}).compileComponents();
-});
+				),
+				EffectsModule.forRoot([])
+			],
+			declarations: [AppComponent, WelcomeComponent],
+			providers: [
+				{
+					provide: APP_BASE_HREF,
+					useValue: "/"
+				},
+				AdminAuthenticationGuard,
+				AuthenticationGuard,
+				NoCompanyGuard
+			]
+		}).compileComponents();
+	});
 
-test("should create app component", () => {
-	fixture = TestBed.createComponent(AppComponent);
-	app = fixture.componentInstance;
-	expect(app).not.toBeNull();
+	test("should create App component", () => {
+		fixture = TestBed.createComponent(AppComponent);
+		component = fixture.debugElement.componentInstance;
+		expect(component).toBeTruthy();
+	});
+
+	test(`should have a title 'HordeFlow'`, () => {
+		fixture = TestBed.createComponent(AppComponent);
+		component = fixture.debugElement.componentInstance;
+		expect(component.title).toEqual("HordeFlow");
+	});
 });

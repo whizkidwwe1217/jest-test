@@ -34,7 +34,16 @@ module.exports = {
 	setupFilesAfterEnv: ["<rootDir>/src/setup-jest.ts"],
 	modulePaths: ["<rootDir>/dist"],
 	testMatch: ["**/+(*.)+(spec).+(ts)"],
-	collectCoverage: false,
+	collectCoverage: true,
 	coverageReporters: ["html"],
-	coverageDirectory: "coverage/my-app"
+	coverageDirectory: "coverage/hris",
+	coveragePathIgnorePatterns: [
+		"/node_modules",
+		"/assets",
+		"/dist",
+		"package.json",
+		"package-lock.json",
+		"setup-jest.ts",
+		"jestGlobalMocks.ts"
+	]
 };

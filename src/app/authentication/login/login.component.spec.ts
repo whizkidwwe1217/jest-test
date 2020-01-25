@@ -1,79 +1,102 @@
-// import { TestBed, inject, getTestBed } from "@angular/core/testing";
-// import { ClarityModule } from "@clr/angular";
-// import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-// import { SharedModule } from "src/app/shared/shared.module";
-// import { HordeflowCommonModule } from "hordeflow-common";
-// import { HordeflowkitModule } from "hordeflowkit";
-// import { LoginComponent } from "./login.component";
-// import { RouterModule, Router } from "@angular/router";
-// import { HttpClientTestingModule } from "@angular/common/http/testing";
-// import { APP_BASE_HREF } from "@angular/common";
-// import { StoreModule } from "@ngrx/store";
-// import { EffectsModule } from "@ngrx/effects";
-// import { appInfoReducer } from "src/app/data/reducers/app-info.reducer";
+import { TestBed, ComponentFixture } from "@angular/core/testing";
+import { LoginComponent } from "./login.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { ClarityModule } from "@clr/angular";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { NgProgressModule } from "ngx-progressbar";
+import { NgProgressRouterModule } from "ngx-progressbar/router";
+import { NgProgressHttpModule } from "ngx-progressbar/http";
+import { HordeflowCommonModule } from "hordeflow-common";
+import { HordeflowkitModule } from "hordeflowkit";
+import { SharedModule } from "src/app/shared/shared.module";
+import { AuthenticationModule } from "../authentication.module";
+import { AdminModule } from "src/app/admin/admin.module";
+import { WorkspaceModule } from "src/app/workspace/workspace.module";
+import { AppRoutingModule } from "src/app/app.routing";
+import { StoreModule } from "@ngrx/store";
+import { appInfoReducer } from "src/app/data/reducers/app-info.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { APP_BASE_HREF, CommonModule } from "@angular/common";
+import { AdminAuthenticationGuard } from "../guards/admin-authentication.guard";
+import { AuthenticationGuard } from "../guards/authentication.guard";
+import { NoCompanyGuard } from "../guards/no-company.guard";
+import { AuthenticationRoutingModule } from "../authentication.routing";
 
-// let router: Router;
-// const credentials = {
-// 	companyId: "d46f6c18",
-// 	username: "admin",
-// 	password: "12345678",
-// 	rememberCredentials: true
-// };
+describe("Login Component", () => {
+	let fixture: ComponentFixture<LoginComponent> = null;
+	let component: LoginComponent = null;
+	const credentials = {
+		companyId: "d46f6c18",
+		username: "admin",
+		password: "12345678",
+		rememberCredentials: true
+	};
 
-// beforeEach(() => {
-// 	TestBed.configureTestingModule({
-// 		imports: [
-// 			HttpClientTestingModule,
-// 			ClarityModule,
-// 			FormsModule,
-// 			ReactiveFormsModule,
-// 			SharedModule,
-// 			HordeflowCommonModule,
-// 			HordeflowkitModule,
-// 			RouterModule.forRoot([]),
-// 			StoreModule.forRoot({
-// 				appInfo: appInfoReducer
-// 			}),
-// 			EffectsModule.forRoot([])
-// 		],
-// 		declarations: [LoginComponent],
-// 		providers: [{ provide: APP_BASE_HREF, useValue: "/" }]
-// 	}).compileComponents();
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [
+				CommonModule,
+				FormsModule,
+				ClarityModule,
+				ReactiveFormsModule,
+				HordeflowkitModule,
+				SharedModule,
+				AuthenticationModule,
+				StoreModule.forRoot(
+					{
+						appInfo: appInfoReducer
+					},
+					{
+						runtimeChecks: {
+							strictActionImmutability: true,
+							strictActionSerializability: true,
+							strictStateImmutability: true,
+							strictStateSerializability: true
+						}
+					}
+				),
+				EffectsModule.forRoot([])
+			],
+			providers: [
+				{
+					provide: APP_BASE_HREF,
+					useValue: "/"
+				}
+			]
+		}).compileComponents();
+	});
 
-// 	const injector = getTestBed();
-// 	router = injector.get(Router);
-// });
+	test("should create Login Component", () => {
+		fixture = TestBed.createComponent(LoginComponent);
+		component = fixture.debugElement.componentInstance;
+		expect(component).toBeTruthy();
+	});
 
-// test("should create LoginComponent", () => {
-// 	const fixture = TestBed.createComponent(LoginComponent);
-// 	const app = fixture.debugElement.componentInstance;
-// 	expect(app).toBeTruthy();
-// });
+	test("should create forms", () => {
+		fixture = TestBed.createComponent(LoginComponent);
+		component = fixture.debugElement.componentInstance as LoginComponent;
+		expect(component.setupForm).toBeTruthy();
+		expect(component.loginForm).toBeTruthy();
+	});
 
-// test("should create forms", () => {
-// 	const fixture = TestBed.createComponent(LoginComponent);
-// 	const cmp = fixture.debugElement.componentInstance as LoginComponent;
-// 	expect(cmp.setupForm).toBeTruthy();
-// 	expect(cmp.loginForm).toBeTruthy();
-// });
+	test("should navigate to /login", () => {
+		const route = {
+			navigate: jest.fn()
+		};
+		route.navigate(["/login"]);
+		expect(route.navigate).toHaveBeenCalledWith(["/login"]);
+	});
 
-// test("should navigate to /login", () => {
-// 	const route = {
-// 		navigate: jest.fn()
-// 	};
-// 	route.navigate(["/login"]);
-// 	expect(route.navigate).toHaveBeenCalledWith(["/login"]);
-// });
+	test("should enter valid credentials", () => {
+		fixture = TestBed.createComponent(LoginComponent);
+		component = fixture.debugElement.componentInstance as LoginComponent;
+		component.setFormData(credentials, true);
 
-// test("should enter valid credentials", () => {
-// 	const fixture = TestBed.createComponent(LoginComponent);
-// 	const cmp = fixture.debugElement.componentInstance as LoginComponent;
-// 	cmp.setFormData(credentials, true);
-
-// 	expect(cmp.username.value).toBe("admin");
-// 	expect(cmp.password.value).toBe("12345678");
-// 	expect(cmp.companyId.value).toBe("d46f6c18");
-// });
-test("truelala", () => {
-	expect(true).toBeTruthy();
+		expect(component.username.value).toBe("admin");
+		expect(component.password.value).toBe("12345678");
+		expect(component.companyId.value).toBe("d46f6c18");
+	});
 });
