@@ -1,13 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>JestTest</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<title>HordeFlow</title>
+		<base href="/" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="stylesheet" href="assets/themes/clarity-light.min.css" />
+		<style>
+			.loader-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				height: 100%;
+				background: #1a2930;
+				align-items: center;
+			}
+			.loader-text {
+				color: #ffffff;
+				font-size: 20px;
+			}
+			.loader-logo {
+				background: url(assets/logo.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				height: 100px;
+				width: 250px;
+			}
+			.loader-spinner {
+				height: 48px;
+				width: 48px;
+				animation: rotate 2s linear infinite;
+				transform-origin: center center;
+				position: relative;
+				margin-top: 1.5rem;
+			}
+			.loader-spinner .path {
+				stroke-dasharray: 1, 48;
+				stroke-dashoffset: 0;
+				animation: dash 1.5s ease-in-out infinite;
+				stroke-linecap: round;
+				stroke: #ddd;
+			}
+			@keyframes rotate {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			@keyframes dash {
+				0% {
+					stroke-dasharray: 1, 48;
+					stroke-dashoffset: 0;
+				}
+				50% {
+					stroke-dasharray: 89, 48;
+					stroke-dashoffset: -15px;
+				}
+				100% {
+					stroke-dasharray: 89, 48;
+					stroke-dashoffset: -48px;
+				}
+			}
+			body,
+			html {
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<app-root>
+			<div class="loader-container">
+				<div class="loader-logo"></div>
+				<p class="loader-text" id="message">
+					If you spend your whole life waiting for the storm, you'll never enjoy the
+					sunshine.
+				</p>
+				<div class="loader-spinner-container">
+					<svg class="loader-spinner" viewBox="25 25 50 50">
+						<circle
+							class="path"
+							cx="50"
+							cy="50"
+							r="20"
+							fill="none"
+							stroke-width="2"
+							stroke-miterlimit="10"
+						/>
+					</svg>
+				</div>
+			</div>
+		</app-root>
+		<script>
+			var messages = [
+				"A good day to you fine user!",
+				"Glorious things are waiting for you. We're just getting them ready.",
+				"Amazing things come to those who wait.",
+				"If you spend your whole life waiting for the storm, you'll never enjoy the sunshine."
+			];
+
+			var maximum = messages.length - 1;
+			var minimum = 0;
+			var rand = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+			document.getElementById("message").innerText = messages[rand];
+		</script>
+	</body>
 </html>

@@ -1,0 +1,197 @@
+<svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="360"
+          height="176"
+          class="wd-graphic wd-graphic-empty-state-search-gray"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 360 176"
+        >
+          <defs>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-1"
+              d="M65.5 2C51.677 2 40.325 12.584 39.108 26.09a1 1 0 0 1-.996.91H11a1 1 0 1 1 0-2h26.213C38.939 10.91 50.945 0 65.5 0c11.476 0 21.366 6.783 25.883 16.555A11.992 11.992 0 0 1 95 16c5.592 0 10.289 3.824 11.622 9H141a1 1 0 0 1 0 2H105.779a1 1 0 0 1-.944-.82C103.98 21.527 99.901 18 95 18a9.978 9.978 0 0 0-7.728 3.653 1 1 0 0 1-1.544-1.27 12.047 12.047 0 0 1 3.803-3.067C85.313 8.268 76.138 2 65.5 2zM1 25a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H1z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-3"
+              d="M40.5 2c-8.403 0-15.245 6.687-15.493 15.03a1 1 0 0 1-1 .97H1a1 1 0 1 1 0-2h22.063C23.825 7.037 31.34 0 40.5 0a17.466 17.466 0 0 1 13.471 6.329C54.946 6.113 55.961 6 57 6c6.343 0 11.699 4.217 13.42 10H88a1 1 0 1 1 0 2H69.672a.993.993 0 0 1-.64-.216.999.999 0 0 1-.353-.554C67.429 11.938 62.673 8 57 8c-3.225 0-6.15 1.27-8.308 3.34a1 1 0 0 1-1.384-1.442 14.013 14.013 0 0 1 4.565-2.93A15.456 15.456 0 0 0 40.5 2zM92 16a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2h-5z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-5"
+              d="M51.5 2a8.5 8.5 0 0 0-8.5 8.5 1 1 0 1 1-2 0c0-.768.082-1.517.239-2.238A6.003 6.003 0 0 0 37 14a1 1 0 0 1-1 1H20a1 1 0 1 1 0-2h15.062a8.004 8.004 0 0 1 6.918-6.936A10.501 10.501 0 0 1 51.5 0c4.94 0 9.083 3.411 10.202 8.007A7.002 7.002 0 0 1 68.71 13H95a1 1 0 1 1 0 2H67.917a1 1 0 0 1-.986-.835 5.002 5.002 0 0 0-5.85-4.08 1 1 0 0 1-1.173-.838A8.503 8.503 0 0 0 51.5 2zM0 14a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1zm12-7a1 1 0 1 0 0 2h7a1 1 0 1 0 0-2h-7z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-7"
+              d="M38.661 6.416a7.502 7.502 0 0 1 12.397-1.952c-1.17.363-2.257.923-3.17 1.62a1 1 0 1 0 1.224 1.583c1.073-.841 2.268-1.385 3.628-1.583.053.001.107-.002.16-.01a8.004 8.004 0 0 1 8.901 6.146 1 1 0 0 0 .996.78H79a1 1 0 1 0 0-2H63.542C62.267 6.943 58.478 4 54 4c-.24 0-.489.01-.734.028A9.49 9.49 0 0 0 45.5 0c-3.64 0-6.8 2.047-8.395 5.05A8.006 8.006 0 0 0 30.252 11H12a1 1 0 1 0 0 2h19.07a1 1 0 0 0 .99-.858 6.002 6.002 0 0 1 5.725-5.138 1 1 0 0 0 .876-.588zM82 12a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1zM1 11a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H1z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-9"
+              d="M5 0c.57 0 .827 1.836 2.077 3.086C8.327 4.336 10 4.432 10 5c0 .568-1.684.823-2.934 2.073C5.816 8.323 5.723 10 5 10c-.723 0-.854-1.762-2.104-3.012S0 5.623 0 5s1.508-.642 2.815-1.949S4.43 0 5 0z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-11"
+              d="M3 0c.342 0 .496 1.102 1.246 1.852S6 2.659 6 3c0 .34-1.01.494-1.76 1.244S3.433 6 3 6c-.434 0-.512-1.057-1.262-1.807S0 3.373 0 3c0-.374.905-.385 1.69-1.17C2.472 1.047 2.657 0 3 0z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-13"
+              d="M3 0c.342 0 .496 1.102 1.246 1.852S6 2.659 6 3c0 .34-1.01.494-1.76 1.244S3.433 6 3 6c-.434 0-.512-1.057-1.262-1.807S0 3.373 0 3c0-.374.905-.385 1.69-1.17C2.472 1.047 2.657 0 3 0z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-15"
+              d="M3 0c.342 0 .496 1.102 1.246 1.852S6 2.659 6 3c0 .34-1.01.494-1.76 1.244S3.433 6 3 6c-.434 0-.512-1.057-1.262-1.807S0 3.373 0 3c0-.374.905-.385 1.69-1.17C2.472 1.047 2.657 0 3 0z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-17"
+              d="M3 0c.342 0 .496 1.102 1.246 1.852S6 2.659 6 3c0 .34-1.01.494-1.76 1.244S3.433 6 3 6c-.434 0-.512-1.057-1.262-1.807S0 3.373 0 3c0-.374.905-.385 1.69-1.17C2.472 1.047 2.657 0 3 0z"
+            ></path>
+            <path
+              id="wd-graphic-empty-state-search-gray-path-19"
+              d="M3 0c.342 0 .496 1.102 1.246 1.852S6 2.659 6 3c0 .34-1.01.494-1.76 1.244S3.433 6 3 6c-.434 0-.512-1.057-1.262-1.807S0 3.373 0 3c0-.374.905-.385 1.69-1.17C2.472 1.047 2.657 0 3 0z"
+            ></path>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-21"
+              cx="2"
+              cy="2"
+              r="2"
+            ></circle>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-23"
+              cx="1.5"
+              cy="1.5"
+              r="1.5"
+            ></circle>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-25"
+              cx="1.5"
+              cy="1.5"
+              r="1.5"
+            ></circle>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-27"
+              cx="1"
+              cy="1"
+              r="1"
+            ></circle>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-29"
+              cx="1"
+              cy="1"
+              r="1"
+            ></circle>
+            <circle
+              id="wd-graphic-empty-state-search-gray-path-31"
+              cx="1"
+              cy="1"
+              r="1"
+            ></circle>
+          </defs>
+          <g fill="none" fill-rule="evenodd" class="wd-icon-container">
+            <g fill-rule="nonzero" transform="translate(29 102)">
+              <path
+                fill="#000"
+                fill-opacity=".04"
+                d="M92 18C81.5 1.5 66.5-2 53.5 3c18 1.5 29.948 14.971 31.5 21 3.5-4 6-6 7-6z"
+              ></path>
+              <use
+                fill="#CAD3D9"
+                xlink:href="#wd-graphic-empty-state-search-gray-path-1"
+              ></use>
+            </g>
+            <g fill-rule="nonzero" transform="translate(216 43)">
+              <path
+                fill="#000"
+                fill-opacity=".04"
+                d="M54 7C48 1 43.5-.276 32 3.099c7 0 13.5.901 15 7.901 4-4.5 5.5-3 7-4z"
+              ></path>
+              <use
+                fill="#CAD3D9"
+                xlink:href="#wd-graphic-empty-state-search-gray-path-3"
+              ></use>
+            </g>
+            <use
+              fill="#E6EBEE"
+              fill-rule="nonzero"
+              transform="translate(25 32)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-5"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              fill-rule="nonzero"
+              transform="translate(222 144)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-7"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(114 7)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-9"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(115 89)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-11"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(152 138)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-13"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(322 31)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-15"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(24 64)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-17"
+            ></use>
+            <use
+              fill="#FFDB63"
+              transform="translate(260 98)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-19"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(260 30)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-21"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(71 73)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-23"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(230 104)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-25"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(86 130)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-27"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(100 67)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-29"
+            ></use>
+            <use
+              fill="#E6EBEE"
+              transform="translate(221 56)"
+              xlink:href="#wd-graphic-empty-state-search-gray-path-31"
+            ></use>
+            <path
+              fill="#fff"
+              d="M166 106c-19.882 0-36-16.118-36-36s16.118-36 36-36 36 16.118 36 36-16.118 36-36 36zm43.89 1.89l27.165 27.165a4.164 4.164 0 1 1-5.889 5.89L204 113.778l5.89-5.889z"
+            ></path>
+            <path
+              fill="#dfe2e6"
+              d="M163.5 105.915C182.216 104.63 197 89.042 197 70c0-19.042-14.784-34.63-33.5-35.915.826-.056 1.66-.085 2.5-.085 19.882 0 36 16.118 36 36s-16.118 36-36 36c-.84 0-1.674-.029-2.5-.085z"
+            ></path>
+            <path
+              fill="#7b858f"
+              d="M204.768 110.182l-12.614-12.614C185.34 104.033 176.134 108 166 108c-20.987 0-38-17.013-38-38s17.013-38 38-38 38 17.013 38 38c0 10.134-3.967 19.34-10.432 26.154l12.614 12.614 3.707-3.707 28.58 28.58a6.164 6.164 0 1 1-8.717 8.718l-28.58-28.58 3.596-3.597zM166 106c19.882 0 36-16.118 36-36s-16.118-36-36-36-36 16.118-36 36 16.118 36 36 36zm43.89 1.89l-5.89 5.888 27.166 27.167a4.164 4.164 0 0 0 5.89-5.89l-27.167-27.166z"
+            ></path>
+          </g>
+        </svg>
